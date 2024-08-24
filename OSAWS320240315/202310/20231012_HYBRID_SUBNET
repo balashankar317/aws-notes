@@ -1,0 +1,132 @@
+What is Hybrid Subnet?
+Hybrid subnet is partially open to public network. all the outbound traffic from the subnet resources to the public network is allowed and all the inbound traffic from public network to subnet resources are blocked
+
+How to create an Hybrid subnet?
+To create an Hybrid Subnet AWS Cloud platform has provided NAT gateway. NAT stands for network address translation mechanism, it is an special type of network device that allows the outbound network traffic to public network and blocks the inbound network traffic from the public network
+
+While working with Hybrid Subnet our subnet remains as an private subnet only, but the outbound network traffic from the subnet resources to the public network is routed through NAT Gateway. Here the NAT Gateway takes the request and rewrites the address replacing with Gateway address rather than the resource and sends it to the public network, so that the original sender of the request would be always abstracted while using the NAT Gateway
+
+Inorder to create an Hybrid subnet, we need to have one public subnet within the vpc. Now we need to create an NAT gateway on the public subnet, so that it (NAT Gateway) can have public network access. To route the public network traffic through the NAT gateway from our subnet of resources, we need to add an route table, let us understand how can we setup as below
+
+1. create an vpc
+vpcname: ibanksafevpc
+cidr: 10.2.0.0/16
+	
+2. create subnets within the vpc region across the availability zones
+2.1 public subnet
+subnet name: ibanksafepubsn1
+vpc: ibanksafevpc
+availabilityZone: ap-south-1a
+cidr: 10.2.10.0/24
+	
+2.2 hybrid subnet
+subnet name: ibanksafehybsn2
+vpc: ibanksafevpc
+availabilityZone: ap-south-1b
+cidr: 10.2.20.0/24
+
+2.1 private subnet
+subnet name: ibanksafeprvsn3
+vpc: ibanksafevpc
+availabilityZone: ap-south-1c
+cidr: 10.2.30.0/24
+	
+3. create an internet gateway
+igwname: ibanksafeig
+attach to vpc: ibanksafevpc
+
+4. create an route table routing the public network traffic from ibanksafepubsn1 through internet gateway
+routetable name: ibanksafeigwrt
+subnet association: ibanksafepubsn1
+--------------------------
+cidr         target
+10.2.0.0/16  local
+0.0.0.0/0    ibanksafeigw
+---------------------------
+
+5. create a nat gateway
+while creating the nat gateway choose the subnet as one of the public subnet of the vpc in which we want to create it, so that it can have access to the public network
+nat gateway name: ibanksafenatgtw
+subnet: ibanksafepubsn1
+
+6. create a route table routing the public network traffic from ibanksafehybsn2 through nat gateway
+route table name: ibanksafenatgtwrt
+subnet associate: ibanksafehybsn2
+----------------------------------
+cidr              target
+10.2.0.0/16       local
+0.0.0.0/0         ibanksafenatgtw
+-----------------------------------
+
+To check whether our subnet is an Hybrid subnet or not 
+1. provision an ec2 instance under hybrid subnet. we cannot SSH into this instance from public subnet, because it doesnt have inbound access from public network to subnet resources.
+
+but still we need to check whether hybrid subnet resources has external network access, to do this let us create a jumpbox on public subnet, from here ssh into hybrid subnet ec2 instance and check whether we are able to access public network or not
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

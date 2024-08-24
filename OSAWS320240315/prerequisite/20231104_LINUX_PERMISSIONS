@@ -1,0 +1,256 @@
+1. Basics of Linux operating system                                  
+	1.1 FileSystem 
+	[touch, mkdir, rm, rm -rf, cat, echo, cp, mv]
+	[find, grep]
+	[File permissions: chmod, chown]
+	1.2 User Management 
+	[useradd, groupadd, deluser, delgroup]
+	[sudoers, su]
+	1.3 Package Management
+	ubuntu: [apt, dpkg]
+2. Networking
+	1. basics of networking protocols
+	2. ip address / subnetting
+	3. port
+	4. networking devices
+3. any programming language, preferrably: java
+	1. how to build an application using maven build tool
+	2. how to deploy an web application on tomcat server
+5. ssh protocol
+--------------------------------------------------------------------------------------------------------------------------------------------
+user management and file permissions
+------------------------------------
+There are 2 types of users are there in linux operating system
+1. root user
+2. normal user
+
+1. root user
+root user is the ultimate / administrator of the linux operating system, he/she has full access to all the resources of the machine. 
+The root user of the linux operating system will be created during the installation of the linux itself.
+	1.1 always the root user has the username as : root
+	1.2 the root user is identified with an uid: 0 and gid as: 0
+	1.3 the home directory of the root user by default in most of the linux distro is "/root"
+The linux will not permit the root to be logged-in directly into the machine and when we launch the bash/terminal of the linux we will not be under root prompt. This is to ensure the safety and security to avoid/prevent accidental damage	in modifying the system resources.
+		
+2. normal user
+other than the root, every other user in linux operating system is an normal user. during the installation of the linux operating system it allows us to create an additional user other than root to allow us to login into the system as normal user.
+1.1 a normal user will have the access to the files and process that he/she has created/launched, they cannot see any other users files/processes in the system
+1.2 upon logging in as an normal user we can switch to an root by using
+su - 
+on the terminal, that prompts for root password to access the machine as a root
+	
+1.3 for the normal user, the linux creates an home directory for that user usually under /home/#USERNAME. the normal user can create files/directories only under his home directory 
+
+characteristics:
+1. every user is created with an username
+2. for each user linux creates an group and associates the user to the group. the default groupName for an user is the username itself
+3. for each linux user while creating it generates an uid and gid, associates that to the resp user/group it is creating
+4. for each user a default shell will be associated
+5. a home directory will be created for the user
+
+what are sudoers, why do we need?
+There is only 1 and only 1 root user for the linux system, linux will not allows us to create multiple root users. But having with onesingle root user for a machine we cannot manage in performing administrative operations.
+so the root can temporarily allow an normal user to prompt himself as a "root" with restricted permissions using sudoer.
+	
+sudoer = sudo means superuser do, the user is allowed to run linux commands as an superuser (root)
+	
+rather than creating multiple root users, linux will promotes an normal user as sudoer with restricted permissions like
+1. from where he can perform the superuser commands (locally/remote machine)
+2. which commands are allowed to execute
+etc
+The root user can promote an normal user as sudoer by making an entry in /etc/sudoers file
+
+
+1. how to create a new user in linux operating system?
+1.1 switch as root su - (enter the root user password when prompted)
+(or)
+if the user has sudo access run the below command user sudo before it
+
+useradd -m -s /bin/bash username 
+now the user will be created with
+1. home directory
+2. default group as username group
+3. associate with uid/gid
+4. shell as /bin/bash
+with no password
+
+now reset the password for the user using below command
+passwd username
+it prompts for password twice and sets the password for the user
+
+2. how to create a group?
+groupadd groupName
+
+3. how to create an user in the existing group?
+useradd -m -g gid -s /bin/bash username
+
+The group to which the user is added at the time of creating the user will becomes the "primary group" of the user. Additional an user can be in multiple groups also.
+	
+How to promote an user as an sudoer?
+The root user can promote any normal user as sudoer by adding an entry into /etc/sudoers file
+sudo visudo 
+this opens /etc/sudoers file
+
+then navigate to user specification section add an entry making an user as sudoer as below
+username  ALL=(ALL:ALL) ALL
+
+then exit the visudo by pressing esc + :wq (enter)
+	
+anytime now the bob can execute the superuser commands using sudo permission as
+sudo superusercommand (this prompts for the password of that user, for security)
+	
+File permissions:
+-----------------
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

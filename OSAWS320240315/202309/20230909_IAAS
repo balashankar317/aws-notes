@@ -1,0 +1,300 @@
+on-demand delivery of computing resources/services to the world is called "Cloud Computing". 3 Types of services are offered by the cloud computing providers
+1. IAAS
+2. PAAS
+3. SAAS
+
+1. IAAS 
+IAAS stands for Infrastructure as an Service. The Infrastructure or Computing resources that are required for running/hosting the software applications are provided aspart of the IAAS like
+1. Compute Instance
+2. Networking 
+	1. Firewall
+	2. private network
+	3. Subnets
+	4. Ip addresses
+	5. Network Gateways
+3. Loadbalancers
+4. DNS Services
+
+The cloud computing providers uses Virtualization technology in offering the IAAS services to the world
+
+Virtualization
+Virtualization is an technology through which we can create multiple parallel isolated environments on one single physical computer machine. It works on Hypervisor
+
+There are 2 types of Hypervisors are there
+1. Software Hypervisor = is an software component that is installed on the operating system of the computer through which we distribute/allocate physical system resources to the virtual machines in keeping them running in parallel and isolated.
+	
+2. Hardware Hypervisor = it is an component that is manufactured and shipped aspart of the hardware resources of the machine which will directly interact and distribute the computing resources of the machine across multiple virtual machines running on top of it.
+
+There are lot of advantages in using cloud computing in procuring the IAAS services than using an data center
+1. Incase of data centers, they have pre-pooled physical server machines of fixed shapes and the endusers has to sigup for the machines out of the available shapes only, wherein most of the time they endup in signing up for more resources and run out of shortage of resources. Because they may not find the machines of the required sizes based on their application requirements
+
+But whereas in cloud computing, always the enduser can request for a machine of an specific shape based on the needs of the application that is being hosted. So we never run out of shortage of resources or unnecessarily waste the resources by signing up for huge size
+
+2. Incase of data center, upon requesting the physical resources, he might take some amount of time that might range between hours to days/weeks as well depends on the availability of the resources.
+Whereas in cloud computing upon requesting an resource of an desired size, many of the times the resources are provided instantly within couple of minutes of time.
+	
+3. In datacenters no matter whether the physical machine is being used or not, and at what capacity once it has been alloted to you, will be charged to the fullest.
+whereas in cloud computing, it is pay per usage model
+	3.1 based on the amount of cpu/ram being alloted the charges will be applied, incase if the machines has been shutted down, we will not charged for that duration
+	3.2 amount of network i/o being used, the charged will be imposed
+	3.3 storage: based on the amount of data we have stored on the storage device we will be charged
+so the charges are imposed based on the usage, rather than how long the infrastructure has been alloted to you
+
+4. There are absolutely no long-term contractual agreements required in procuring the infrastructure unlike the data centers, we can always can provision the resources and use for amount of the time we need and can terminate them back without  any restrictions.
+	
+5. scale-out and scale-in of the infrastructure is supported by the cloud-computing vendors. Many cloud computing providers supports auto-scaling configurations through which we can specify the rules over which the infrastructure should be scaled-out or scaled-in based on the usage.
+	
+6. scale-up and scale-down is supported by the cloud providers
+
+7. periodical backups and restoration in the event of crash is handled by cloud computing providers
+
+The cloud computing providers takes care of managing the lifecycle of the compute resources like
+1. provisioning         = creating a new resource
+2. deprovisioning       = deleting the resources
+3. scale-out/scale-in   = adding more resources / deleting the existing resources
+4. scale-up/scale-down  = increasing the capacity of the resources / decreasing the capacity
+5. backup/restore      
+
+In-Summary what are the advantages of cloud computing over data center:
+1. flexible shapes
+2. no up-front cost / contractual agreements / leasing intervals
+3. no waiting queues
+4. pay per usage
+--------------------------------------------------------------------------------------------------------------------------------------
+2. PAAS
+PAAS stands for Platform as an Service. 
+
+developers:
+java application
+python
+php
+.net
+
+IAAS = computer, internet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

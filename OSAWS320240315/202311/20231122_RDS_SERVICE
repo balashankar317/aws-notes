@@ -1,0 +1,323 @@
+There are lot of challenges or difficulties in installing, configuring and managing the RDBMS databases on the infrastructure manually as below:
+1. While installing/running the database server softwares on the cloud infrastructure, we need to take excessive care in setting up the network and security aspects in ensuring these resources would be not be accessed to the external world directly.
+2. the ops engineers has to take care of manually downloading these database softwares, install them and configure to use it. we need special expertise or the presence of DBAs in installing/configuring these servers
+	1. to use these software servers, we need to procure software licenses
+	2. require huge manpower resources in installing/managing them incurrs additional cost
+3. for ensuring high-availability we should be able to install multiple instances of the database server software across multiple nodes spread across different availability zones of the vpc network. configuring and running these database server softwares as active/passive instances for high availability is very difficult and the process differs from software product to another product
+4. monitoring, managing and periodical backup and restore incase of crash is an on-going maintainance activity that should be handled by an dedicated team.
+5. scaling up these servers to handle high-volumnous amount of data or traffic is very complex
+
+From the above we can understand provisioning, installing and managing the relational database management system softwares are quite challenging and requires
+	1. huge infrastructure
+	2. specialized team of resources (dba/support engineers)
+	3. continous monitoring, backup/restore efforts
+	4. tools
+	
+since using an RDBMS software seems to be an common requirement for any project within this world, rather than each organization having to deal with complexities in running these servers, the aws cloudplatform has provided RDS Service as an managed service in running RDBMS Software on aws.
+
+1. RDS Service
+RDS Stands for relational database service. 
+
+RDS Service is an RDMS Database as service
+
+RDS = not a database product
+RDS Service is an managed service that takes care of provisining and managing the popular database server softwares on the aws cloudplatform. RDS is not an database server software product, rather it is an managed service provided by aws cloudplatform, that supports provisioning and managing the popular RDBMS Softwares on aws cloudplatform.
+
+RDS Service takes care of
+1. provisioning (installing, configuring)
+2. deprovisioning (uninstalling)
+3. securing
+4. high-availability
+5. scalability (interms of storage/performance)
+6. continous backup/restore
+7. patching
+8. upgrading
+the underlying database server software on the aws cloudplatform
+
+all the cloud lifecycle operations on the underlying database server are taken care by RDS Service, so with no time we can quickly run our applications using the database server provided through RDS Service.
+
+RDS Service supports provisioning and managing the below database server softwares on aws cloudplatform
+1. oracle database
+2. mysql server database
+3. postgres
+4. mariadb
+5. microsoft sqlserver
+
+How to provision and connect to an RDS Service on aws cloudplatform?
+Let us try to understand how to setup an mysql server database instance using RDS Service
+
+1. create an vpc network
+vpc name: inflyvpc
+cidr: 172.10.0.0/16
+
+2. create subnets
+The RDS Database is always recommended to be provisioned in private subnets only for security and accessibility aspects. Create multiple private subnets across the AZs of the vpc region for High-availability and Scalability. So that RDS Service can provision the database on multiple instances across the private subnets
+
+Let us setup #2 private subnets across the AZs
+2.1 inflyprvsn1 [172.10.1.0/24]
+2.2 inflyprvsn2 [172.10.2.0/24]
+
+we need one public subnet to create an jumpbox, so that we can install mysql client cli tool and can test the access for the RDS Service we provisioned on the private subnets
+2.3 inflypubsn3 [172.10.3.0/24]
+	2.3.1 create internet gateway
+	name: inflyigw
+	attach: inflyvpc
+	
+	2.3.2 create routetable
+	name: inflyigwrt
+	subnet associate: inflypubsn3
+	route: [172.10.0.0/16: local and 0.0.0.0/0: inflyigw]
+	
+3. create security groups
+we need to create 2 security groups for rds service and jumpbox respectively
+3.1 securitygroup: rdssg
+ingress
+mysql/auroradb  172.10.0.0/16  3306  allow
+egress
+all traffic     0.0.0.0/0      any   allow
+
+3.2 securitygroup: jumpboxsg
+ingress
+ssh 0.0.0.0/0  22 allow
+egress
+all traffic     0.0.0.0/0      any   allow
+
+4. create nacl tables for private and public subnets
+nacl#1: inflyrdsprvsnnacl
+vpc: inflyvpc
+subnet associations: inflyprvsn1, inflyprvsn2
+inbound:
+100  mysql/auroradb  172.10.0.0/16  3306        allow
+101  custom TCP      172.10.0.0/16  1024-65535  allow
+*    all traffic     any            any         deny
+outbound
+100  all traffic     any            any         allow
+*    all traffic     any            any         deny
+
+nacl#2: inflypubsnnacl
+subnet association: inflypubsn3
+inbound:
+100     ssh             0.0.0.0/0      22          allow
+101     mysql/auroradb  172.10.0.0/16  3306        allow
+102     custom TCP      0.0.0.0/0      1024-65535  allow
+*       all traffic     any            any         deny
+outbound
+100  all traffic     any            any         allow
+*    all traffic     any            any         deny
+
+With the above we finished setting up networking required for provisioning the RDS Service. lets move onto RDS.
+	
+1. navigate under services to database section and select rds
+2. from the left navigation bar, choose subnet group
+What is the purpose of db subnet group?
+We need to create an dbsubnet group by choosing the subnets across the AZ of the vpc region that we have already setup in the networking section.
+	
+When we ask RDS Service to provision an database instance, it asks for subnet group to create the instances. The purpose of the subnet group is to let the RDS service choose the subnets under which it has to provision and manage the database instances.
+The RDS Service takes care of replicating the db services across the multiple subnets of the group we have provided for HA and scalability. So we can understand there are 2 reasons why we need to provide subnet group
+1. high availability
+2. scalability
+so that rds service can setup and manage the db instances around these subnets
+
+2. Goto the RDS Dashboard and click on create database
+2.1 Choose the database type we wanted to provision using RDS Service:
+1. aurora db (compatible with mysql)
+2. aurora db (compatible with postgres)
+3. mysql server
+4. oracle database
+5. postgres
+6. maria db
+7. microsoft sqlserver
+
+choose: mysql server
+
+3. Choose the version of the mysql server to be provisioned: 8.0.x
+
+4. The Provision Mode:
+1. Standard = In Standard mode, we need to choose and pick the configurations using which we want to provision the database instances
+2. Easy     = the default options are auto-populated and we dont need to configure majority of the values
+Choose: Standard
+
+5. Choose Instance Type:
+1. Production
+If we choose "production", all the production capabilities in running the database instances are enabled like
+	1.1 Multi-AZs (active/passive) provisioning (HA/scalability)
+	1.2 EBS Storage Class
+	1.3 Backup Policy
+	1.4 Shape
+	1.5 Enable autoscaling 
+2. Dev/Test
+3. Free-tier
+
+6. Choose VPC
+7. Choose Subnet Group
+8. Choose security Group
+9. Shape
+10. Choose EBS Storage Class
+11. storage autoscaling configuration
+12. dbinstance name 
+
+13. username/password 
+14. authentication type:
+	1. username/password
+	2. IAM Authentication
+	3. SAML/Kerbores authentication
+15. the database should be accessed publicly or no-public access 
+public ip addressed should be generated or not
+16. launch
+
+How to connect to the RDS Service?
+For the RDS Service since we have choose not to have public ip address, we will be provided Endpoint. using the endpoint as the hostname we need to connect to the RDS Service
+---------------------------------------------------------------------------------------------------------------------------------------------
+Connecting to the RDS Service from Jumpbox:
+1. create an ec2 instance on the inflypubsn3 
+2. ssh into the ec2 instance and install mysql client utility by running the below commands on the terminal
+
+sudo apt update -y
+sudo apt install -y mysql-client-8.0
+	
+3. we can login into the rds service instance using below command
+mysql -hendpoint -uusername -ppassword
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

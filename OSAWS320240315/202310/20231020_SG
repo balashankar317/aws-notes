@@ -1,0 +1,102 @@
+security groups
+----------------
+What is security groups, what is the purpose of it?
+security group is an firewall setup/configured to enforce traffic restrictions on an individual resource unlike the NACL used for enforcing the traffic restrictions on the group of resources at the subnet level
+
+1. security groups are created at vpc level, and is associated or attached to the individual resources of that vpc. So that we can reuse the security groups if applicable across the resources of the vpc
+
+2. security groups are stateful, which means it can keep track of the request and response.
+To allow inbound / outbound network traffic from/to the resources we need to configure Ingress and Egress rules
+
+NACL:  inbound/outbound rules
+Security Group: Ingress/Egress rules
+	
+
+Let us understand what is stateful means:
+2.1. if we configure in ingress rule allowing an inbound network traffic to the resource, to permit response to the request that is received from the resources we dont need egress rule, because it is stateful
+
+2.2. similarly if we configure egress rule allowing the resources to have outbound access to another resources, we dont need to configure ingress rule allowing the response for the request our resource sent
+
+3. security groups are applicable for only few types of resources:
+1. ec2 instances
+2. elastic beanstalk
+3. loadbalancers
+4. rds instance
+5. autoscaling group
+
+while creating an resource within the vpc of a subnet, aws cloudplatform forces us to create/attach security group to that resource if applicable
+based on the type of the resource we are provisioning, aws configures default ingress/egress rules in security group. for eg.. while creating an ec2 instance aws pre-populates the security group configuration as 
+
+ingress:
+protocol  cidr      port   action
+ssh       0.0.0.0/0 22     allow
+
+egress:
+protocol  cidr      port   action
+*         0.0.0.0/0 any    allow
+
+
+
+sn1=nacl1
+allow http
+resource1
+resource2
+resource3
+resource4
+
+no http traffic
+resource5 = sg
+
+
+
+
+
+There are 2 main reasons why we use subnet
+1. to enforce different traffic restrictions on different subset of resources of an vpc
+sn1 = nacl
+sn2 = nacl
+
+2. to distribute resources across the AZs of the vpc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

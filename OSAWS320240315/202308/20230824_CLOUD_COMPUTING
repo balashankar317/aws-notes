@@ -1,0 +1,66 @@
+What is Cloud Computing?
+Cloud computing is nothing but, on-demand delivery of computing services to the world. 
+	
+What are computing services means?
+Computing services are:
+1. infrastructure/computers
+2. networking
+3. network devices
+etc
+These computing services or computing resources are used for running software applications
+
+What is an Software Application?
+For an business organization to conduct its business or to provide business services across the customers around the world, they need software applications, because manually managing/conducting the business is very difficult.
+	
+These software applications are build by the developers, based on the requirements provided by the business owner. The developers inorder to build these software applications requires
+	1. choose an programming language
+	2. development tools 
+		2.1 ide
+		2.2 build tools
+		etc
+	3. database server softwares
+	4. infrastructure
+so that they can develop the application and delivery it.
+	
+	
+How does the developer delivers the software application, so that the organization or customers would use it?
+it purely depends on Type of the application build.
+	
+How many types of applications are there?
+We can classify the applications broadly into 4 categories/types:
+1. Standlone / Desktop / Thick-Client Applications
+2. Distributed Web Applications
+3. Mobile Applications
+4. Batch Processing Systems
+
+
+
+1. Standalone/Desktop/Thick-client Applications
+These are the applications that are installed / executed locally on the computer system on which those are running. These applications are also called as "single-user applications", since at anypoint of time only one user can use them.
+These applications generates and stores the data locally on the computer system storage where those are running.
+	
+2. Distributed Web Applications
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

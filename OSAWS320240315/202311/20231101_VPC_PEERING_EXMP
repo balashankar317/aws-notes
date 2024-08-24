@@ -1,0 +1,354 @@
+vpc peering
+------------
+#1. setup 2 vpc networks
+1.1 
+vpc1: hrvpc
+cidr: 172.10.0.0/16
+	
+1.2 
+vpc2: payrollvpc
+cidr: 10.1.0.0/16
+	
+#2. ineach vpc let us create 2 subnets [one private and one public]	
+public subnet = is used for creating jumpboxes so that we can ssh from public subnet ec2 instance to private subnet ec2 instance in each vpc
+
+2.1 
+vpcname: hrvpc
+subnet1: hrpubsn1
+cidr: 172.10.1.0/24
+	
+2.2 
+vpcname: hrvpc
+subnet2: hrprvsn2
+cidr: 172.10.2.0/24
+	
+2.3 
+vpcname: prvpc
+subnet3: prpubsn1
+cidr: 10.1.1.0/24
+	
+2.4	
+vpcname: prvpc
+subnet3: prprvsn1
+cidr: 10.1.2.0/24
+		
+3. create 2 internet gatways in each vpc and attach them to vpc
+3.1 
+internet gateway: hrigw
+vpc: hrvpc
+
+3.2 
+internet gateway: prigw
+vpc: prvpc
+
+4. create routetables in each vpc, to route the public subnet traffic through internet gateway as below
+4.1
+routetable: hrigwrt
+vpc: hrvpc
+subnet assocations: hrpubsn1
+routes:
+172.10.0.0/16    local
+0.0.0.0/0        hrigw
+
+4.2
+routetable: prigwrt
+vpc: prvpc
+subnet assocations: prpubsn1
+routes:
+10.1.0.0/16       local
+0.0.0.0/0         prigw
+
+
+5. create 4 ec2 instances in 4 subnets
+2 ec2 instances acts as jumpboxes or bastion hosts, so that we can ssh into private subnet ec2 instances of each vpc through them
+
+2 more ec2 instances (assume as: applications running), these ec2 instances are used for demonstrating vpc peering. 
+	by default from an vpc, private subnet -> ec2 instance, we cannot access another ec2 instance of another vpc in their private subnet directly. To make these instances of the private subnets of the vpcs accessible we need vpc peering
+	
+
+Now we can verify whether we are able to access from one vpc private subnet ec2 to another vpc private subnet ec2 through the help of jumpbox
+
+1. ssh into any one of the vpc, public subnet jumpbox instance.
+2. then from jumpbox, ssh into private subnet ec2 instance of their vpc
+
+now we can attempt to ping or ssh into another vpc, private subnet ec2 instance
+
+5.1 
+ec2 instancename: hrjumpbox
+vpc: hrvpc
+subnet: hrpubsn1
+ami: ubuntu
+shape: t2.micro
+enable public_ip: true
+keypair: javakp.pem
+
+security group:
+ssh  0.0.0.0/0  22 allow
+
+5.2
+ec2 instancename: prjumpbox
+vpc: prvpc
+subnet: prpubsn1
+ami: ubuntu
+shape: t2.micro
+enable public_ip: true
+keypair: javakp.pem
+
+security group:
+ssh  0.0.0.0/0  22 allow
+
+5.3
+ec2 instancename: hrec2
+vpc: hrvpc
+subnet: hrprvsn2
+ami: ubuntu
+shape: t2.micro
+enable public_ip: false
+keypair: javakp.pem
+
+security group:
+ssh           172.10.0.0/16  22  allow
+ssh           10.1.0.0/16    22  allow
+all ipv4 icmp 10.1.0.0/16    any allow
+
+5.4
+ec2 instancename: prec2
+vpc: prvpc
+subnet: prprvsn2
+ami: ubuntu
+shape: t2.micro
+enable public_ip: false
+keypair: javakp.pem
+
+security group:
+ssh           172.10.0.0/16  22  allow
+ssh           10.1.0.0/16    22  allow
+all ipv4 icmp 172.10.0.0/16    any allow
+
+6. to allow ssh from jumpbox into private subnet ec2 instances copy ssh keys into both jumpboxes from host machine
+scp -i ~/.ssh/javakp.pem ~/.ssh/javakp.pem ubuntu@hrjumpbox:/home/ubuntu/.ssh/
+scp -i ~/.ssh/javakp.pem ~/.ssh/javakp.pem ubuntu@prjumpbox:/home/ubuntu/.ssh/
+	
+7. ssh into each jumpboxes and copy sshkey into their private subnet ec2 instances 
+from resp jumpboxes:
+scp -i ~/.ssh/javakp.pem ~/.ssh/javakp.pem ubuntu@hrec2:/home/ubuntu/.ssh/
+scp -i ~/.ssh/javakp.pem ~/.ssh/javakp.pem ubuntu@prec2:/home/ubuntu/.ssh/
+
+Now try to ssh or ping from one of the vpc/private subnet ec2 instances to another vpc/private subnet ec2 instance = fail
+
+8. peering connection
+To support accessing each of their resources across private subnets of the vpc, we need to create peering connection
+1. goto networking and content management
+2. click on peering connection and create new peering connection from top right button
+	1. source (requestor) vpc
+	2. destination (grantor) 
+		2.1 region
+		2.2 aws account
+		2.3 grantor vpc: choose
+3. click on create peering connection
+
+Now the aws cloudplatform creates an peering connection request and places it under pending status for approval. 
+	
+9. approve/reject peering connection request
+1. goto peering connections from networking and content delivery domain
+2. click on one of peering connection and goto actions from right then approve/reject
+
+10. to allow network traffic between these 2 private subnets of 2 vpcs, we need to create route tables each per one vpc allowing traffic to others
+
+10.1 
+routetable: hrpcrt
+vpc: hrvpc
+subnet associate: hrprvsn2
+route:
+172.10.0.0/16       local
+10.1.0.0/16         pc
+
+10.2
+routetable: prpcrt
+vpc: prvpc
+subnet association: prprvsn2
+route:
+10.1.0.0/16        local
+172.10.0.0/16      pc
+
+now retest the ssh/ping between the 2 private subnet ec2 instances: success
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

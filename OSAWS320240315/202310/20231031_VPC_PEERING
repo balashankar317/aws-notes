@@ -1,0 +1,30 @@
+vpc peering
+-----------
+vpc peering allows the resources across the vpcs to communicate with each other
+
+why cant we enable the resources across the vpcs to communicate with each other by exposing them through public subnets?
+There are dis-advantages as below:
+1. if we make the subnets as public subnets to enable communication between the resources across the vpcs, then the resource would be made available over external network as well
+2. the resources across these vpc subnets has to always communicate over the public network channel (thru internet gateway) due to which
+	2.1 the network latency in enabling the communication is very high
+	2.2 the bandwidth consumption would be very high that results in more cost
+
+instead we can have these 2 vpcs peered with each other so that all the communicate across these vpcs takes place through aws cloud network itself, thus reducing the network latency and cost
+
+vpc peering limitations/restrictions:
+1. The ip ranges of the 2 vpc networks should not be overlapping
+2. transitive routing is not supported. VPCA -> VPCB, VPCB -> VPCC we have peering connection, it doesnt mean the resources of VPCA can communicate with VPCC, to have the traffic flow between VPCA -> VPCC we need to establish one more peering connection between them
+3. There can be at max only one active peering connection between 2 vpcs. For eg.. VPCA -> VPCB has a active peering connection, we cannot create one more between them
+4. There is an quote limitation on number of peering active and pending connections per vpc
+	active connections per vpc: 50 (softlimit: max 125)
+	pending peering connection requests: 25
+	expiry time for an unaccepted peering connection request: 1 week
+5. edge routing is not supported
+if VPCA has an internet gateway or NAT device, the resources of VPCB cant use the gateway in VPCA to access the internet
+6. You cannot create an security group rule that refers to peer vpc security group
+
+
+
+
+	
+

@@ -1,0 +1,196 @@
+What is an database management system?
+A database management system is an pre-built software application that helps us in storing and managing the data on the permanent storate device of an computer.
+	
+it abstracts the complexity in storing and managing the data, all that we just need to do is talk to the database management system asking him to store/retrieve the data, the underlying details of how to store and retrieve the data is taken care by the database management system software itself.
+	
+So that building the software applications in dealing with permanently storing the data becomes very easy, since we only need to write the code within the application to talk to the database only.
+	
+advantages:
+1. databases are distributed systems and can be accessed remotely over the network. So we can have software applications running on an dedicated infrastructure and database software separately, so that they have their own dedicated infra resources in running that results in high performance.
+	
+2. provide tools for monitoring and backup/restore the data incase of crash
+
+3. highly secured, unless authenticated cannot gain access to the underlying data
+
+4. supports clustering
+   1. scaled storage
+	 2. scaled performance
+	 3. high-availability
+	 
+5. we can enforce constraints in validating and storing the data, so that bad data will not enter into the system.
+--------------------------------------------------------------------------------------------------------------------------------------------
+There are 6 types of databases are there
+1. hierarchial database
+2. network database
+3. relational database
+4. object-oriented database
+5. no-sql or semi-structured database
+6. object storage database
+
+out of the above list only 3 of them are available and used.
+1. relational database
+2. no-sql or semi-structured database
+3. object storage database
+
+
+1. relational database management system (rds service)
+--------------------------------------------------------
+when we are storing business data, always we wanted to store specific fields data on whom we wanted to perform the operations. Not every data serves meaningful in performing operations, so identify such fields of data that seems to be meaningful and will be used for performing business operations and persist that into the database mangement system.
+	
+The relational database management systems allows us to store the data interms of tables. For each type of data we want to store create an table.
+For eg.. 
+	1. to store customer information we can create "customer" table
+	2. for storing sales information we can create "sales" table
+	3. to store product data we can create "product" table
+in this way to capture or store different data of the business we need to create several tables representing that type of data
+
+Each table represents an structured data definition. we need to define the table with set of columns indicating what fields of data we wanted to store inside it. 
+For each column we need to specify the column_name, dataType and length of the data we want to store.
+		
+So that RDBMS allows us to store the data in these tables interms of records or rows of data.	
+	
+create table: sales
+columns: 
+column name: sale_no  dataType: integer, length: 10
+column name: customer_nm dataType: varchar(50)
+column name: sale_dt    dataType: datetime
+column name: quantity  dataType: integer, length: 5
+column name: amount   dataType: float, length: 10
+column name: gst      dataType: float, length: 10
+column name: paid_amount dataType: float, length: 10
+	
+
+table: sales
+sale_no   customer_nm    sale_dt     quantity    amount    gst    paid_amount
+10        peter          10/11/2023  10          1000      30     1030
+	
+store:
+table: sales
+sale_no= 10
+customer_nm=peter
+sale_dt: 10/11/2023
+quantity:10
+amount: 1000
+gst: 30
+paid_amount: 1030
+
+since the RDBMS knows the definition of the data (what fields of data has been stored) being stored in each table, it can help us in quering and retrieving the specific data of our choice.
+	
+The relational database management system has provided an language called "SQL", stands for structured query language using which we can talk to the database asking to store or retrieve the data from the database tables.
+	
+for eg.. to store the data in sales table above we can use an sql query as below
+
+insert into sales(sale_no, customer_nm, sale_dt, quantity, amount, gst, paid_amount) values(10, 'peter', '10/11/2023', 10, 1000, 30, 1030);
+
+similarly to retreive the data we need to write select query and pass it to the database asking to return the specific data
+
+select * from sales where sale_dt = "10/11/2023";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

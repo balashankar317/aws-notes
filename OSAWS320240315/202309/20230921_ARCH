@@ -1,0 +1,14 @@
+How many ways we can access the services/resources of the AWS Cloud Platform?
+There are 4 ways in which we can access the AWS Cloud services of the cloud platform
+1. AWS Management Console 
+2. AWS sdk
+3. AWS RestEndpoints
+4. AWS CLI
+--------------------------------------------------------------------------------------------------------------------------------------
+AWS Architecture
+The AWS Cloud Architecture refers to how the AWS Cloud platform has been organized and designed to spread/provide cloud services to the people around the world.
+	
+#1. AWS Regions
+----------------
+
+

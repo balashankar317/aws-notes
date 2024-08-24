@@ -1,0 +1,16 @@
+2. No-Sql database
+-------------------
+Relational database
+1. structured database management systems, where the structure of the data is fixed and is same across per each table we store.
+2. The relational databases supports querying the data by joining the tables based on relationship
+3. relational database management systems are also called as "Transactional Databases", as they support transactions for data integrity and consistency.
+These are ideal suitable for managing the business data.
+	
+	
+table: product
+product_no   product_nm    description   category     manufacturer   price  network_type  display_type  keypad_type  storage  ram   cpu  
+
+
+mobile
+
+																		 

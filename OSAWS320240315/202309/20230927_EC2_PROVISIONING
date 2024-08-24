@@ -1,0 +1,135 @@
+How to provision an ec2 instance on AWS Cloud platform?
+Note: Per each AWS Account, across all the regions the AWS Cloud platform creates an default vpc & subnets	(network), so we dont need to create any network for provisioning an ec2 instance rather we can use the default network (vpc/subnets) available
+
+ec2 instance is an computer/machine that is created by the AWS Cloud Platform that can be used for running the software applications. ec2 stands for Elastic Cloud Compute.
+	
+To provision an ec2 instance:
+1. goto services choose compute domain and navigate to ec2 
+2. click on launch
+
+We need to provide details in creating the ec2 instance in management console as below:
+1. provide the instance name 
+2. choose the AMI (amazon machine image). An AMI is the pre-backed operating systems provided by AWS. here we need to choose the AMI as
+	2.1 Ubuntu Family
+	2.2 23.04 LTS
+only the ubuntu / linux AMIs are qualified for free-tier
+
+3. choose the shape of the machine (t2.micro is only qualified for free-tier)	
+4. Click on create keypair to generate SSH keypair for accessing the ec2 instance remotely
+	1. enter the keypair name
+	2. choose the algorithm
+	3. choose the keypair type (.pem)
+create
+
+5. choose the above created keypair to be attached to the ec2 instance
+6. leave the default vpc and subnet
+7. auto-generate public ip address, select the checkbox
+8. create security group 
+security group is an firewall setup to the ec2 instance allowing remote network traffic to the computer based on protocol/portno
+source :0.0.0.0/0 port: SSH/22
+	
+9. click on launch instance
+--------------------------------------------------------------------------------------------------------------------------------------
+How to access the ec2 instance we provisioned?
+1. goto ec2 instance page
+2. click on instances link that takes you to the list of instances we have in our account
+3. click on the instance from the table, that shows the details of the instance
+From here pick the public ip address of the ec2 instance to ssh into the Machine.
+	
+1. incase of windows:
+Install gitbash tool
+
+2. incase of Linux/Mac:
+The SSHClient tool will be available by default.
+incase of linux/mac os, before ssh into the machine change the .pem file permission using chmod
+chmod 600 ~/.ssh/javakp.pem
+
+3. open gitbash tool
+enter the below ssh command to connect to the ec2 instance we provisioned
+
+ssh -i ~/.ssh/javakp.pem ubuntu@publicip
+--------------------------------------------------------------------------------------------------------------------------------------
+how to connect to ec2 instance from an windows host using putty?
+1. while creating the ec2 instance attach an keypair and download .pem file which contains both public/private key inside it.
+
+We can connect to ec2 instance from windows machine using both
+1. gitbash
+2. putty tool
+
+To connect using putty:
+1. install putty tool on the windows machine
+2. download and install puttygen tool on to the windows machine
+
+2. convert the .pem file into .pub/.ppk
+The putty tool requires .ppk file to authenticate and ssh into the ec2 instance. since we have generated the keypair of .pem format in aws while provisioning the instance we need to convert the .pem into .ppk/.pub file. This can be done using puttygen.
+	
+2.1 download and install/open puttygen tool
+2.3 click on load button and choose the .pem file we have downloaded from aws
+2.4 click on save private key file button and save the key with extension ".ppk" under ~/.ssh directory (optional)
+2.5 even generate public key file by click on save public key and save to ~/.ssh/ directory (optional)
+	
+3. now ssh into the ec2 instance using putty tool
+3.1 open putty tool
+3.2 enter the public ip address of the ec2 instance
+3.3 goto the left tree pane and scroll to SSH and choose Auth/key 
+3.4 choose the .ppk file download 
+3.5 goback to sessions from left pane and click on connect
+3.6 prompts for username to be connected enter the username as "ubuntu"
+will connects to the ec2 instance
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

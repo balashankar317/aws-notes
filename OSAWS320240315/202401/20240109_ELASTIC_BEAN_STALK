@@ -1,0 +1,328 @@
+Compute domain
+There are 5 services are there
+1. ec2
+2. loadbalancer
+3. auto-scaling group
+4. elastic beanstalk
+5. lambda
+
+4. elastic beanstalk
+What is elastic beanstalk, what is the purpose of it?
+The developer upon developing the software application, it has to be delivered to the endusers. To deploy, run or deliver the software application on the aws infrastructure we need
+
+1. compute resources like ec2 instance
+2. networking
+3. need to install necessary platform softwares and make configurations on the machine to have our application deployed and running
+
+To address the high-availability and scalability aspects of running our application we need to create an AMI/SNAPSHOT of our application, then setup auto-scaling group configured with targetgroups and loadbalancer to route the request or distribute the traffic among the nodes of the targetgroup.
+
+Looks like we need to spend lot of time in setting up the infrastructure needed for running the software application on the aws platform. 
+
+To address the above difficulties or challenges in quickly having the application running, the aws platform has provided elastic beanstalk.
+
+For each technology based application, the platform software required for running the application seems to be almost same across. For eg.. incase of java web application, the platform software required for running is
+1. jdk
+2. tomcat server
+
+setting up these platform softwares seems to be repeatitive across everyone in delivering the application. So instead of we taking care of installing/configuring these platform softwares which is in common across, the aws cloudplatform developers identified most commonly used technology stack and pre-created templates out of these technology stack which are called "elastic beanstalk"
+	
+elastic = flexibile, bean = info , stack = technology for each technology the build beans (templates), that is used for recreating the infra with platform software.
+	
+Now the aws cloud engineers inorder to run the application on the aws infrastructure, can quickly choose from the pre-defined elastic beanstalk templates based on the environment or type of the application, so that it can be executed on the selected/choosen env
+
+The Elastic beanstalk not only takes care of providing the runtime/execution environment like platform softwares in running the application along with that it takes care of providing infra resources like setting up Auto-scaling group, Loadbalancer to address high-availability and scalability of the application
+
+All that we need to do to run the application is upload the application binary to the elastic beanstalk asking him to setup environment, deploy and run the application, takes care of monitoring it.
+	
+There are predefined technology stack of the applications supported by elastic beanstalk as below.
+1. java
+2. tomcat
+3. python
+4. PHP
+5. go
+6. .net on linux server
+7. .net on windows server
+8. ruby
+9. docker
+10. Node.js
+
+if the technology of your application is not supported by the elastic beanstalk, the docker support will rescue us. if we package our application as an docker image and pass it to the elastic beanstalk it can support running it irrespective of the technology of your application.
+	
+
+The Elastic beanstalk supports 2 types of environments:
+1. Webserver environment
+2. Worker environment
+
+1. WebServer environment
+Webserver environment provides required software packages, infrastructure for deploying and running the http based applications build on support platform/technology stack by the elastic beanstalk
+all we need to do is build your application into binary based on the respective platform/language of your application and setup an webserver environment out if in elastic beanstalk
+
+
+How to setup and deploy the application on WebServer Environment?
+pre-requisite:
+1. while setting up the vpc network, we need to enable
+	dns resolution = enabled
+	DNS hostnames = enabled
+	
+2. for the public subnets under which we want to provision loadbalancer, we need to enable auto-generate public ip address
+Auto-assign public IPv4 address = Yes
+
+3. if we wish to deploy our application ec2 instances on private-subnet, we need to must and should attach NAT gateway allowing outbound public network traffic from ec2 to external network.
+
+4. The security group attached to the ec2 instances must allow outbound network traffic on anyPorts, anyProtocol, to anyWhere.
+	
+	
+goto compute domain, navigate to elastic beankstalk and click on create environment
+There are 5 different sections we need navigate through in providing the options in creating the elastic beanstalk
+1. Configure environment
+2. Configure service access
+3. Set up networking, database, and tags
+4. Configure instance traffic and scaling
+5. Configure updates, monitoring, and logging
+6. Review and create
+ 
+1. Configure environment
+1.1 choose the environment tier 
+	1.1.1 WebServer environment
+	1.1.2 Worker Environment
+
+1.2 provide Application Name for whom we are deploying or creating the beanstalk for
+1.3 Environment Name
+1.4 domain with which you want to expose the application
+1.5 Choose the Platform Type
+	1. Managed
+	2. custom
+1.6 upon choosing the managed, browse through the list of platforms of your application to be deployed: choose tomcat
+1.7 Platform branch: tomcat 9 with corretto 11
+1.8 Platform version
+
+1.9 Application Code: 
+provide the binary of the application to be deployed. There are 2 ways we can provide the application binary
+1. upload to s3 bucket and pass the bucket URL
+2. chose from the local file
+
+1.10 Presets
+Choose from below: High availability
+Configuration presets
+Single instance (free tier eligible)
+Single instance (using spot instance)
+High availability
+High availability (using spot and on-demand instances)
+Custom configuration
+
+Then navigate to the next
+
+2. Configure service access
+here we setup IAM service roles that are needed for elastic beanstalk to provision and manage the resources.
+2.1 Service role
+choose create a new service role with needed permissions. This will automatically creates a service role with generated name added with required policies to it and auto-selects.
+	
+2.2 EC2 key pair
+choose the keypair with which the ec2 instances should be setup.
+	
+2.3 EC2 instance profile
+create a new IAM role that should be attached to the ec2 instance that is provisioned by the elastic beanstalk. with below.
+Trusted entity
+ec2.amazonaws.com
+
+Permissions
+AWSElasticBeanstalkWebTier
+AWSElasticBeanstalkWorkerTier
+AWSElasticBeanstalkMulticontainerDocker
+
+then choose the role here
+
+click on next to navigate to the other section
+
+3. Set up networking, database, and tags - optional In
+3.1 choose vpc 
+3.2 Instance settings
+	3.1 dont enable public ip address, so that your instances are provisioned with private ip address.
+3.3 choose the subnets under which we want to provision the ec2 instance
+3.4 dont choose database
+click on next
+
+
+4. Configure instance traffic and scaling - optional 
+1. Root volume (boot device)
+2. Instance metadata service (IMDS) (leave it disabled)	
+3. EC2 security groups = choose the ec2 security group as : sailorsg.
+4. Auto scaling group = leave all the values to default, or tune-up to your requirement
+5. Load balancer network settings
+5.1 visibility: public
+5.2 Loadbalancer Subnets: choose the public subnets
+5.3 Loadbalancer Type: Application loadbalancer as dedicated
+5.4 Listener : default (http:80)
+5.5 Processes: 
+choose the default process, click on actions/edit and modify the healthcheck path: /healthcheck.htm
+navigate to next section
+
+5. Configure updates, monitoring, and logging - optional
+5.1 Health reporting: basic
+5.2 Managed platform updates: disabled
+5.3 Rolling updates and deployments :  leave to default or fine-tune to your needs
+5.4 Platform software: leave it to default
+click on next
+
+6. review the configuration click on finish.
+	
+upon setting up the elastic beanstalk, goto environment and copy the dns name of the environment and use the below url to access the application
+http://dnsname/index.htm
+
+
+	
+
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

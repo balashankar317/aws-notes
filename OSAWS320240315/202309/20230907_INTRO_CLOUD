@@ -1,0 +1,218 @@
+DataCenters
+
+DataCenters offers infrastructure services enabling the enterpise organizations to host and run their software applications inorder to offer business services to their customers. The Datacenters pre-procure the server-grade infrastructure at an large scale and setup within an big building or multiple buildings which are geographically located at different places.
+	
+The DataCenters by themself procure and host the below things:
+1. high-end server grade machines
+2. networking and network devices
+3. 24/7 powersupply
+4. high-speed leased internet lines interconnecting the computers and exposing them over the world
+5. manpower resources like administrators, network engineering teams, security teams and support engineers in administring, monotoring and maintaining the infrastructure
+With these the data centers provided dedicated infrastructure to the enterprise business organization. There are lot of advantages in using datacenters in hosting the software applications:
+
+advantages:-
+1. dedicated server-grade infrastructure of huge capacity that should be sufficient in running an enterprise application
+2. no huge investment cost in procuring the infra/computing resources, since the business org can lease the infra from data center
+3. the time required in acquiring/procuring the infrastructure in running the application would be very less, within in couple of days upon requesting the infra, the datacenters would provide them
+4. we can always request the data centers to provide closed group of private network computers, enabling large scale application to be deployed on the clustered env which is not possible in hosting providers
+5. since the data centers provides bare metal machines without any operating system or software packages installed on them, the business org or client has their own choice of choosing the operating system or software packages in running their applications
+6. the complete control over patching, upgradation of these softwares lies within the hand of business org
+7. since these are dedicated infrastructure, the org can plan in release management and maintainance of their applications independently
+8. maintaining the infrastructure and detecting and replacing the faulty hardware is taken care by datacenters
+9. manpower recruitment and managing them is taken care by datacenters
+	so the cost of infra/manpower resources are shared across the customers of the data centers
+10. periodically backup and recovery of the data/devices would be taken care by data centers
+11. 99.9% availability is guranteed by data centers itself
+
+along with advantages, there are several dis-advantages are also there with data centers
+dis-advantages:-
+1. most of the time the data centers provides infrastructure or computing resources of fixed in shape, the business org are left with minimal choices of choosing the infra which would endup in picking up something that could be short-in resources or might endup in signing up for big resource which would waste the cost
+2. since the data centers provides bare-metal machines, the client/enduser or business org cannot run the software applications direclty. They need to install operating system software, software packages and libraries. and make relevant configurations on these machines inorder to run the software application. The time required for installing/configuring these software packages is huge, so inorder to do this the client has to pre-procure the infrastructure even they dont use it for running the application thus consuming the huge cost of using the infra structure 
+3. many of the times the business organizations has to scale their applications to meet the increasing demands of the business for certain period of time. to scale the application, they need additional infra/computing resources which needs to be procured from data center. the data centers would not be providing the infrastructure for short-duration of time unless we signedup into contractual aggrements for long duration which would endup the business organizations in wasting the money.
+4. The Data centers may not be in a position to offer the infra we requested, there will long waiting queues in which we need to indefinitely wait in acquiring the infra.
+
+Even though the data centers provides dedicated infra structure, they lack flexibility that endsup the business organization imposing huge cost in hosting the applications
+To overcome the above problems cloud computing is introduced.
+--------------------------------------------------------------------------------------------------------------------------------------
+Cloud Computing
+on-demand delivery of computing resources/services to the world is called "Cloud Computing". The cloud computing provides 3 types of services majorly
+1. IAAS = Infrastructure as a Service
+2. PAAS = Platform as a Service
+3. SAAS = Software as a Service
+
+#1. IAAS
+IAAS stands for infrastructure as a service. All the computing resources that are required for hosting/running the software applications are provided aspart of IAAS like
+1. compute instance (computer) (along with operating system installed)
+2. network resources
+	2.1 gateways (routers)
+	2.2 firewalls
+	2.3 subnets
+	2.4 private networks
+3. ip addresses
+4. load balancers
+5. dns services
+etc
+are part of infrastructure 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

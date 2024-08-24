@@ -1,0 +1,80 @@
+2. Subnet
+vpc is a very big network, that is scoped to the region level. There are several resources we wanted to create for an application and want to enforce different types of traffic restrictions on them. If we place all the resources under one-single network we cannot control/restrict the resources differently. So we need to use subnet
+
+Subnet is an smaller network within an vpc that is scoped to the availability zone of the region in which the vpc has been created.
+
+There are 2 reasons for creating an Subnet
+1. to enforce traffic restrictions on different resources within an vpc we can place them in an subnet
+2. to distribute the resources across the AZs of the vpc we need to use subnet
+
+Characteristics:
+1. A subnet is always created within an vpc and scoped to the AZ of the vpc region
+2. at max 200 subnets can be created within an VPC Region
+3. it is recommended to create atleast 2 subnets across availability zones of the vpc for high availability
+
+since the subnets are scoped/created for an Availability Zone, using the help of Subnets we can scope the resources specific to the Subnet.
+	
+Within the region max #200 subnets are allowed. We can create any number of subnets across the AZ of the region, but cummulatively they cannot exceed 200 within the region
+
+How to create an Subnet?
+To create an Subnet we need to specify the below.
+1. We should specify the CIDR notation indicating the range of ip addresses to be allocated to the resources that falls into the Subnet. always the subnet CIDR should be within the Subset of VPC CIDR
+for eg.. if the vpc CIDR is 10.1.0.0/16 means, the network address of the vpc network is 10.1, so all the subnets falls within the vpc also should have same network address 10.1 only
+
+So for the Subnet of that vpc the CIDR can be any thing between 10.1.1.1 to 10.1.255.255 range for eg.. it can be 10.1.10.0/24
+	
+2. Name of the vpc in which the subnet should be created
+3. Subnet name
+4. availability zone within the vpc region in which the subnet should be scoped
+
+There are 3 types of subnets are there in aws cloud platform:
+1. private subnet
+2. public subnet
+3. hybrid subnet
+
+1. private subnet
+By default when we create an subnet within the availability zone of the vpc region, the subnet becomes private subnet only, "which means every subnet that we create by default is a private subnet". The resources within the private subnet cannot be accessed by any other resources on the external network, these resources can be accessible within the resources of the same vpc in which the subnet is created.
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

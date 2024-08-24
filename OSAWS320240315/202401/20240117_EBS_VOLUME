@@ -1,0 +1,426 @@
+Storage Domain
+--------------
+All the storage related services are provided aspart of the storage domain. There are 7 services are offered aspart of the storage domain.
+1. elastic block storage (EBS)
+2. simple storage service (S3)
+3. elastic filesystem (EFS)
+4. Cloud Front
+5. Snowball
+6. Glacier
+7. Storage Gateway
+
+
+There are 3 types of storage are supported by aws cloudplatform
+1. block storage (volumes: ebs)
+In block storage the data is stored on disk interms of files and folders using FileSystem technic.
+	
+2. object storage (databases: s3)
+storing objects of data like audio, video, documents, images etc so that those can be quickly accessed using the unique identified 
+
+3. network storage (network storage: efs)
+The data is stored on the network storage file system , and can be mounted across the ec2 instances so that it can be accessed.
+	
+	
+1. elastic block storage (ebs)
+elastic block storage acts as an harddisk for the ec2 instances. We can store the data interms of Files & Folders on the Filesystem of the Elastic block storage. While provisioning the ec2 instance, the aws cloud platform provisions an default ebs volume and attaches it as an harddisk to the ec2 instance.
+	
+during provisioning of the ec2 instance, if we dont specify the size of the volume the aws cloudplatform by default provisions an ebs volume of 8gb capacity and mounts it as an root volume onto the ec2 instance. The max allowed storage capacity is upto 16tb. The default root volume that is attached to the ec2 instance during provisioning cannot be extended further
+
+So how to extend the storage capacity of an ec2 instance after provisioning the instance?
+There are 2 ways or options available in extending the storage capacity
+1. mount an additional storage volume onto the existing ec2 instance
+2. expand the storage volume of an existing instance
+
+1. mount an additional storage volume onto the existing ec2 instance
+1.1 create an additional ebs volume of the required capacity and attach/mount it as one more storage device onto the ec2 instance. upon attaching a new ebs volume onto the ec2 instance, it appears under the below directory of the linux filesystem.
+	
+FileSystem
+|-/
+  |-etc
+	|-bin
+	|-sbin
+	|-mnt
+	|-proc
+	|-tmp
+	|-usr
+	|-lib
+	|-home
+	|-boot
+	|-media
+	|-var
+	|-tmp
+	|-dev [The physical devices attached to the computer appears here]
+		|-sda1 [this volume is mounted as root]
+	|-root
+	
+How to see all the block storage devices attached to the ec2 instance?
+lsblk
+fdisk -l
+
+these commands shows all the block storage devices that are attached to the ec2 instance. identify the new block storage device that is attached newly. most of the time the new device is attached under /dev/xvdf
+
+2. mount the device onto the operating system of the ec2 instance.
+2.1 format the new harddisk device we attached using ext4 filesystem technic
+sudo mkfs -t ext4 /dev/xdvf
+
+2.2 sudo mkdir /ext 
+so that we can mount the secondary volume onto the directory (/ext) of the primary root volume
+
+2.3 mount the new device onto the /ext directory we have created above
+sudo mount /dev/xvdf /ext
+
+so from now when we are navigating into the /ext directory we are actually storing/accessing the data on the newly created/attached storage volume.
+	
+note: if we attach the storage volume using mount command above, upon restarting the ec2 instance, the newly mounted storage volume will be detached and we need to manually re-mount it to access it.
+	
+To overcome the above porblem, and to permanently mount the additional storage volume we need to make an entry into fstab file. The linux operating system will auto-mount all the storage volumes that are listed in fstab file during the bootup itself, so that we dont need to manually mount on restart.
+	
+/etc/fstab
+-----------
+devicepath       mountdirectory    filesystem    default     backup     checkdisk
+/dev/xvdf        /ext              ext4          defaults     0          2
+	
+#2. expand the root volume
+Let us consider we have an existing ebs volume of 10gb capacity and it is already full. now to expand the existing ebs volume we need to perform the below activities
+1. take the snapshot of the existing root ebs volume that is attached to the ec2 instance
+2. create a new ebs volume of required capacity (like 20gb) from the snapshot that we have created above
+3. stop the ec2 instance
+4. detach the existing root ebs volume
+5. attach the new ebs volume we have created from the snapshot as an root volume onto the ec2 instance
+6. start the instance
+--------------------------------------------------------------------------------------------------------------------------------------
+What are the ebs volume types are available aspart of the aws cloudplatform?
+There are 7 types of EBS volumes are available
+
+Root Supported volume types are:
+1. General Purpose SSD gp2
+2. General Purpose SSD gp3
+---------------------------
+3. Provisioned IOPS SSD (io1)
+4. Provisioned IOPS SSD (io2)
+-----------------------------
+5. Magnetic Storage (SATA) (deprecated by aws)
+------------------------------
+Additional EBS Volumes we can use are 
+1. Cold SSD
+2. Throughput optimized HDD
+
+1. Standard Magnetic Storage Volumes
+These are the privious generation standard EBS Volumes (not currently under use), backed by magnetic drives. These can be used when performance is not a criteria. These EBS volumes can have a maximum size of 1Tb and can offer upto 200 IOPS
+
+IOPS - input/output operations per second.
+	
+2. Cold HDD (sc1 type)	
+These are the lowest priced EBS Storage volumes ($0.015 per gb per month) and are suitable for storing in-frequently accessed data like backups and archives only
+
+3. Throughput optimized HDD Volumes (st1 type)
+There is an significant different between sc1 and st1. When we provision st1 HDD we can specify IO Throughput for the volume. These volumes are better suitable for handling workloads like log managment, big data, data warehouse, ETL etc
+
+4. General Purpose SSD gp2
+gp2 is the default SSD backed EBS Volume for ec2 instance. AWS recommends us to use these types of volumes for smaller workloads like boot volumes or non-production environments or small scale applications
+
+5. General Purpose SSD gp3
+gp3 is the latest generation general purpose SSD-Backed EBS Volume. These has low latency when compared with gp2 and can be used for single instance databases or VDI etc
+
+6. Provisioned IOPS (io1)
+io1 provisioned IOPS SSD-Backed EBS Volume offers high IO performance, throughput and lower latency than the other general purpose SSD. These volumes are best suited for IO and throughput intensive workloads like RDBMS or NoSQL databases etc
+
+7. Provisioned IOPS (io2)
+The io2 provisioned IOPS SSD EBS Volumes are similar to io1 SSD volumes, both has same IOPS throughput, but io2 has higher durability and IOPS to storage rotation when compared with io1. AWS recommends us to use io2 SSD for SAP, IBM DB2 and Oracle databases etc
+
+From the above we can understand based on the workloads/applications we are running on the ec2 instances we need to choose an appropriate EBS Volume type during provisioning.
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

@@ -1,0 +1,85 @@
+read capacity and write capacity
+--------------------------------
+The DynamoDb is an server-less database, so we will not be charged for any computing capacity alloted, since we have not been provided any dedicated instance.
+The only way to charge is based on the usage of the database tables interms:
+1. storage
+2. read/write operations we perform the table
+
+2. read/write operations
+The read and write operations are charged based on the read/write units being consumed.
+	
+read unit:
+1 read unit = 2 read requests each of 4kb in size
+1 read unit = 1 strongly consistent read request of 4kb in size
+
+write unit:
+1 write unit = 1 write operation of an item of size 1kb
+2 write unit = 1 transactional write of an item of size 1kb
+
+during the time of reading/writing if we perform operations more than the designated sizes, then more read/write units are alloted for that operation.
+	
+
+	
+Inorder to have the control over the cost of usage of dynamodb table, the aws cloudplatform introduced read capacity and write capacity based on these we can control how many read and write units are allowed per table
+1. provisioned
+2. ondemand
+
+1. provisioned = we allocate fixed read/write units at the time of creating the table
+for eg..
+	2 read units
+	1 write unit
+	
+which means within a second only 2 readunits are permitted and 1 write unit is allowed. and if there are any additional requests received within the 1 second of time than alloted the units, all those will be blocked and kept waiting for next interval
+
+2. ondemand = the dynamodb itself will auto scale-up or scale-down based on the traffic pattern or demand
+
+read capacity = within 1 second of time, how many read units are permitted on the table
+
+
+
+write = eventual consistent write
+
+    
+read = eventual read
+       strongly consistent read (latest snapshot)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

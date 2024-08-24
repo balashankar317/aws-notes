@@ -1,0 +1,261 @@
+How many types of services are offered by the cloud computing providers?
+There are 3 types of services are offered by the cloud providers
+1. IAAS = Infrastructure as an Service
+2. PAAS = Platform as an Service
+3. SAAS = Software as an Service
+
+1. IAAS 
+The computing resources / services or infrastructure resources required for running/hosting the software applications provided aspart of IAAS. The cloud providers rely on virtualization technology in offerring the IAAS services to the world.
+	
+advantages:-
+	1. flexible shapes
+	2. instantaneously we can procure the infrastructure
+	3. pay per usage (based on resources and their usage, will be charged)
+	4. no contracts or long-term agreements in procuring the infrastructure
+	5. scale-out/scale-in of the infrastructure to meet the demands of the business or user-traffic is supported. this can be achieved through auto-scaling configuration
+	6. scale-up/scale-down of the infrastructure 
+	7. periodical backup/restoration
+	
+The cloud providers takes care of managing the lifecycle operations for the IAAS resources like
+1. provisioning (create) / de-provisioning (delete)
+2. scale-out / scale-in
+3. scale-up / scale-down
+4. start/stop/restart
+5. backup/restore
+--------------------------------------------------------------------------------------------------------------------------------------
+2. PAAS 
+PAAS stands for Platform as an Service. The developers has developed the software applications using programming languages like java, .net, python, php etc. Inorder to run these software applications on the compute instances (IAAS) that we procured, we need additional software packages/libraries needs to be installed on the underlying operating system of the computer.
+	
+These additional softwares that are required to be installed ontop of the operating system inorder to run the enduser software applications are called "platform softwares" / "middleware softwares".
+These platform softwares or middleware softwares differs based on the technology and type of the application we are running/hosting, few of the examples are as below:
+
+1. programming langauge softwares:
+1.1 jdk (java development kit)
+1.2 python sdk (software development kit)
+1.3 php
+1.4 .net framework 
+etc
+all these are programming language softwares that has to be installed on the computer to run the relevant application developed using that language
+
+2. database servers software
+all the applications has to permanently store the data, for this we need database server softwares like
+2.1 mysql server database
+2.2 oracle database
+2.3 postgres
+2.4 ms-sql server database
+etc
+
+3. web servers or application server softwares
+based on the programming language in which the software application has been build we need relevant webserver/appliation server softwares needs to be installed on the computer to run the software application
+3.1 java technology
+	1. tomcat server
+	2. weblogic server
+	3. websphere server
+	etc
+3.2 .net technology
+	1. IIS server
+3.3 Python
+	1. Flask server
+3.4 Php
+	1. Lamp
+	2. Xampp
+	
+In this way there are un-ending list of middleware of platform softwares are available, depends on the application and technology these will vary
+
+unless these platform softwares are installed and configured on the compute instances, we cannot deploy/run/host the software applications on the Infrastructure. Now the business organization has to hire system administrators & application server administrators who takes care of installing and configuring these platform softwares on the infrastructure
+
+Manually installing/configuring these platform softwares on the infrastructure takes huge amount of time and looses the benefits of IAAS that we get from cloud providers
+
+So the business organization has to hire the devops engineers who takes care of implementing the automation practices in managing this platform softwares.
+	
+The devops engineers has to identify for running/hosting the software application, which platform softwares are required and what configurations has to be made within them to run the software application. They need to use software configuration management tools like
+1. Shellscripting
+2. Python
+3. Ansible
+4. Chef
+5. Puppet
+6. Salt
+etc
+for installing, configuring the platform softwares
+in adopting and implementing the automation for managing the platform softwares they need take various cloud lifecycle aspects into consideration as below.
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,200 @@
+on-demand delivery of computing resources/services to the world is called "cloud computing". There are 3 types of services are offered by the cloud computing providers
+1. IAAS
+2. PAAS
+3. SAAS
+
+
+2. PAAS
+PAAS stands for Platform as an Service. To run/host the enduser software applications on the IAAS infrastructure along with operating system software we need few/certain software packages/libraries to be installed and configured ontop of the operating system like
+
+1. language softwares (jdk, python sdk, php, .net framework) etc
+2. database server softwares
+3. web server/application server softwares 
+	3.1 java = tomcat/weblogic/websphere/glassfish/netty/jetty/undertow/jboss wildfly servers
+	3.2 python = flask
+	3.4 php = lamp /xampp
+	3.5 .net = internet information server (IIS)
+	
+These softwares that acts as an middleware between enduser applications and underlying operating system of the computer are called "paltform softwares". Unless the platform softwares are installed and configured, the enduser software applications cannot be hosted/ran on the IAAS Infrastructure 
+
+The devops engineers or administrators relevant to that technology stack should identify what Platform softwares are required for running the enduser software applications, which configurations must be made and setup on the infrastructure.
+
+There are lot of problems in installing/configuring the platform softwares on the Infrastructure that has been procured through IAAS as below
+1. The devops engineers has to identify which platform softwares/their configurations based on the technology of the application and should manually install and configure them on the compute instance (infra) that has been procured.
+The amount of time required for manually installing/configuring the Platform software on the infrastructure would be very high and delays the delivery of the application
+
+2. Many of the times we run/host the enduser application on a group of computers (cluster) in production environment. In such case the platform software should be installed and configured on cluster of computers.
+installing and configuring the platform software on a cluster of computers requires expertize knowledge of the relevant platform software. 
+	
+For eg.. inorder to install and configure an Weblogic Server software on a cluster, we need weblogic server administration skills unless otherwise we cannot make weblogic server configured to work on a cluster	
+similary we need to have good knowlege on installing/setting up the database server to run on cluster of computers. 
+
+due to the lack of expertize knowledge in installing/configuring the platform softwares on clusters, the devops engineer often landsup into mis-configuration issues which leads to failure of deployment/hosting the enduser applications
+
+3. In an enterprise organization, they may be multiple software projects/applications being developed and delivered across. To have them hosted we need different groups of clusters of computers for different projects. Installing the platform software and configuring them across the projects on differents clusters manually is time taking job 
+
+So to overcome this challenge, the organization has to hire devops engineers, who will work on writing automation scripts or programs using software configuration management tools like
+1. Shellscript
+2. Python
+3. Ansible
+4. Puppet
+5. Salt
+6. Chef
+etc
+for installing and configuring the platform software. The cost involved in implementing this automation is very high and require huge amount of time in achieving the automation process
+
+4. the devops engineers has to take care of manually backing up the platform softwares & their configurations on the infrastructure and should restore incase of crash which is quite difficult job
+
+5. upgrading an platform software to a newer version has to be done with an excessive care and should choose proper strategy in upgradation.
+The devops engineers has to setup an sandbox environment (which is an mirror image of existing production env) and manually upgrade the platform software from existing version to newer version and identify the in-compatibilities.
+fine tune the platform software / software application to be made compatible with new version and identify the deltas in upgradation.
+	
+now apply the new version of the software with the deltas identified on existing production cluster infrastructure manually. it is quite risk and time consuming job in upgrading the existing infrastructure and to expedite the process the devops engineers has to implementation automation.
+	
+6. an similar kind of efforts needs to be vested when applying patches for the platform software
+
+7. proper software licenses needs to be procured before using the platform software
+
+8. scale-out/scale-in the underlying infrastructure would be taken care by the cloud provider. but upon scale-out the machines provided is empty and again devops engineers has to manually install/configure the platform software to work with the existing cluster similarly incase of scale-in as the existing infrastructure will be released/removed again necessary configurations has to be make in existing cluster to work intact
+taking care of these things manually is an tedious job and needs automation requires significant amount of efforts and cost
+
+9. scale-up/scale-down and handling lifecycle operations on the infra requires platform software to be also fine tuned
+
+From the above we can understand, even the cloud providers provides the IAAS services to us and take care of their lifecycle, having the platform software installed/configure on these infrastructure to run the software applications is an tedious job
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

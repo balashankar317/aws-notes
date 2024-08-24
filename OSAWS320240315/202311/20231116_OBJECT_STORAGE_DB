@@ -1,0 +1,56 @@
+object storage databases
+------------------------
+Even though we can store binary data like images, videos, audios and documents in relational database management system it is not adviced to store such data in them due to the below reasons
+
+1. The cost of storing the objects of data in relational database management system will be very high, because these databases runs on server-grade hardware computers only. Having such binary data being stored in RDBMS has nothing to do with the database, inspite we endup in burning most of the storage of the system, that leads to huge cost on storing the data
+
+2. while fetching the data from RDBMS over the network, there is an huge latency in retrieving the data as objects of data takes more bandwidth in transferring over the network
+
+due to the above reasons avoid storing objects in relational database management system.
+	
+	
+If we are not storing the objects of data on the relational database management system, the only way we can store these objects is by keeping them as Files on the Filesystem of the computer directly.
+	
+Even though we can persist the objects into Filesystem of the computer, we have several problems in handling and managing these objects as below.
+1. If we are storing objects of data as Files on the FileSystem of the computer, again in our application programs we need to deal with complex logic in storing/managing these objects on the Filesystem of the computer, wherein we are back to original problem files
+2. The Files that are stored on the Filesystem are not portable across the operating system platforms.	
+3. Files cannot be accessed remotely over the network, due to which we are limited with scalability options of the application
+
+From the above we can understand storing objects of data on the FileSystem of the computer seems to be not an feasible solution, so to overcome this problem in managing binary objects of data, the object storage databases are introduced.
+	
+AWS Cloudplatform	
+2. database domain
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

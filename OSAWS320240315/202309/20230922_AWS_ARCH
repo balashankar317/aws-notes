@@ -1,0 +1,97 @@
+AWS Architecture
+----------------
+The AWS Architecture refers to how does the AWS Cloud platform is spread across in offering the cloud services to the people around the world.
+	
+1. AWS Region
+AWS Regions are the geographical locations where the AWS Cloud platform has been hosted & offerred their services out of that location. A Region has nothing do with an Country, within an Country they can be one or more Regions also can exists.
+	
+For eg.. in United States, there are 4 Regions in which AWS Cloud platform has been hosted
+1. US-EAST-1
+2. US-EAST-2
+3. US-WEST-1
+4. US-WEST-2
+	
+AWS has spread across 22 regions at different geographic locations around the world. upon logging into the AWS Management Console, ontop right corner we need to choose the Region from where we wanted to host/manage the services from.
+	
+How do we choose a Region to be used for hosting the cloud resources/services in AWS Cloud platform?
+There are 3 factors that should be taken into account, while choosing an region to be used
+1. Target Audience
+Based on the Target Audience/Customers of the business we should choose the region closest to them in hosting the services/application. Incase if we have choosen a Region which is far away from the Target audience, then the latency in accessing the application/services by those audience will be very high, which results in spoiling the endusers experience in using the business services.
+	
+For eg.. if the Target audience are in India and if we have choose the Region as US-EAST-2 (ohio), then it takes too long time in sending the request to the application and getting the response back to the customer which should avoided.
+	
+2. Complaince
+Most of the Governments in different countries has compliance rules enforcing the citizens data like PHI, Financial info etc to be stored locally within their Country itself. In such case we should choose the Region based on the Audience for whom we are capturing and storing the data.
+	
+3. Pricing
+Different AWS Cloud Regions has different pricing in offering the Cloud Services. These pricing varies based on local governments and demand of services at that location.
+The AWS might use the pricing as one of the strategy in evenly distributing the people across the regions or locations.
+	
+2. Availability Zones (AZ)
+Within an AWS Region, AWS has setup multiple Availability Zones. per each Region atleast #2 AZs are guaranteed to be there for High Availability.
+	
+An Availability Zone is nothing but group of datacenters within a location are setup by AWS Cloud platform in offerring cloud services at that location.
+	
+AWS Cloudplatform chooses these AZ locations within a region by carefully evaluating various different parameters like:
+1. Climatic Conditions
+2. Power availability
+3. Cyclone conditions
+4. Tornodos
+5. Earth Quakes
+6. Volconos
+etc
+
+So that the likeness of all the AZs of within a region going down is very less.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

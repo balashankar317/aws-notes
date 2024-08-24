@@ -1,0 +1,42 @@
+Messaging Domain
+There are 3 services are available
+1. SNS
+2. SQS
+3. SES
+
+3. SES
+SES stands for simple email service, it is an relay managed email server service provided by the aws cloud platform, through which we can deliver bulk, promotional, marketing and transaction emails to the customers.
+	
+Features:
+1. Delivers high-volumes of emails campaings around hundreds of billions of emails per year
+2. reaches customer inboxes as a trusted sender with secure email authentication
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

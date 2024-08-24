@@ -1,0 +1,223 @@
+S3 stands for simple storage service and is an object-storage database that is provided by the aws cloudplatform used for storing objects of data like audio, video, documents, images etc. For each object we have stored in S3 it assigns an unique id, using which we can access the object from the S3
+
+To help us in organizing, storing and controlling the access to the objects the S3 supports Storage Buckets. A bucket is nothing but group of related/similar objects that can be managed and controlled together. We can image a bucket as an folder on Filesystem where we group related files and folders and stores inside them, so that we can locate and access them quickly.
+	
+While storing the objects (like files, audio, videos etc)	we can organize them by creating folders inside the bucket. But in practical there is no folders, these are logical names given to the files while uploading into the bucket. S3 buckets supports flat storage structure only
+
+For eg.. we created a bucket called "rapido"
+rapido (storage bucket)
+|-static
+	|-images
+		|-logo.png
+		|-icon.ico
+	|-js
+		|-common.js
+		
+actually there is no folder inside the bucket with static, images or js these are the names prepended to the files while storing in the bucket.
+static/images/logo.png, static/js/common.js
+
+advantages:-
+There are lot of advantages of S3 storage service
+1. durable and redundant, which means when we store the data in S3 bucket it is guaranteed to be availabile 99.9999% without any loss of data. S3 takes the responsibility of replicating the data across the AZs automatically, so we dont need to worry about loss of data.
+2. Throughput optimized performance, depends on the requirement of accessing the data, S3 scales up serving the objects at great speed without comprimising the performance.
+3. Cheapest storage cost at 0.234 per gb, that makes it more favourable in storing and serving the un-structured data.
+4. S3 service is provided under free-tier for upto 12 months of max capacity of 5GB
+5. Introduced Storage classes in S3 using which we can further reduce the cost of storing the data based on the usage
+6. Highly secured and can be restricted through either acls or bucket level policies.
+	
+What are the storage classes supported by S3?
+There are 7 storage classes are available with S3 storage. The storage classes basically differs on these parameters:
+1. Latency
+2. Throughput
+3. Durability
+4. Availability
+5. Cost
+
+1. S3 Standard
+S3 Standard offers high-durability, availability and performance interms of object storage. it can be used for frequently-access data and delivery with low-latency and high-throughput in accessing the objects
+
+2. S3 Intelligent-Tiering
+When we are not sure about how the data is being used or accessed from the storage bucket, then place the data in S3 intelligent-tiering. S3 automatically monitors the usage of the data based on which it moves the data across the storage classes to optimize the cost
+
+3. S3 Standard IA (In-frequent Access)
+S3 standard IA is used for storing the data that is not being accessed frequently, but we need durability, high-availability and low-latency while accessing. The price of storing the data per GB is very less when compared with S3 standard.
+	
+4. S3 one-zone IA
+if the data is less frequently accessed, then we can place the data  in one AZ only which lowers the cost of storage upto 20% when compared with S3 standard IA. here durability is not guaranteed.
+	
+5. S3 Glacier Instant Retrieval
+Glacier is an archival storage service, where the data is being stored on magnetic tapes. It is used for storing long-lived data that is rarely accessed and lost-cost of storage. We can save upto 80% of the storage cost in storing the data
+
+6. S3 Glacier deep archive
+durable across multiple availability zones, lowest-cost storage option suitable for storing the data alternate to magnetic tapes. Retrieval of the data takes 12 hours
+
+7. S3 outposts
+Instead of storing the data on the cloud, we can store the data on on-premise servers of our organization using S3 outposts.
+-------------------------------------------------------------------------------------------------------------------------------------
+How to enforce security on the S3 storage bucket and their objects?
+There are 2 ways we can apply security in S3
+1. ACLs = access control list
+2. policies = IAM policies that can be configured at bucket-level
+
+1. Access Control List (ACLs)
+ACLs are one of the security mechanism available for enforcing the security on the buckets and objects in S3. ACLs are very old mechanism and is deprecated and no more recommended by aws itself to enforce security on bucket/objects. There are only limited permissions are available to be applied on buckets/objects through ACLs.
+1. We can basically grant permission on bucket or object either to
+a) owner
+b) others
+we cannot grant permissions to a bucket or object to a specific aws iam user, which is considered as one of the big limitation
+
+2. there are only few permissions can be enforced on a bucket or object
+for a bucket we can enforce
+1. read
+2. write
+3. list
+
+on an object
+1. read
+2. write
+either to the owner or others.
+
+From the above we can understands acls are not powerful way of enforcing security on the buckets and objects since there are very limited options are available. So by default when we create S3 bucket acls are disabled. if we want to enforce secrity through acls we need to enable them explicitly
+--------------------------------------------------------------------------------------------------------------------------------------
+While creating the S3 storage bucket, the aws allows us to choose below options
+1. acls disabled (recommended): means we can enforce security on bucket and objects using policies
+2. block all public access (by default checked)
+block all public access is by default checked, this means anonymous (un-authenticated) access to the bucket and objects are disabled. 
+	
+3. if we un-check block all public access to bucket and objects,  then 4 checkboxes are enabled with unchecked status.
+if we create the bucket with un-check block all public access then the objects in the bucket are controlled based on the aws account owner only.
+The objects that are uploaded into this bucket are accessible only to the aws account owner, and to enable public access to any of the objects of this bucket should be granted by configuring using policies.
+	
+By un-checking the block all public access checkbox, the 4 check boxes are enabled:
+- #2 checkboxes are used for blocking or un-blocking the access through ACLs
+- the other #2 checkboxes are used for blocking or un-blocking the access through policies
+
+since we disabled ACLs, the first #2 checkboxes doesnt apply for our bucket.
+2.3 Block public access to buckets and objects granted through new public bucket or access point policies
+if we check the above checkbox, we will not be able to grant access to the bucket or objects publicly through policies
+2.4 Block public and cross-account access to buckets and objects through any public bucket or access point
+we block public access also and cross-account user access as well in permitting access to the bucket and objects
+
+
+Now we have 2 options:
+
+1. acls disabled and block all public access: enable
+Even we create bucket policies granting to any user for public access (anonymous), aws doesnt allow you to apply that policy. Only our account IAM users only we can grant access to S3 bucket and objects
+
+--------------------------------------------------------------------------------------------------------------------------------
+	
+	
+How to host an static website using s3 storage bucket?
+1. create an S3 storage bucket
+2. upload the website static resources directly into the bucket.
+3. goto permissions of the bucket
+	3.1 block all public access: off
+	3.2 attach policy allowing any one to access the bucket objects as below
+	{
+    "Version": "2012-10-17",
+    "Id": "Policy1706756830287",
+    "Statement": [
+        {
+            "Sid": "Stmt1706756829194",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::bucketname/*"
+        }
+    ]
+}
+
+4. goto bucket properties and navigate to the end of the page and enable Static website hosting and provide the home page of the website for eg.. as index.html
+5. this will generate an bucket website endpoint using which we can access the static website.
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+

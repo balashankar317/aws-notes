@@ -1,0 +1,196 @@
+Database domain
+There are 5 services are there in database domain
+1. RDS Service
+2. AuroraDB
+3. DynamoDb
+4. Elastic Cache
+5. Redshift (data warehouse tool) (not covering)
+---------------------------------------------------------------------------------------------------------------------------------------------
+Elastic Cache
+-------------
+What is Cache, where do we use it, and why do we use it?
+Applications has to store the business data permanently in a database management system, so that it be used in future for perform further processing on the data in conducting various different business operations.
+	
+Based on their usage of data, these can be categorized into 3 types/categories:
+1. static/fixed data
+2. moderately modified data at regular intervals of time
+3. frequently modified data
+
+Let us understand these types of data by considering usecases:
+1. static/fixed data
+A static/fixed data means, this type of data will not be changed over the lifetime of the software application. Usually any changes to this data will be made during the maintainance window of the application. few of the examples of static data in a typical applications are
+
+1.1 A product information that is added by an merchant in a e-commerce application would seems to be remained constant and would not be changed frequently at all
+1.2 upon adding an Merchant or Seller information to an e-commerce platform, it remains to be constant and would not be changing
+1.3 an examination results posted by an board of education or university remains constant/static in nature, and would not change over the course of time.
+1.4 employees information within an organization will not change and remains to be constant/static 
+	
+2. moderately modified data at regular intervals of time
+2.1 in a cargo/courier services provider, upon creating an consignment, the status of the consignment would not be changed until it has been dispatched or arrived at destination location and ready to be delivered. This means most of the time the consigments information would remains constant and might be modified very rarely (moderately). If at all the data is being changed it would be at some regular intervals of time only
+
+3. frequently modified data
+Frequently modified data means, this type of data would be modified very frequently during the lifetime of the application. The endusers would be modifying the data be performing various different operations on the data through the application itself like
+1. Leaderboards in Games
+In a gaming application based on the points secured by the players the leader boards will be drawn and showing the position of the players among the other players. Here the points of the players will be keep changing very frequently based on the game progress. such information pertaining the player points can be considered as frequently modified data
+
+2. stock prices in stock exchanges
+The information and the price of the stock varies very frequently within an stock market application, and can be considered as an frequently modified data
+
+all the above different categories of data is being stored in database management system, so how does the software applications are designed to handle and process the above types of data.
+	
+---------------------------------------------------------------------------------------------------------------------------------------------An application has to permanently store the data in an database management system, so that it can be used at later point of time in performing the operations.
+The data that is managed aspart of our application can be classified into #3 categories based on their nature of usage:
+1. static/fixed data
+2. moderately modified data at regular or fixed intervals of time
+3. frequently modified data
+
+1. static data
+Static data is the data that remains to be constant and will not be changed during the lifetime of the application. if there is a change in the data it would be carried during the maintainance window of the application and requires an restart to have it effected in the application.
+	
+2. moderate data (very rarely undergo changes)	
+Moderate data is the data that seems to be constant for most of the time, and very rarely being changed. if at all if there is change in data, it would be done through the application itself. Most of the time this data is modified at regular intervals of time or at a fixed schedule.
+Few of the examples of moderate data is
+2.1 A product information in e-commerce application
+2.2 A seller information in e-commerce application
+2.3 A parcel information in Cargo services application
+etc
+
+3. frequently modified data
+Frequently modified data is the one that is being modified very frequently through enduser operations aspart of the application. Each time the application has to query the latest snapshot of the data inorder to use it for performing the operations on that data.
+	
+How does the software applications are designed to process these different types of data?
+By default: The software applications are always designed to query the latest snap of the data from the underlying database/storage to perform the operations using that data
+
+But there are lot of problems in frequently querying and accessing the data from the backend storage (database/storage device) irrespective of the nature/type of data as defined below:
+problems:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,52 @@
+Database domain
+----------------
+Database domain contains all the services related to storing/managing the data. There are 5 services are there within the database domain
+1. RDS Service (Relational Database Service)
+2. DynamoDB
+3. AuroraDB
+4. Elastic Cache
+5. Redshift
+it is one of the domain, that provides PaaS services by the aws cloudplatform.
+
+
+1. RDS Service (Relational database Service)	
+Every Software application, in or the other form wanted to store/manage the data permanently on the storage device of the computer, so that it can be used at later point of time in performing the business operations.
+The most efficient way of storing the data permanently on a computer is by using an backend software like database management systems. There are many types of databases are there in the market, out of which the Relational database management system is being popular used for handling/processing business data.
+	
+There are several software players or manufacturers produces the relational database management system softwares, few of them are:
+1. oracle database
+2. mysql server database
+3. db2 database
+4. postgres 
+5. ms-sql server database
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

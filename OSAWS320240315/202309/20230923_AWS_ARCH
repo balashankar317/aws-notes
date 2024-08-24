@@ -1,0 +1,99 @@
+1. AWS Regions
+AWS Regions are the geographical locations that are spread across the world where AWS Cloudplatform has been hosted and offer their services from. There are around 22 regions are there from which AWS Cloud platform is operating.
+
+There are 3 factors based on which we need choose an region to be used in using the cloud services from:
+1. Target Audience = to avoid network latency
+2. Compliance      = to adhere to the local govt policies
+3. Pricing         = different regions has different pricing model
+
+
+2. Availability Zone
+Availability Zone is a group of datacenters within an Region from where AWS Cloud Platform is offering their services from. Per each Region, AWS promises to have atleast 2 Available Zones for ensuring High Availability
+
+The AZs are provided for high availability of services/resources within an AWS Region. The AWS recommends us to host our applications across the AZs of the region, so that if one of the Availability Zones goes down, always there is an another Availability Zone from which the application can be served and avoids down-time of the application/services.
+	
+The AWS Cloud platform chooses and setup these Availability Zones carefully by evaluating through various different parameters like
+1. Climate Conditions
+2. Earth Quakes
+3. Power Availability
+4. Tornodos 
+etc
+So that the likeliness of having all the Availability Zones within an Region goes down is very less. These Availability Zones are inter-connected with dedicated high-speed internet lines to ensure there is no network latency across the Availability Zones of the region.
+	
+
+3. Edge Locations
+Edge Locations are the Mini datacenters co-located across the regions of the AWS Cloud Platform. There are few shared/global services are there in AWS Cloud platform like
+1. Cloud Front
+2. Route53
+3. IAM Registry
+etc
+
+to reduce network latency in distributing/accessing such global services to the customers, the AWS Cloud platform has setup mini datacenters from where they operating these shared/global services. These Edge locations are replicated datacenters across the regions in offering the global services with low-latency.	
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Scope of AWS Services
+---------------------
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

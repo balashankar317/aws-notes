@@ -1,0 +1,158 @@
+How many ways we can store the data on the FileSystem of a computer?
+There are 2 ways we can store the data on the FileSystem of a computer
+1. humans
+2. programs
+
+1. humans
+Humans can store the data on the FileSystem of the computer using the operating system tools or using utility softwares like notepad, text pad etc in storing the data interms of Files. All the data that is stored by the humans on the files of the computer are human-readable format which is written using english language sentences, that can be interpreted and understood by humans itself.
+	
+2. programs
+We wanted the software programs to be used for performing business operations. These software applications requires data as an input to perform the operations. So all the data that we have stored interms of Files can be fed as an input to the software applications so that they can perform computation operations on the data.
+	
+But the software applications cannot understand the data that is stored in human-readable format, because those doesnt have Artificial Intelligence in interpreting the english language sentences, so we need to store the data in special format so that programs can interpret and use the data
+
+Identify the fields of data that acts as an input for the software programs in performing the operations and store them in a specific format on the file.
+There are lot of data representation standards are there in capturing and storing the business data that is programmable through programs like
+1. csv
+2. json
+3. xml
+4. yaml
+etc
+
+So we need to build software applications that takes care of storing and retrieving the data on the Files of the computer based on any of these data representation standards, so that they can perform operations on the data easily.
+	
+	
+-> business data
+   |- long-lived data that should be stored for longer time
+	    |- paper (not recommended) 
+		  |- storage devices of the computer
+					|- how?
+		 					|-human readable formats
+							|-programmable formats (programs)
+		 						|-programs (let programs by themself store/retrieve it)
+		 
+examples of programmable formats are as below:
+we are storing sales information of a store in a file using programmable formats as below
+1. csv (comma-separated value)
+11/07/2023 10:00:00,Peter,6,1000,25,1025
+11/07/2023 10:01:00,Patrick,10,800,20,825
+	
+2. xml
+<sales>
+  <sale>
+		<sale-dt>11/07/2023 10:00:00</sale-dt>
+		<customer-name>peter</customer-name>
+		<quantity>6</quantity>
+		<amount>1000</amount>
+		<tax>25</tax>
+		<total-paid>1025</total-paid>
+	</sale>
+	<sale>
+		<sale-dt>11/07/2023 10:01:00</sale-dt>
+		<customer-name>patrick</customer-name>
+		<quantity>10</quantity>
+		<amount>800</amount>
+		<tax>20</tax>
+		<total-paid>820</total-paid>
+	</sale>
+</sales>
+	
+From the above we can understand if we are building software applications to persists the data and perform operations on the data directly we can quickly manage in performing business operations in an organization.
+	
+The Software developers has to build software programs that are capable of storing/retrieving the data on the FileSystem of the computer. There are lot of challenges in developing the software applications in storing/retrieving the data from the FileSystem of the computer
+challenges:
+1. Most of the programming languages doesnt provide good support in storing/retrieving the data on the Filesystem of the computer. So the programmers has to write complex logic in managing the data on the Files of the computer
+2. Looks like majority of the code the developers write in building the software applications is contributing towards persistence logic, so the developers would endup in spending lot of time in writing persistence logic rather than building the business logic of the application due to which the development time and cost of building the application will be very high
+3. since we are writing lot of code in building the application, the chances of increasing the bugs will be more
+4. due to complex persistence logic being written in the application understanding and maintaining will become very difficult
+5. The data that is stored on the FileSystem of the computer cannot be accessed remotely
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

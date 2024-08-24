@@ -1,0 +1,288 @@
+What is cloud computing?
+on-demand delivery of computing resources/services to the world is called "Cloud Computing"
+
+We use computing resources for running/deploying the software applications. The way the applications are deployed/ran depends on Type of the application. We can broadly classify the applications into 4 Types at an High-level
+
+1. Standalone
+2. Distributed Web Applications
+3. Mobile Applications
+4. Batch processing Applications
+
+
+Let us explore what are these application types and how do they need to be delivered to the customers/organizations in order to use them in conducting the business
+1. Standalone
+it is the application, that runs locally on the computer of the user, and it is an single-user application, where only one user at anytime can use it. The user has to download the executable/binary of the application from software repositories and install them locally on the computer to use it
+
+delivered:
+1. The software organization or software manufacturer publishes the binary/executable file of the application into software repositories for distributing it
+2. The user downloads the binary/executable and installs it manually on his/her computer and use it
+
+eg..
+1. calculator
+2. mspaint
+3. visual studio code editor
+4. eclipse
+5. notepad++
+etc
+
+2. distributed web applications
+In distributed web applications there are #2 parts are there
+1. Server-side application
+2. Client-side application
+
+Incase of standalone/desktop applications, the application executable/binary is distributed to all the users who wants to use our application, these users has to install and run the application locally on their machines which causes lot of problems in enterprise environments
+1. the applications may not be portable/compatible to work on different env/operating system platforms
+2. system resources may not be sufficient to run the application
+3. patching/upgradations are difficult
+4. troubleshooting the application is very difficult
+
+to overcome these problems we are using distributed web applications.
+	
+When do we say an user is using the application?
+A user is using the application doesnt mean, the application should be running on his local computer. Inorder to say an user is using the application, he should be using the functionality/services of the application
+
+using functionality/services means:
+accessing the application by passing the data as an input, so that application can perform operation using the data and produces the output back to the user whichever he expected/requested, then we can say he is using the application
+
+for eg.. in an banking application we can say an user is using the application when the banking application can take the user input for performing funds transfer and returns an transaction confirmation stating transfer has been completed can be termed as usage
+
+To use the services/functionality of an application, the application needs not be running on his local computer rather incase of distributed web applications, we have the Server-side application that is running on an Central server computer
+
+
+The Server-side application is designed as Network application, that can take the request/data from the network perform operations on the data that is passed and computes the output and returns back to the user over the network. So if the user has to use the services of the application, he dont need to have the application on his computer, rather he needs to send the input data over the network and receive the expected output from the network.
+	
+
+How can the client/user interact with the application over the network?
+So to send the data over the network to server application and receive the output returned by the server application, the user requires an Client-Side application.
+This application can be an thin-client application that doesnt have any business logic, it has only logic for interacting with server application, and the user can use web browser as an thin-client application
+
+advantages of distributed web application:
+1. no need to download/install the application binary on all the users computers
+2. no portability/compatibility issues, the application can be accessed by any user of any hardware or any operating system platform because the server-side application is not running on user computer, only the user needs to use browser for accessing
+3. no patching/no upgradation on all the users machines, if there is an new version of the application is released, it should be upgraded on central server only
+4. no need of support/administration team work across all the users of the application, only an centralized team can maintain and manage the application
+5. data is centralized and distributed across
+6. troubleshooting and maintainance is easy
+
+from the above we can understand, if we want to provide business services to the lot of people within an organization or across the people in the world, we can use distributed web applications
+
+How to deploy these distributed web applications and make it available for the world/organization to use it?
+1. we need an server-grade computer machine to scale in handling lot of users
+
+2. inorder to run these application we need web server/application server softwares to be installed on server computers.
+These application servers/web server softwares takes care of common network aspects like
+	2.1 receving the client request/data over the network, extracting the data and calling our server application
+	2.2 collecting the data from server application and sending/dispatching it to the client/user over the network
+so in our server-side application we dont need to write network logic, only we need to write business logic only
+
+3. database server software to be installed and running on a computer
+
+4. network
+5. high-speed internet connection to have the application accessible to the users around the world
+
+incase if the traffic or number of users using the application are more, then we need to run our server application on multiple server-grade computers and distribute the user traffic across these computers using load-balancer server/hardware component
+
+#3. Mobile Application
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,100 @@
+1. How does the DynamoDb stores the collections within a Table?
+The DynamoDb stores/distributes the collections across the partitions of the table.
+
+2. How does it picks the partition into which it should store a collection?
+Based on the partition_key value in a collection, the DynamoDb chooses the partition into which the data should be stored.
+
+3. If there is no single column meant to be unique in the data, how to choose a partition_key?
+In that case we can create along with partition_key the sort_key column also, so that the combination of these 2 keys should be unique, even though individually those are duplicated.
+
+4. How can we retrieve the Collection from the DynamoDb table?
+always DynamoDb allows us to access the data based on known access patterns only. which means for a given data, what fields are being used for querying the data back should be identified and declare them as partition_key or partition_key + sort_key
+
+So that we can query the data either by using
+1. partition_key
+2. partition_key + sort_key given if sort_key exists for that table
+
+5. Can we fetch the data from the DynamoDb table apart from partition_key or sort_key based on any other attributes or items?
+Yes, we can fetch the Collections based on any other attributes or keys as well, and it is called "scan". It is recommended to avoid scan operation as it scanning all the collections across all the partitions of the table that results in very costly and time consuming operation.
+	
+6. What is Global Secondary Index?
+We can choose any other item in the collection which could commonly exists across all the collections in the table and ask aws dynamodb to create GSI index on it.
+So that searching and retrieving the data on GSI would become very fast, but dynamodb charges additional for each GSI
+
+
+1. server-less dynamodb database
+2. tables -> collections, containing items
+3. mandatory partition_key or partition_key + sort_key
+
+the only way to query the data is based on partition_key or partition_key + sort_key
+4. if we fetch the data based on any other attributes, then it is a scan operation that consumes more read units
+The data is broken down and stores across the partitions of the table.
+	
+
+5. GSI (Global Secondary Index) = cost
+
+6. read/write consistency
+table = replicated across the AZs of the region
+eventual consistent read/writes
+strong consistent read = but results in more cost and time
+
+7. we will be charged based on read/write units consumed
+1 read unit = 2 read operations of 4kb
+1 read unit = 1 strong consistent read operation of 4kb size
+
+1 write unit = 1 write operation of 1kb
+2 write units = 1 transactional write of 1kb size
+
+How do we control the cost?
+by allocating read/write capacity while creating table. There are 2 modes in which we can allocate
+
+1. provisioned = we allocate fixed read/write capacity for the table
+2. ondemand = it auto scaleup/scaledown the capacity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+How does no-sql databases stores the data?
+There is no standard format in storing the data in an no-sql database, it is left to the discreation of the database vendors in designing and storing the data in their databases. There are lot of no-sql databases are available in the market.
+	
+1. mongodb
+2. casendra
+3. couchdb
+4. cockroach db
+5. oracle bigdata
+etc
+
+In addition to the above aws cloudplatform has provided dynamodb as an no-sql database management system.
+
+DynamoDb:
+There are lot of advantages of using Dynamodb when compared with other no-sql database products available in the market:
+1. DynamoDb is fully managed service that is hosted by aws cloudplatform that takes care of managing all the cloudlifecycle operations ontop of it.  Instead if we are using third-party no-sql database, we need to manually takecare of provisioning and managing the lifecycle operations on them.
+	
+2. Optimized for performance at scale	= irrespective of amount of data being stored in DynamoDb, we can achieve the same level of consistency interms of performance in accessing the data
+
+3. High Availability and durability
+4. Integrates with other AWS Cloud services
+5. Cost effective usage based payment model
+---------------------------------------------------------------------------------------------------------------------------------------------
+DynamoDb is an managed no-sql database provided aspart of the aws cloudplatform, it is scoped to the AWS Region level. So when we create a table in AWS region, it would be accessible across all the AZs, VPCs and subnets of the region.
+	
+For eg.. if we create a table called "customers" within a region "ap-south-1"	it will be scoped to "ap-south-1" region and is accessible across all the AZs of the region. We cannot create one more table within ap-south-1 region of the same name "customers".
+	
+unlike RDS Service, the DynamoDB is an server-less database, which is available at region-level for all the aws account users. A aws account user dont need to provision the DynamoDB instance for storing the data, it is an fully self-managed aws service.
+	
+In DynamoDB we can store the data by creating tables, while creating the tables in DynamoDB we dont need to specify the columns of data we wanted to store. since it is no-sql database not all the data being stored has same structure. In tables we store collection of items, where each item is nothing but a key/value pair of data. We can image a collection as a record in RDBMS table in which the columns are not fixed.
+	
+For every table we create in DynamoDB we need to create a column partition_key, it is mandatory to have partition_key for every record we store. Based on the partition key only the data is distributed across the partitions of the table within the DynamoDB.
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

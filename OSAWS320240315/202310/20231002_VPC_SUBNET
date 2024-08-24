@@ -1,0 +1,98 @@
+Virtual Private Cloud (VPC) Network 
+VPC is an isolated network of resources of an AWS Account User within an Region
+
+Characteristics:
+1. VPC is created by an AWS Account user and spans across all the AZs of the region
+2. per a AWS Account user, per each region at max 5 vpcs can be created and it is an soft limit
+3. all the resources within the vpc can communicate with each other, but if we wanted the resources across the vpcs to communicate with each other we need to enable vpc peering
+4. by default per each aws account user, of all the regions one default vpc will be created/setup by aws platform
+
+What is the purpose of an VPC?
+VPC is being used for organizing and managing the resources at different levels like
+1. across the business units or departments in an organization
+2. across the projects within an organization
+3. across the envs like dev, test, stage and prod
+
+How to create an vpc on the AWS Cloud platform?
+To create an vpc network and ensure all the resources are within that network we need to specify the CIDR range along with vpc name. So that all the resources that are created within the VPC will be assigned with an ip address within the CIDR range only.
+1. CIDR Range for eg.. 10.1.1.0/24 which means 10.1.1 = network address and the remaining 8 bits are host address that can be given an number ranging from 1 - 254 which means total 253 resources can be part of this network.
+2. VPC Name = to identify the vpc
+--------------------------------------------------------------------------------------------------------------------------------------
+2. Subnet
+vpc is an isolated big network that spans across all the availability zones within an AWS Region. By default all the resources that are created within a VPC are accessible to each other and the same traffic restrictions are applied accross all the resources within the VPC.
+	
+But we wanted to enforce different security restrictions/access permissions on the different group of resources. For eg.. we wanted the RDS (database) instance to be private within the vpc and should be exposed or accessible to the outside network. We wanted an EC2 instance to be accessible from an public network
+
+having these 2 resources aspart of the same network cannot enforce different network restrictions, rather have them separated into different networks that is where subnet is being used.
+	
+A VPC network can be divided into smaller networks which are called Subnets (Sub networks) on whom we can apply different traffic restrictions.
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

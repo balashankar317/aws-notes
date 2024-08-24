@@ -1,0 +1,120 @@
+AWS RDS Proxy
+-------------
+Amazon RDS proxy is fully managed, high available database proxy for Relational database Service. Using the RDS Proxy makes the applications highly scalable, more resilient to the database failures.
+	
+The Server-Side applications build on modern technologies (like microservices platform built and deployed on containerized cluster environment) or Serverless technologies can have large number of open connections to the database servers. These applications may open and close database connections at an high-rate, that exhast the database memory and computing resources.
+	
+Amazon RDS Proxy allows us to have an shared connection pool to the database, that improves the database efficiency and application scalability. Rather than the applications maintaining an connection pool to the underlying database, the RDS proxy creates an distributed/shared connection pool and distributes the connections to the applications when requested.
+---------------------------------------------------------------------------------------------------------------------------------------------
+Database domain
+1. RDS 
+2. AuroraDb
+3. DynamoDb
+4. Elastic Cache
+5. Redshift
+
+
+2. AuroraDb
+------------
+AuroraDb is an another Relational database service, built on-top of mysql server and postgres databases. The AWS Cloudplatform has taken the underlying database server engines as mysql server and postgress and added more features ontop of it making them cloud ready/database.
+	
+either we can provision auroradb with mysql server compatible database or postgres server compatible database. 
+Features:
+1. High performance and Multi-AZ availability
+2. Distributed storage for durability, performance and fast recovery
+3. Flexible and auto-scale compute
+4. Low-latency across the region replications
+---------------------------------------------------------------------------------------------------------------------------------------------
+3. DynamoDb
+How many types of databases are there?
+There are 3 popular databases are there
+1. relational database management system
+2. no-sql or semi-structured database
+3. object-storage database
+
+DynamoDb is an no-sql database product provided by aws cloudplatform as an alternate to RDS Service for storing semi-structure data. There are lot of no-sql server databases are available in the market like
+1. mongodb
+2. casendra
+3. cockroach db
+4. couchdb
+5. oracle bigdata
+etc
+among the other no-sql database servers, the dynamodb has plenty of advantages.
+advantages:-
+1. dynamodb is an fully managed service that is hosted by the aws cloudplatform that takes care of the all the cloudlifecycle operations like provisioning, de-provisioning, scaleup/scaledown, scaleout/scale-in, backup/restore etc. if we are using any third-party no-sql database these operations has to be managed by us manually.
+2. optimized by performance at scale = irrespective of amount of data being stored in the dynamodb, we can achieve the same level of consistency interms of performance while accessing the data from the database
+3. High Availability / Durability = no matter always the database available and the data is durable without any loss
+4. Integrate with other AWS Service
+5. Cost effective usage based on payment model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

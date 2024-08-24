@@ -1,0 +1,124 @@
+AWS Cloudplatform
+duration: 3 months / (4 months)
+timings: 8:00 AM IST - 9:00 am IST
+Regular Classes: [Monday - Saturday] on Weekends: [Sunday: 6:00 PM or 7:00 PM]
+Fee: 6k, existing sriman sir students: 5k = and only devops with aws: 4k
+
+Pre-requisite:
+-------------------------------------------------------- #2 weekends [saturday/sunday: 2 hours in covering these basics]
+1. Basics of Linux operating system                                  [6:00 pm - 8:00 pm]
+	1.1 FileSystem 
+	[touch, mkdir, rm, rm -rf, cat, echo, cp, mv]
+	[find, grep]
+	[File permissions: chmod, chown]
+	1.2 User Management 
+	[useradd, groupadd, deluser, delgroup]
+	[sudoers, su]
+	1.3 Package Management
+	ubuntu: [apt, dpkg]
+2. Networking
+	1. basics of networking protocols
+	2. ip address / subnetting
+	3. port
+	4. networking devices
+3. any programming language, preferrably: java
+	1. how to build an application using maven build tool
+	2. how to deploy an web application on tomcat server
+4. database management system
+5. ssh protocol
+-----------------------------------------------------------
+Who are the target audience of this course?
+everyone, irrespective of your technical stream
+developers, test engineer, support engineers, devops engineers
+	
+devops with aws (market)
+AWS Cloudplatform: 
+1. fresher (chances are very less)
+2. with minimum 3 years of experience: quite good calls, and should be able to secure job
+
+What certifications I can give with this course?
+	1. Cloud Associate
+	2. Cloud Practitioner
+	3. Cloud Solution Architect (requires additional preparation)
+
+
+System configuration:
+1. Internet Connection (decent network speed)
+2. Intel i3 with (4b, preferrably: 8gb ram)
+3. AWS Cloud account (dont create now, I will explain how to create aws cloud account)
+	
+
+Compare between cloud platforms, which one is preferred?
+end of the day, all the cloud providers are same, only the terminology will change. still aws is the leader in cloud platform 
+
+Course Content
+---------------
+categorized: domains
+domains are groups of related services
+There are lot of domains in aws cloud platform
+
+1. Networking domain 
+2. Compute
+3. Storage
+4. Database domain
+5. Identity and Access Management (security domain)
+6. Developer Tools
+7. Messaging 
+8. Management Tools
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

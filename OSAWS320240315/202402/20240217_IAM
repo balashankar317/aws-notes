@@ -1,0 +1,250 @@
+5. IAM Service
+IAM stands for identity and access management used for delegating the access to the services and resources of an aws account to other users. It is an global service, which means if we add/remove a user or policy that would be effected across all the regions of the cloudplatform.
+	
+1. users
+2. groups
+3. associate users to the groups
+4. policy management
+5. roles
+6. multi-factor authentication
+
+1. users
+There are 2 types of users are there
+1.1 ROOT User = ROOT user is the owner of the aws account, and he has unrestricted access to all the services and resources of an cloud account.
+	
+1.2 IAM User = ROOT user can create additional users called "IAM User" to grant permission in allowing the other users to access and manage the resources/services of his cloud account.
+There are 2 types of access are there we can grant to an IAM user
+1. api/programmatic access
+by default IAM user will be created with programmatic access only. upon creating an IAM user, he/she can generate api access key and secret access key in his IAM account, so that he can use in access the aws resource aspart of their applications like
+1. sdk
+2. api
+3. third-party libraries (terraform)
+	
+2. management console access
+The IAM user can login into aws management console and access the resources/services of the ROOT account. To login into management console, he has to choose IAM User login and has to enter 12-digit accountno along with username/password.
+	
+#3. groups
+Groups are used for grouping related users of similar roles together, so that they can managed easily by binding policies or permissions at group level rather than individual users.
+	
+While creating an IAM user, we can assign user to group so that all the policies attached to the group are applied to all the users of the group
+There are 2 options in granting/binding policies to the users while adding them
+1. user + policies
+2. user -> group + policies
+
+While creating an user, if we associate him to a group, we cannot bind policies to the user, because the group level policies are applied to all the users of the group. else dont associate the user to the group and bind policies directly to the user.
+	
+There are #3 ways we can access the aws cloudplatform services
+1. management console
+2. programmatic access through
+	2.1 apis
+	2.2 sdk
+3. awscli
+--------------------------------------------------------------------------------------------------------------------------------
+#4 Policies
+The AWS Cloudplatform has several domains in which there are around 200+ services are there, where on each service/resource we have plenty of actions or operations can be done. Inorder to control access to these services/resources, the aws cloudplatform developers provided each action/operation as pre-built permissions.
+	
+for eg.. 
+	ec2:create
+	ec2:list
+	ec2:terminate
+	ec2:start
+	ec2:stop
+	ec2:restart
+	...
+	etc
+	
+Now the root account owner while creating an IAM user has to choose and assign these permissions granting the user access to the cloud services/resources of his account.
+	
+since there are several services, it obviously results in lot of built-in permissions in controlling the access to the services and resources. Attaching these permissions directly to an IAM user makes it bit difficult as the ROOT user has to navigate or choose from the lengthy list of permissions to be assigned.
+	
+The permission are too granular	and controlling the access to the services/resources through permissions is quite difficult, instead aws cloudplatform has comeup with policies.
+	
+Policies are nothing but an expression defined either by aws cloudplatform or user of aws by grouping related and more meaningful permissions inside it, by which we can quickly grant permission allowing IAM users access the services/resource of the platform.
+	
+For eg.. we want to grant read-only access to the ec2 instances of an cloud account, if there is no policies then we need to identify out of the list of ec2 permissions which are readonly permissions and assign them to IAM user like
+ec2:list
+ec2:details
+ec2:network
+ec2:public_ip
+
+compiling the list of permissions categories for read-only access and assigning to the users is quite difficult. Instead we can have an policy in-place like
+
+AWSEC2ReadOnlyAccess is a policy which has been defined with all the read-only policies allowing the user to perform on ec2 instance. Now instead of browsing through permissions we can quickly assign this policy to the user/group granting read-only access.
+	
+There are 3 types of policies are there
+1. aws managed policies
+2. user managed policies
+3. inline policies
+4. bucket-level policies
+
+1. aws managed policies
+The aws managed policies are pre-defined by the aws cloudplatform developers. They identified common usage patterns of the resources/services and has created pre-defined policies with actions or permissions attached in them. Now these policies can be directly binded or assigned to the users or groups granting the access.
+	
+The advantage of aws managed policies is there are managed by the aws developers itself. For eg.. in future if there is a new feature or enhancement introduced to a service, then new permissions would be added to control those features. so neccessary changes on relevant policies needs to be performed, this will automatically takencare by the cloud developers
+
+AWS Managed policies are available for almost all the services/resources of the cloud platform, few of them are
+1. AWSEC2ReadOnlyAccess
+2. AWSRDSFullAccess
+3. AWSS3ListBuckets
+etc
+
+#2 user-managed policies
+AWS Root user can create his own policies for granting access to a specific resources of his account to an IAM user. There are 2 types of user-managed or customer-managed policies are there
+2.1 account-level policies
+2.2 inline policies
+
+2.1 account-level policies
+we can define the policies at the account-level and can reuse them while creating the IAM users of the account
+
+2.2 inline policy
+while creating an IAM user we can bind the policy directly at the user-level, so that this policy cannot be reused for other users we create on the same account.
+	
+How to create an AWS Policy?
+AWS policies are defined in json format and it has 6 key attributes are written aspart of them.
+1. principle - indicates to the user to whom we want to grant access.  (optional)
+2. sid = statement id
+3. effect = allow | deny the permissions defined in the policy
+4. action = "permissions"
+5. resource = arn resource
+6. condition = condition based on which the permissions defined should be granted/revoked
+
+Each policy has to be assigned with a version: date and timeInMilliseconds. version number is usually assiged as date on which we are creating the policy, so that we can easily identify from since when it is under usage.
+
+Each policy has array statement defining granting/denying access to the resources. A statement represents bunch of actions to be applied on a resource
+
+{
+	"version": "2024-02-18",
+	"Statement": [
+		{
+			"Sid": "grant access to ec2 instance",
+			"Effect": "Allow",
+			"Action": ["ec2:*"]
+			"Resource": "arnResource"
+		}
+	]
+}
+
+The policies can be easily constructed using policy generator tool provided aspart of cloud console.
+-------------------------------------------------------------------------------------------------------------------------------
+IAM Role
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

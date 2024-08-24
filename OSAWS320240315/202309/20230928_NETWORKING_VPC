@@ -1,0 +1,52 @@
+#1 Network Domain
+------------------
+The Networking domain of the AWS Cloud platform provides networking resources like routers, firewalls, gateways etc that are required for inter-connecting the resources and enforcing firewall/security restrictions on the resources allowing them to access.
+	
+The AWS Cloud platform offers below netwoking resources:
+1. vpc
+2. subnet
+3. internet gateway
+4. nat gateway
+5. vpn gateway
+6. security groups
+7. nacl rules
+8. route tables
+etc
+
+let us explore each of these resources and how to use them:
+
+1. Virtual Private Cloud Network (VPC)
+VPC stands for virtual private cloud network	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

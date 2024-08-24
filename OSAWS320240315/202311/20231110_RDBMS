@@ -1,0 +1,178 @@
+1. Relational database management system (RDBMS)
+Relational database management systems allows us to store the data interms of tables. These are also called as "Structured database management system", because all of the data we store/manage are defined with fixed structure interms of tables.
+	
+Each table should be defined with columns of fixed size and type. The data is stored in these tables interms of records/rows and are also called "Tuples".
+	
+Why does the data is stored interms of tables with fixed structure defined?
+By defining the data into tables with fixed columns, what data has been stored in these tables is well-known to the database system as well. So that database management system itself can help us in querying, filtering and retrieving the data easily. In addition to this, all the data manipulation operations like updating, deleting and adding new records can be handled easily by the database management system.
+	
+How to talk to the relational database management system?
+The RDBMS database provides an language called "SQL" stands for structured query language which means based on the structure of the data we can query/ask for retrieving. sql is an english like language using which we can interact and ask the database to perform operations on the data easily
+
+Why does the name relational database management system?
+always the business data has relationship between them, how to establish or represent relationship between the data while storing in database?
+1. store all the related business data into 1 table
+In the below table we are storing 3 entities of data which are product, manufacturer and customer. since all are related with each other to represent relationship between them we are storing together in one single table. By looking at each record in the table we can derive a product has been manufactured by which manufacturer and sold to which customer easily.
+
+sales
+product_no  product_nm            price      manufacturer_no   manufacturer_nm  customer_no   customer_nm
+1           iphone 14             54000      m1                apple            c1            joe
+2           bose 700 headphones   32000      m2                bose             c2            bob
+3           addidas 743S           8000      m3                addidas          c3            smith
+
+The above way of storing the data into 1 single table is not recommended, because we run into data anamolies
+1. insertion anamoly
+2. updation anamoly
+3. deletion anamoly
+
+From the above we can understand storing the data into 1 single table will put us into several problems, so it is recommended to break the different entities of data into separate tables
+
+2. different entities of data should be stored in different tables
+Here we need to use 3 tables to store the information
+
+1. product
+2. manufacturer
+3. customer
+
+but when we keep the data into separate tables, how to represent business relationships between the data.  That is where relational database management system introduced primary key and foreign keys in establishing relationship between the data
+
+primary key = a column defined within the table, which contains unique value amoung the records of data within the table is called "primary key". it acts an identity in uniquely locating the record of the table.
+	
+foreign key = a column defined in the table refferencing the primary key of the another table, through which we can establish relationship is called "foreign key"
+	
+For eg.. if we want to represent relationship between product and manufacturer indicating which product has been manufactured by which manufacturer when we are storing them in separate tables we can do so using primary keys and foreign keys as below
+
+product
+----------
+product_no  product_nm      description        price   manufacturer_no (fk)
+p1          iphone 14       apple iphone       54000   m1
+p2          galaxy watch4   smart watch        23000   m2
+p3          bose700 headset noice cancellation 38000   m3
+p4          airpods3        in-ear earphones   18000   m1
+
+manufacturer
+---------------
+manufacturer_no   manufacturer_nm   contact_no   origin_country
+m1                apple             938348494    India
+m2                samsung           039303404    south korea
+m3                bose              933840494    India
+
+
+since by using primary key and foreign key we are able to establish the relationship between the data across the tables, it is called "relational database management system".
+	
+There are lot of software manufacturing vendors build database products based on RDBMS principles like
+1. oracle database
+2. mysql server database
+3. db2
+4. postgres
+5. ms-sql server
+6. sybase
+etc
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

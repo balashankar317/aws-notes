@@ -1,0 +1,24 @@
+VPC Peering
+By default the resources within an vpc can communicate with any other resources across the subnets of the same vpc. If we want to make the resources of an vpc accessible externally we need to make the subnet as public subnet.
+	
+but what if we wanted the resources of our vpc to be accessible to other resources of another vpc within the aws cloudplatform?
+There are 2 ways we can make the resources of an vpc accessible to other resources across the vpcs of the cloud platform
+1. make the subnet as public subnet:
+If we want to expose our resources of the vpc accessible to other resources of another vpc, we can make the subnet of our vpc as public subnet so that the resources within the subnet becomes accessible to other vpc resources. But there are dis-advantages with this approach as below.
+1.1 as we made the subnet as public subnet, all of the resources are exposed even to the public world along with other vpc resources
+1.2 all the communication to these public subnet resources goes through external/public network, due to which a huge network latency and delay in communication takes place There is an huge amount of bandwidth consumption in exchanging the data towards these resources takes place. So the cost and performance in enabling this communication is very high
+
+2. using vpc peering:
+vpc peering is a technic through which we can inter-connect or route the network traffic across the vpcs of the cloud platform. By vpc peering there is no additional data/network line will be established, all the data between these vpcs moves through internal aws network itself thus enabling high-speed network access
+
+The vpc peering can be done across any 2 different vpcs of
+1. across regions
+2. across the aws accounts as well
+
+There are few conditions needs to be taken into account while working on vpc peering
+1. The ip ranges of both the vpcs we wanted to peer should not overlap
+2. Transitive Peering, edge routing and internet gateway access is not supported
+3. No NAT Routing between the vpcs
+4. Cannot resolve private DNS values across the vpcs
+5. No cross references of security groups between the vpcs
+

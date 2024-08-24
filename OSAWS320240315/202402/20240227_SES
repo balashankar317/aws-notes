@@ -1,0 +1,216 @@
+SNS Topic
+-----------
+Practical of SNS
+
+There is a java web application with an api endpoint has been created: 
+github repository: https://github.com/techsriman/SNSPaymentGateway.git
+
+How to run the above application?
+1. create an ec2 instance on public subnet of an vpc
+instance: snspaymentgatewayec2
+shape: t2.micro
+ami: ubuntu
+keypair: javakp.pem
+vpc/subnet: public subnet with public_ip address enabled
+security group: allow public ssh and http:80 port access
+
+2. ssh into the ec2 instance 
+3. install openjdk-11
+sudo apt update -y
+sudo apt install -y openjdk-11-jdk
+
+4. install gradle
+sudo apt install gradle
+
+5. clone the above github repository onto the $USER_HOME directory
+~/> git clone https://github.com/techsriman/SNSPaymentGateway.git
+pat token: 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
+
+6. goto the project directory ~/SNSPaymentGateway
+run the gradle build
+gradle clean build
+
+it generates an jar file which we need to run
+sudo java -jar build/libs/SNSPaymentGateway-0.0.1-SNAPSHOT.jar
+
+upon running this application it exposes an api endpoint, so that SNS Topic publishes the message it has recieved to the api endpoint as a subscriber.
+The endpoint URI it exposes is: http://ec2pubip/payment/new
+
+upon running the above application we can check weather the application is accessible or not from our local workstation using
+curl http://ec2pubip/actuator/health
+
+The above application generates the log into /tmp/paymentgateway.log
+tail this file for seeing the messages that are logged by the application.
+	
+Create and Configure SNS Topic with Subscriber as HTTP for receiving the messages from the topic
+1. navigate to SNS Topic 
+2. create a topic by giving an Name.
+3. select the type of the Topic
+3.1 FIFO
+3.2 Standard
+
+4. Access Policy
+Choose Method: Basic
+Publishers: everyone
+Subscribers: everyone
+leave the rest of the options as default and click on create
+
+5. after creating the topic, click on create subscriber 
+6. The topc will be populated default
+7. protocol: HTTP
+8. Endpoint: http://ec2pubip/payment/new
+9. Enable raw message delivery
+leave the rest of the options to default and create the subscriber.
+	
+upon creating the subscriber for the topic, the subscriber will be created with status as pending...
+The AWS will send an SubscriberURL XML to the endpoint which we need to enter inorder to confirm the subscriber. goto the application logs under /tmp/paymentgateway.log and look for an XML message being received and copy SubscriberURL value and enter in the confirm subscriber dialog: 
+
+upon confirming the subscriber, click on publish message in the topic by writing some message. upon publishing message the Topic will sends the message to the HTTP Subscriber as our application which we should be able to see in the log
+--------------------------------------------------------------------------------------------------------------------------------
+SQS Practical
+--------------
+
+The java application is provided with both consumer program and producer program inside it. Upon running the producer program it sends an message to the SQS queue. Then run the consumer program, that polls the message from SQS and displays to use.
+The github: https://github.com/techsriman/SQSConsumerAndProducer.git
+
+How to run the above application?
+1. create an ec2 instance on public subnet of an vpc
+instance: snspaymentgatewayec2
+shape: t2.micro
+ami: ubuntu
+keypair: javakp.pem
+vpc/subnet: public subnet with public_ip address enabled
+security group: allow public ssh
+
+2. ssh into the ec2 instance 
+3. install openjdk-11
+sudo apt update -y
+sudo apt install -y openjdk-11-jdk
+
+4. install maven
+sudo apt install -y maven
+
+5. clone the git repository
+~/> git clone https://github.com/techsriman/SQSConsumerAndProducer.git
+pat token: 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
+
+6. goto the project directory and build the project directory: SQSConsumerAndProducer
+mvn clean build
+
+this will generate a jar file under target/SQSConsumerAndProducer-1.0-with-jar-dependencies.jar
+
+
+#setup SQS queue
+1. create an IAM user with policy as AWSSQSFullAccessPolicy
+2. generate an AWS AccessKey and SecretAccessKey
+3. install awscli on the ec2 instance
+4. run aws configure and then configure credentials with accesskey and secretaccesskey we generated above
+5. create an SQS Queue with queuename: PaymentQueue
+6. Type: Standard
+7. AccessPolicy: Basic
+8: Define who can send messages to the queue/Define who can receive messages from the queue:
+		Only the specified AWS accounts, IAM users and roles: add the ARN of the IAM user we created above
+leave the rest of the options as default and create the queue
+
+From ec2:
+Now run the producer program to send the message to the queue
+~/SQSConsumerAndProducer:/> java -cp target\SQSConsumerAndProducer-1.0-with-jar-dependencies.jar com.aws.test.QueueSenderTest
+this will sends an message to the queue
+
+Now run the consumer program to receive/read the message from the queue:
+~/SQSConsumerAndProducer:/> java -cp target\SQSConsumerAndProducer-1.0-with-jar-dependencies.jar com.aws.test.QueueReceiverTest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

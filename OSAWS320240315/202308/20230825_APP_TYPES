@@ -1,0 +1,212 @@
+What is cloud computing?
+on-demand delivery of computing resources/services to the world is called "cloud computing".
+	
+computing resources:
+computing resources cloud be
+1. computer machines/infrastructure
+2. network
+3. network devices
+4. storage
+etc
+
+that are used for running the software applications
+
+What are software applications?
+Software applications are build by the developers based on the requirements provided by the business owners, so that these applications can be used by the business organizations in conduting the business. developers uses
+1. programming languages
+2. infrastructure
+3. tools
+in building the application, upon building the application the developer has to deliver the application
+
+How to deliver the application?
+it entirely depends on the type of the application 
+
+How many types of applications are there?
+We can classify or categorize the software applications at an high-level into 4 types
+1. standalone
+2. distributed web applications
+3. mobile applications
+4. batch processing applications
+
+1. standalone
+Standalone applications are also called as desktop or single-user or thick-client applications, that runs on the enduser machine/computer. The enduser should download these application binaries, install them locally on the computer on which he want to use the application and run it, so that he can access the application. These applications generates the data and stores the data locally on the computer where those are running.
+	
+how does these standalone applications are delivered?
+The developer or the organization that has manufactured this application will package the application into an binary/executable and distribute this application through software repository.
+	
+software repository: its a public place over the internet where people can browse, download the software binaries for installing on the local system.
+
+examples of standalone applications are:
+1. calculator
+2. mspaint
+3. photoshop
+4. notepad
+5. notepad++
+6. eclipse
+7. msoffice
+8. vscode editor
+etc
+--------------------------------------------------------------------------------------------------------------------------------------
+2. distributed web applications
+In an enterprise business organization, often people works in groups together in mutually co-ordinating and sharing the information in for conducting the business.
+	
+For example in an banking/financial firm, clerks/employees works across different branches and mutually coordinate and share data across them in providing banking services to their customers across the branches.
+	
+These organizations requires software applications in carrying the business operations, can we build standalone software applications and distribute, install across the branches of the organization in conducting the business?
+	
+We should not use standalone software applications in an enterprise organization environment, because there are lot of problems:
+1. installing, configuring the software applications on each computer of each employee in the organization takes huge amount of time
+2. different branches/employees has different hardware configurations and platforms, so we might run into various different issues while installing and running the software application on each of their computers
+3. data is decentralized 
+4. upgrading, patching the software application is very difficult
+5. trouble shooting the application incase of failures is challenging
+6. need an separate administration/support team that should be availble round-clock across the branches of the organization which is huge mantainance cost
+
+
+To overcome the above problems distributed web applications are introduced.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+

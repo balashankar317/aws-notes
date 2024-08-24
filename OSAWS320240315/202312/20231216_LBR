@@ -1,0 +1,70 @@
+compute domain
+There are 5 services are provided aspart of the compute domain
+1. elastic compute cloud (ec2)
+2. elastic loadbalancer
+3. elastic beanstalk
+4. autoscaling group (asg)
+5. lambda
+--------------------------------------------------------------------------------------------------------------------------------------
+2. Elastic Loadbalancer
+To understand the loadbalancer, let us explore how does the application is hosted/deployed and exposed to the public world
+
+To host/deploy an application and expose it to the public world we need
+1. compute instance [computer/server-grade machine]
+2. programming language (java, .net, python, php etc) using which we build the software application
+3. based on the programming language we choose, we need to use an appropriate dynamic webserver of the language to deploy and host the application
+	3.1 java web application = tomcat (or) jetty (or) netty (or) weblogic server (or) websphere server etc
+	3.2 .net application = iis server
+	3.3 python application = flask server
+	3.3 php = lamp server
+	etc
+4. we need to deploy the application on the respective server to host it
+
+networking and infrastructure:
+1. static ip address
+2. the machine should be connected to the public network
+3. register domain routing the request to the ipaddress of the machine through dns entry
+
+application topology: based on the way the application is hosted and exposed to world, we call it as topology of the application
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	

@@ -1,0 +1,76 @@
+AWS Lambda
+----------
+AWS Lambda is server-less technology that is offered by the aws cloudplatform, it is used for running burstable-loads of short running programs at a span of nanoseconds/microseconds of time for performing an operation.
+	
+When to use AWS Lambda?
+There are programs invoked/triggered based on action/event, that takes the inputs, performs the operation and produces the output. The lifespan of these programs would be very short-interval of time. If these programs has to be executed on cloud platform, the aws engineer/devops engineer has to
+1. provision infrastructure
+2. install & configure necessary platform software packages and libraries required for running the program
+3. manage the scalability aspects of the program in handling huge traffic
+4. ensure it is always highly available
+
+If these programs are executed on a dedicated infrastructure, where it might execute only for short-interval of time upon receiving an event/action, then we endup in wasting the system resources like cpu/memory just for the sake of keeping the program alive and it results in huge amount of cost in running the program. In addition we need bare the complexity in scaling and managing the program to ensure it is performant and always available
+
+Instead of we taking care of running the program on a dedicated infrastructure, we can use aws lambda service that takes care of running the program without any dedicated infrastructure (server-less).
+	
+
+	
+How to use AWS Lambda?
+1. The developers has to build the software programs based on aws lambda api and these programs has to be developed based on the supported lambda programming platforms and deliver them to the aws cloud engineer.
+
+2. The aws cloud engineer is responsible for configuring these programs as aws lambda function with codemodule along with invocation points like when does the program should be executed.
+	
+For eg.., in our usecase we discussed.
+Whenever an new File has been uploaded into S3 storage bucket, we want to execute an Lambda function that will reads the file from the bucket and perform operation on its contents.
+	
+advantages:-
+	1. no dedicated infra to execute the program, which saves huge amount of cost
+	2. no infrastructure or software configuration setup required, that saves lot of time
+	3. no need to manage scalability and availability
+	4. no need of prior estimates of how much ram/cpu needs to be allocated in running the program, Lambda itself determins and allocates the resources while running by gathering the historical execution of the program.
+		
+
+git repository: "https://github.com/techsriman/s3lambda.git"
+
+management tools
+------------------
+AWS Cloudwatch
+AWS CloudTrail
+Trusted Advisor
+
+
+
+cloud formation
+step functions
+hybrid cloud
+SSL
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

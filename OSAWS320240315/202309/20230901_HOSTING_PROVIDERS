@@ -1,0 +1,311 @@
+What are the drawbacks with In-house hosting of the application?
+1. The investment cost involved in setting up the infrastructure and procuring the hardware resources in hosting the application is very high
+2. The amount of time it takes to setup the infrastructure, hardware resources and configure them initially to begin delivery of the application is very huge
+3. The software licensing cost in running the applications are very high
+4. hiring manpower resources like administrators, network engineers, security specialists and application support engineers is challenging
+5. maintainance cost involved in maintaining the application is very high, because it is not one-time cost rather it is an recurring cost in
+	1. replacing the faulty hardware resources (because wear/tear of the hardware)
+	2. infrastructure cost (leasing/rents/maintainance of premises)
+	3. cost of internet/powersupply/backup
+	4. manpower resources
+is very huge
+
+from the above we can understand the In-house hosting is not an suitable solution for delivering the software applications for an small or moderate organizations. only the enterprise organizations can go with this approach.
+--------------------------------------------------------------------------------------------------------------------------------------
+#2. Hosting Providers	
+Hosting providers are alternate to In-house hosting for delivering the software applications. 
+
+The hosting providers provides #2 types of services
+1. Domain Naming Service
+2. Hosting Services
+
+1. Domain Naming Service
+1.1 Domain Names
+To host an web application and make it accessible to the people around the world we need an Domain Name, that acts as an friendly name in memorizing and accessing the software application that is running on a computer, instead of using the ip address of the computer.
+	
+For eg.. facebook application is running on an computer that is connected over the network and that computer has public ip address like lets say "202.23.123.12", now users over the web inorder to access the application has to use ip addresss of the computer to access the facebook application. but memorizing the ip address is very difficult instead we can assign an friendly to that ip address which is called domain name i.e.. www.facebook.com
+
+these domains are purchased/registered through domain name service providers
+
+1.2 DNS Server
+upon registering/purchasing an domain name inorder to resolve the domain name to the ip address of the computer we need to add an entry in DNS Server, so that when the users try accessing the application using domain name as facebook.com, the DNS Server helps in locating the ip address for that domain name, so that the request will be routed to the corresponding computing on where it is running
+
+The above 2 services are offered by Domain Name service providers
+
+2. Hosting Services
+Hosting services refers to the infrastructure/software needed for running an software application. having an domain name itself is not sufficient. To run the software application we need computer and operating system/software libraries/packages so that we can run the application on that computer.
+	
+These infrastructure/software packages are provided by the hosting services
+
+So an hosting provider provides both these services which are domain naming service and hosting services together.
+-------------------------------------------------------------------------------------------------------------------------------------
+Hosting Providers:
+The Hosting providers by themself procure at a large-scale infrastructure, licensed software packages and man power resources that are required for running the software applications, so that they can offer domain naming and hosting services to the larger group of clients 
+
+How do they provide these services to the clients?
+The hosting providers offers the hosting services on a shared hosting basis, which means for running an small or moderate software applications they dont need huge computing resources like
+	1. cpu
+	2. ram
+	3. storage
+	4. network
+	etc
+since these applications consuming limited amout of these resources, allocating an dedicate infrastructure/machine is waste. So the hosting providers offers the shared hosting services by sharing the physical infrastructure across the clients in running their software applications.
+	
+To easily manage running multiple software applications of various different clients on a shared infrastructure they group the infrastructure based on technology and allocate the hosting space on these servers to the clients
+
+The clients has to purchase or subscribe for hosting space on these hosting provides based on technology by claiming computing resources like
+	1. java tomcat hosting space
+	2. 512 mb ram
+	3. 2 cpu (2.4 ghz)
+	4. 1 tb storage
+
+now the hosting provider allows the clients to deploy and manage their applications through control panel administration console without letting the clients to directly access the infrastructure.
+	
+additionally the hosting providers uses special process monitoring softwares, that monitors the usage metrics of resources by the application and if any application is consuming the resources more than the allocated/restricted then the applications would be terminated 
+
+advantages:-
+	1. no huge investment cost required in procuring/setting up the infrastructure / hardware resources
+	2. within few hours or a day or two the organization can have their applications deployed and released to the public as the infra and software services are readily made available by hosting providers.
+	3. no need to procure licensed softwares for running the application, since the hosting provider itself takes care of providing the operating system and software packages on the infra. The added advantage is the cost of software licenses are shared across multiple clients who are using the infrastructure
+	4. the physical resources like network, internet and powerback etc are managed and taken care by hosting provider itself and the cost of maintaining them are shared across the users/clients
+	5. procuring manpower resources like network engineers, security engineers, administrators and application support engineers are taken care by hosting providers
+	6. the cost of maintaining these infrastructure and man power resources are shared across large group of audience.
+		
+From the above we can understand through hosting providers we can manage in delivering an application for much cheaper price. Just FYI an php hosting space can be bought per a price of 1000/- per annum
+
+dis-advantages:-
+There are lot of dis-advantages with hosting providers as below
+1. since they provide shared resources we dont have control over which software packages or tools to be installed in running our application, so these are limited by technology
+2. limited by capacity. these hosting providers generally provides infra of limited capacity in nature. and they will not provide cluster of machines together for hosting the applications. so it is not suitable to host large enterprise clients
+3. patching, upgrading and release management is purely under the control of hosting provider and we should align with their schedules
+4. since the infrastructure is shared among multiple clients, it is not secured.
+	
+From the above we can understand there are lot of limitations in hosting an application through hosting providers.
+
+3. Data Centers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

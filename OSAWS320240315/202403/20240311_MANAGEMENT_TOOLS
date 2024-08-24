@@ -1,0 +1,175 @@
+Management Tools
+-----------------
+There are 3 major services are there aspart of the management tools
+1. aws cloudwatch
+2. aws cloud trail
+3. trused advisor
+
+1. AWS Cloudwatch
+-----------------
+The Cloudwatch offers 3 major services aspart of it
+1. Metrics
+2. Log
+3. Alarms/Alerts
+
+1. Metrics
+It helps us to monitor the usage of the compute services and can derive metrics based on the usage of the resource like cpu/memory, network i/o etc, and wanted to draw dashboards or reports out of these metrics that helps us in understanding the usage of the resources.
+
+The AWS Cloudwatch has close integrations with all the aws services, during the provisioning of the services we can enable the cloudwatch metrics to capture the usage of the service.
+	
+Cloudwatch will periodically polls the service/instances for every 5 minutes and gathers the metrics and provides to us. If we want the metrics to be captured more often then we need to upgrade the pricing plan
+
+2. Log
+For each action/event performed by the aws service, the aws cloudplatform logs those events aspart of the cloudwatch
+For eg.. when we provision as ASG with threshold limits, once the ASG reaches to the threshold, it publishes the events and scale-out/scale-in the instances. Now it helps us in debugging and understanding the behavior of the service and why does that specific operation/action has been taken place
+
+3. Alarms/Alerts
+We can configure alarms based on threshold values, so that when the service falls in the threadshold values, the cloudwatch can notify us either by publishing an message into SNS Topic or SQS Queue
+--------------------------------------------------------------------------------------------------------------------------------
+AWS CloudTrail
+---------------
+AWS CloudTrail is a service that helps us in enable governance, compliance and operational activities and risk audit information of an aws account.
+	
+There are 3 types of trails are captured
+1. Management events
+All the account/resource level activities are captured aspart of the Management events like, provisioning, scale-out/scale-in or modifying or administrative operations on the services are captured as management events.
+	
+2. Data events
+all the data related operations are captured and logged as a data events like inserting/delete a record in dynamodb table etc
+
+3. Insights
+
+Trails are nothing but collections of instances of these events and deliver these events into cloudwatch/s3 storage for analysis
+
+--------------------------------------------------------------------------------------------------------------------------------
+3. Trusted Advisor
+Trused advisor is an aws account level monitoring tool, that monitors the account activities and delivers reports and provides recommendations on the areas where we can improve.
+There are 5 parameters of reports:
+1. cost optimization
+2. security
+3. performance
+4. fault tolerance
+5. service limits
+
+
+For example:
+CPU usage level of an ec2 instance is very low = Then trusted advisor sends an notification to reduce the shape of the ec2 instance to save cost. (Cost Optimization)
+	
+Security: if the security group we have created is open to world, then it sends an notification about the security breach that is there aspart of that Security Group
+
+Trusted advisor is offered in #4 plans
+1. basic
+2. developer
+3. business
+4. enterprise
+
+for every aws account the trusted advisor is enabled as "basic" only. which means it generates notifications and recommendations based on few parameters only.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

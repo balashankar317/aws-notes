@@ -1,0 +1,63 @@
+6. Messaging Domain
+The Messaging related services are provided aspart of the messaging domain. there are 3 services are offered aspart of messaging domain
+1. SNS (Simple Notification Service)
+2. SQS (Simple Queuing Service)
+3. SES (Simple Email Service)
+	
+SNS & SQS
+---------
+SNS stands for simple notification service, it is an topic that works based on publisher/subscriber model
+SQS stands for simple queuing service, it is an queue data structure that works based on sender/receiver (point-to-point) model
+
+Let us understand the business usecase or an requirement in using these messaging systems.
+	
+1. SNS
+SNS stands for Simple Notification Service which is pub/sub model of exchanging messages between the systems. It is an Topic datastructure.
+Topic: Whenever a message has been published into a Topic, it would be delivered to all the subscribers who has subscribed for that topic.
+	
+Amazon SNS is an Fully managed pub/sub messaging and event-driven computing service, instead of we installing, configuring and managing an message queuing system on the on-premise environment we can use Amazon SNS.
+	
+	
+2. SQS
+SQS stands for simple queuing service, its an fully managed message queuing system that is provided by the aws cloudplatform. using SQS developers can build microservices, distributed applications and serverless applications.
+	
+Advantages:
+1. No need to setup the infrastructure and configure an Messaging Server system.
+2. highly available and scalable
+3. reliable delivery of large volumes of data with higher throughput
+4. securely exchange the sensitive data through encryption
+5. monitoring, managing the queuing software will be taken care by aws cloudplatform
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

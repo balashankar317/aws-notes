@@ -1,0 +1,355 @@
+There are 3 types of loadbalancers are provided by AWS Cloudplatform
+1. Application Loadbalancer (ALB)
+2. Network Loadbalancer (NLB)
+3. Gateway Loadbalancer (GLB)
+	
+2. Network loadbalancer
+Network loadbalancer helps us in distributing the network traffic across the Network applications.
+For any network applications
+1. portno
+2. protocol
+acts as an identity in receiving and routing the request to the application by the operating system of the computer.
+	
+whereas incase of web applications, there is an additional middleware software sits between the operating system and the application which is called "Web Server" (for eg.. Tomcat).
+on a webserver of a computer we can run multiple web applications each are identified with an url. so incase of web applications along with protocol/portno the url also acts as an identity in locating the application to whom the request is sent.
+	
+since the Network loadbalancer is used for distributing the network traffic across any network applications, the common identity for any network applications is protocol & portno, so it uses the protocol/portno in identifying and distributing the traffic to the appropriate applications.
+	
+Network loadbalancers works at layer#4 of the OSI model protocol. the layer#4 is transport layer, which does 3 responsibilities
+1. segmentation
+2. flow control
+3. error control
+
+At the transport layer we have protocol being used in exchaning the data, based on ip address and portno of the application to whom the data should be send.
+	
+So the network loadbalancers routes the requests based on protocol and portno of the application rather than using URLs. These are ideally suitable for back-end applications that works based on TCP, UDP or FTP protocols
+
+
+Application Loadbalancers should be used especially for loadbalancing the requests across http/https applications only, since these routes requests based on http protocol we can leverage all the capabilities like
+1. sticky session
+2. http request based routing rules
+	2.1 path
+	2.2 header
+	2.2 host
+	etc
+in routing the requests.
+	
+whereas the network loadbalancers should be used for distributing the traffic across non-http based applications only.
+
+Let us explore the differences between application loadbalancer and network loadbalancer:
+#1. 
+Application Loadbalancer
+For an Application Loadbalancer, the aws cloudplatform will not provide elastic ip address, rather it generates an dns name using which we need to access the loadbalancer
+
+Network Loadbalancer
+We can associate an ip address in addition to the dns name
+
+#2. 
+Application Loadbalancer
+it works based on http/https protocol only. so it supports routing the requests across the applications based on various different routing conditions like
+2.1 path-based routing
+2.2 hostname
+2.3 header
+2.4 http method
+2.5 query parameter
+etc and supports sticky sessions as well
+
+Network Loadbalancer
+It works for any TCP/UDP or other network protocols and only supports protocol & port based routing to the backend applications.
+	
+#3.
+Application Loadbalancer
+Application Loadbalancer supports healthchecks, to determine the application is active or not, inorder to route the traffic to the node.
+The application developer has to provide an health endpoint, that needs to be configured while settingup the loadbalancer, so that the loadbalancer periodically performs a check to know the realtime availability of the application in routing the traffic.
+	
+Network Loadbalancer
+Network loadbalancer also supports healthchecks, but it only checks for whether the ec2 instance is up or not by sending an ping request to the instance. but it dont know the actual/realtime status of the application. 
+	
+vsftp = is an ftp server software that is distributed aspart of the ubuntu operating system repositories.
+--------------------------------------------------------------------------------------------------------------------------------------	
+How to install and configure the vsftpd server?
+1. sudo apt update -y
+2. sudo apt install -y vsftpd
+
+the apt package manager takes care of installing and configuring the vsftpd server as an init.d service. we can check the status of the server by using
+
+sudo systemctl status vsftpd
+
+3. upon installing the vsftpd server, it creates an configuration file "vsftpd.conf" under /etc directory that contains the settings/configurations that can be used for tweaking or configuring the vsftpd server
+backup the configuration file by copying it with new name as below
+sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.origin
+
+4. prepare a user and the directory for ftp access
+Let us create a dedicated FTP user. so that we dont want to allow the users to access anyother users data on the server
+
+sudo adduser ftpuser
+assign password when prompted.
+	
+the above user is created with his home directory as /home/ftpuser. to support uploading the files we need to grant write access on this directory.
+every linux user works from his/her home directory, so if we allow the home/ directory to be accessed via ftp server, then every document of the user is public.
+	
+so to restrict and access the files/folders of a specific directory of a user we need to create a new directory under the user home of the user and make it as chroot directory.
+	
+chroot = is a directory that is specified to the ftp server for a user as a root directory. so that users cannot navigate outside of the chroot directory specified.
+	
+ftpuser home directory = /home/ftpuser	
+                               |-ftp															 
+vsftpd = chroot = /home/ftpuser/ftp
+
+5. create ftp directory and remove the user:group ownership for the directory
+sudo mkdir /home/ftpuser/ftp
+sudo chown nobody:nogroup /home/ftpuser/ftp
+sudo chmod a-w /home/ftpuser/ftp 
+
+6. create a subdirectory under ~/ftp directory as files
+sudo mkdir /home/ftpuser/ftp/files
+sudo chown ftpuser:ftpuser /home/ftpuser/ftp/files
+
+7. let us add few files into the above directory to demonstrate downloading
+echo "ftp server demo" > /home/ftpuser/ftp/files/vsftpdtest.txt
+
+8. configure ftp access
+sudo nano /etc/vsftpd.conf
+
+#allow anonymous FTP?
+anonymous_enable=NO
+
+#allow local users to login
+local_enable=YES
+
+write_enable=YES
+chroot_local_user=YES
+
+user_sub_token=$USER
+local_root=/home/$USER/ftp
+
+psav_min_port=40000
+psav_max_port=50000
+	
+after making the changes in the configure file, restart it
+sudo systemctl restart vsftpd
+
+How to test the configurations or connect to ftp server?
+install ftp client on ubuntu
+sudo apt update -y
+sudo apt install -y ftp
+
+install the above ftp client on the jumpbox, so that we can connect to the ftp server and test it.
+	
+ftp ipaddressftpServer
+cd files
+get vsftpdtest.txt
+
+create an new file
+demo.txt on your local filesystem
+put demo.txt
+
+bye
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

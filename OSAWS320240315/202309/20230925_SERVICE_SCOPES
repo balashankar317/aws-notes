@@ -1,0 +1,176 @@
+Edge Locations
+Edge Locations are the mini-datacenters setup by AWS Cloudplatform co-located with AWS Regions in offerring few of the global/shared services to the customers for reducing the network latency. The services like
+1. Route53
+2. Cloud Front
+3. IAM Registry
+--------------------------------------------------------------------------------------------------------------------------------------
+Scope of AWS Services
+There are around 200+ services are offered by the AWS Cloud platform, these services can be categories into 3 different scopes/groups based on their availability and accessibility.
+	
+The scope of services indicates, where the resource/service has been created/bounded to which scope on the AWS Cloudplatform, so that cloud engineers can provision and manage them.
+	
+There are 3 scopes of services are there
+1. Global
+2. Regional
+3. Availability Zone
+
+#1. Global Scope
+The services/resources categorized to the global scope are created and accessible across the regions of the AWS Cloud Platform. A change in these services will be effected across all the regions of the AWS Cloud Account. Let us understand taking few services as examples in understand what do you mean by Global Services mean?
+	
+1.1 Amazon Route53 Service
+Amazon Route53 is an DNS Service. If we publish an DNS Entry into the Route53 services within an region, this DNS Entry would be propagated across all the regions of the AWS Cloud Platform.
+	
+1.2 IAM Registry
+The AWS Accounts are created at global scope, which means the Account holder can access the cloud platform and the services of all the regions. If there is change in the AWS Account like adding an policy or am IAM user it would be reflected across all the regions of the cloud platform
+
+1.3 AWS Cloud Front
+AWS Cloud Front is an CDN Service (Content Delivery Network). into which we can publish static resources/contents like css, js, images, icons, fonts, html pages etc and these resources are replicated across all the Cloud Front services of all the regions of the AWS Cloud platform automatically.
+So that the static resources can be served to the customers from the closest service of the region from where customer is accessing.
+
+#2. Regional Scope
+These are the services that are created at the AWS Region level and accessible/visible within the Region only
+2.1 Dynamo DB
+it is an no-sql database services offered by AWS Cloud Platform. it is an region scoped service and is created within the region only in which we provisioned.  when we create an DynamoDB Table within an AWS Region, the data of the table will be replicated across all the AZs of the region
+
+2.2 S3 bucket
+S3 is an object storage service in which we can store objects like
+1. Files
+2. Images
+3. Audio
+4. Videos
+can be distributed and accessed remotely.
+The objects stored within the S3 storage Bucket are scoped to the region only
+
+2.3 Elastic Loadbalancer
+2.4 Virtual private cloud network
+2.5 Relational Data Service (RDS)
+	
+#3. Availability Zone scope
+These services are scoped / hosted to the Availability Zone scope and can be visible and managed only at the AZ level. Few of the examples of AZ scope services are 
+3.1 Amazon EC2 Instance
+EC2 Instance is created within the Availability Zone so that we can create multiple ec2 instances across the AZs for high-availability.
+3.2 Amazon Elastic Block Storage
+It is an Harddisk for ec2 instance which is also created within the AZ as it has to be attached to ec2 instances of the AZ.	
+3.3 Subnet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

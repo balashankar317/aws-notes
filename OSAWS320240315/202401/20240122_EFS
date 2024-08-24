@@ -1,0 +1,214 @@
+Elastic Filesystem service is an network storage location, that can be mounted across multiple ec2 instances to share the data across the applications.
+
+An EBS volume is an block storage volume that acts as an harddisk for an ec2 instance that is attached during the time of provisioning an ec2 instance itself. The application programs while running on the ec2 instance generates the data which is being stored on the EBS volume of that instance locally. When we deprovision the ec2 instance, the ebs volume also gets destroyed automatically, so that all the data that is stored by the applications on that instance will be lost.
+	
+From the above we understood EBS volumes are local storage disks in which the data of an ec2 instance is being stored, but how about if we want to store the data, so that it can be shared/accessed across multiple ec2 instances and the applications that are running on these instances?
+That is where Amazon cloudplatform has provided Elastic Filesystem service (EFS). EFS is an network storage location that can be mounted across the ec2 instances, so that the data that is stored on the EFS location can be access as if these are local storage locations of the instances.
+	
+EFS is not only used for sharing files/folders across the ec2 instances, these can be used for transferring the data between the cloud and on-premise environment aswell.
+	
+Features of EFS Service:
+1. Scaled Performance
+Amazon EFS provides throughput IOPS to lower the latency in accessing the data for various different workloads
+
+2. Scaled Storage
+We can start with initial capacity while provisioning the EFS. when we store the data onto the EFS location, automatically the storage space will be increased and when we delete the data, the storage space will shrink
+
+3. Secure and Complaint
+EFS locations can be protected by Amazon VPC networking, we can configure the security restrictions through subnets and security groups restricting the access to the EFS locations
+
+4. Storage Options
+EFS offers 2 storage options
+1. Standard
+Most frequently access data can be placed in Standard Storage option. EFS locations are provisioned at region level and when we choose storage option as standard, the EFS location is replicated across the AZ of the region automatically for optimized access.
+	
+2. one-zone
+Less frequently accessed data can be placed on one-zone. The name itself tells us, the data is kept at one-zone or one availability zone only and would not be replicated.
+
+EFS Lifecycle:
+EFS supports lifecycle management, which means we can configure the least recently used or frequently data to be moved from standard to one-zone storage, so that we can reduce the cost of storage in EFS.
+	
+
+Most common usages of EFS
+-------------------------
+1. The applications are running across the ec2 instances, so to effectively share files/folders/data between them we can use low network latency, high availability and securely the EFS locations
+2. used for transffering the data between on-premise to cloud
+3. data migration
+4. We can store the data on EFS location, so that it can be shared across the multiple ec2 instances for data processing and data analytics
+--------------------------------------------------------------------------------------------------------------------------------------
+How many ways we can access an EFS Location?
+There are 2 ways in which we can access an EFS location
+1. using mount targets
+2. using access points
+
+#1. mount targets
+We can mount the EFSlocation onto an ec2 instance within the vpc using mountTarget so that we have
+1.1 access to the root filesystem of EFS location
+1.2 all the operations that are performed on the efs location will be carried as a root user only.
+	
+#2. access points
+access points help the applications easily access the efs location. for each application we can create an separate access point dedicating an directory in efslocation.
+per each application we create an linux user and configure in access point to perform operations on the efs location through the application user:
+
+1. every application will perform operations on their dedicated accesspoint directory location on the efs. so no 2 different applications have access to the other application data (security)
+2. all the operations onto the efs location through the access point will be done onbehalf of the linux user using which we are running the application.
+
+How to provision and mount an efs location?
+1. goto EFS Service
+2. click on create EFS Location.
+	1. choose the vpc
+	2. availability zone
+	3. subnet
+	4. Storage: Elastic
+	5. FileSystem Type: Standard/One-Zone
+	6. security group
+	7. Lifecycle Management
+	8. create
+3. after creating goto the efs location and click on Attach button at the top-right, that shows us the mount command to mount this efs location onto the ec2 instance.
+		
+2. goto the ec2 instance of the vpc
+
+2.1 install nfs-common package onit
+sudo apt update -y
+sudo apt install -y nfs-common
+
+2.2 then create an efs directory under $HOME
+2.3 then run the mount command we copied above from the $HOME directory that mounts the efs location onto $HOME/efs directory on our filesystem.
+		
+eg command:
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 10.1.2.32:/ efs	
+	
+
+sudo mount -t efs -o tls fs-07bf7d3b6807c44d2:/ efs
+
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-07bf7d3b6807c44d2.efs.ap-south-1.amazonaws.com:/ efs
+
+
+
+
+
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 10.1.2.60:/ efs
+
+
+
+sudo mount -t efs -o tls,accesspoint=fsap-0aa9759bd23b94511 10.1.2.60:/ efs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

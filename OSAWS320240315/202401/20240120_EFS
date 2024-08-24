@@ -1,0 +1,53 @@
+How many ebs volume types or storage classes are available in aws cloud platform?
+There are 7 storage classes or volume types are avaiable
+1. general purpose ssd (gp2)
+2. general purpose ssd (gp3)	
+-----------------------------
+3. provisioned IOPS ssd (io1)
+4. provisioned IOPS ssd (io2)
+------------------------------
+5. Magnetic Storage (SATA) (deprecated)
+
+additional ebs volumes that are supported are
+1. Cold HDD
+2. Throughput Optimized HDD
+--------------------------------------------------------------------------------------------------------------------------------------
+#2. Elastic Filesystem (EFS)
+Elastic Filesystem is an network storage location, that can be mounted across multiple compute instances to share the data across the applications.
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

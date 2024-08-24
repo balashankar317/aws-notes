@@ -1,0 +1,5 @@
+NACL Rules
+----------
+What is NACL Rules, why do we need to use NACL Rules?
+NACL stands for "network access control list", it is an firewall configured at subnet level to enforce traffic restrictions on the group of resources created under an subnet
+

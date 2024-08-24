@@ -1,0 +1,54 @@
+on-demand delivery of computing resources/services to the world is called "cloud computing". They offer #3 types of services
+1. IAAS
+2. PAAS
+3. SAAS
+
+2. PAAS
+Platform as a Service. all the required platform software packages/libraries that are required for running the enduser applications are managed and provided by cloud provider itself.
+	
+There are lot of advantages of using PAAS from cloud provider:
+1. Along with provisioning the infrastructure, the PAAS layer/software also will be installed and configured by the cloud provider itself. So that the infrastructure provisioned by the cloud platform is ready for use.
+	
+2. upgrading & patching the PAAS layer is taken care by the cloud providers, we dont need to apply or takecare of these things manually.
+	
+3. backup & restore will be not be applied on IAAS along with that PAAS also will be taken care by cloud provider
+
+4. All the cloud lifecycle operations like scale-out/scale-in, scale-up/scale-down, start, stop, restart will be applied on PAAS aswell along with IAAS
+
+Now the business organization has to only takecare of running or hosting their applications without worried about maintaining the Infrastructure/Platform software.
+	
+	
+#3. SAAS
+Software As an Service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	

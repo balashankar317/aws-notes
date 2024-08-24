@@ -1,0 +1,83 @@
+1. Virtual Private Cloud (VPC) Network
+VPC is an isolated network of resources of an aws account user. All the resources within an vpc network will be isolated from other resources of another vpc by default.
+	
+characteristics of an vpc network
+1. A VPC is created per user account, per region in which all the availability zones of the region are part of the vpc
+2. per aws user account, per region we can create at max 5 vpc networks only (soft limit)
+3. by default all the resources within the vpc can communicate with each other even across the AZs of the region
+4. by default the resources in one vpc cannot communicate with the resources of another vpc even though those are 
+   4.1 belonging to same user account
+	 4.2 and are within the same region as well
+	 because the purpose of vpc is to isolate the group of resources from another group. 
+	if we want resources across the vpc to communicate with each other, then we need to enable vpc peering 
+5. by default per each user account, across all the regions aws cloud platform creates default vpc
+
+In AWS Cloud platform there are 2 types of limits are there
+1. softlimit = something by default enforced by the AWS Cloud platform for each type of service (if applicable) and can be extended upon requesting
+2. hardlimit = these are the limits that are enforced and cannot be modified/extended
+
+What is the purpose of VPC?
+The VPCs are used for organizing and managing the resources within an organization. We can create vpcs at various different levels to isolate resources of one group from another. The most common usecases of using an vpc are
+
+1. per businessunit / department
+In an organization there can be multiple business units or departments exists. Across the business units or departments we want to deploy/host the applications. 
+	
+How to ensure the applications/resources of these various deparments are kept isolated from each other?
+(or)
+How to enforce different security restrictions on different resources across the regions?
+We can keep them in separate vpc per business unit or department
+
+2. per project
+we can create vpcs per project and can isolate resources of one project from another project through vpcs
+
+3. per environment
+we might have multiple environments like development, test, uat and prod. and we deploy and deliver the application through these stages or envs
+How to keep the resources across these envs isolated from each other.
+Per each env create an vpc, so that resources of the vpc only can communicate with each other restricting from others.
+	
+development environment = devvpc
+test environment = testvpc
+etc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

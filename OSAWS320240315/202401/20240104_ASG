@@ -1,0 +1,289 @@
+Compute Domain
+There are 5 types of services are there in Compute domain
+1. ec2
+2. Loadbalancer
+3. Autoscaling group
+4. Elastic Beanstalk
+5. Lambda
+
+3. Auto-scaling group (ASG)
+An Auto-scaling group contains a collection of ec2 instances that are treated as a logical grouping (same application being running across these group of instances)	for the purpose automatic scaling and management.
+	
+How to setup the auto-scaling group?
+#1. create an AMI
+1.1 provision an ec2 instance using base AMI (ubuntu)
+1.2 install & configure required set of software packages and libraries required for running the application
+1.3 automte your application startup with the bootup of the machine (configure: as initd service)
+1.4 apply necessary and right security group restrictions
+1.5 have your application binary deployed and running
+
+#2. export the current ec2 instance as an 
+	1. AMI
+	2. SNAPSHOT
+	
+AMI = AMI stands for Amazon Machine Image, it is a copy of the EBS Volume of an ec2 instance which is bootable disk from which we can create an ec2 instance. AMIs are used for creating identical ec2 instances
+
+SNAPSHOT = is a copy of the EBS Volume of an ec2 instance, these SNAPSHOTs can be copied into another EBS storage volumes but these are not bootable. We can think of a SNAPSHOT as a backup of the disk we have created from an existing ec2 instance, so that incase of crash we can recover the data from the SNAPSHOT
+
+
+#3. setup an auto-scaling configuration, here we need to choose
+	1. shape
+	2. subnet across the availability zones on which we wanted to scaleup the instances when threasholds are met
+	3. AMI out of which the instance should be scaled-out
+	4. scaling policies
+		- performance
+		- cost
+	and save the auto-scaling configuration
+	
+#4. create an autoscaling group by passing auto-scaling configuration	and attach the LBR and apply it
+
+Whenever the threadshot limits are reached, either interms of capacity or time, the instances will be scaled-out/scaled-in automatically, along with LBR target groups modified by ASG itself.
+	
+	
+Let us run the sailor application using auto-scaling group configuration
+To create auto-scaling group we need to do the below things:
+
+1. create ec2 launch templates
+The auto-scaling group provisions the ec2 instances and manages them based on scaling-configuration provided. In order to provision, scale-out the ec2 instances, the auto-scaling group requires ec2 launch templates.
+	
+The ec2 launch templates, holds the configuration that is used for provisioning the ec2 instance like
+1. ami
+2. shape
+3. security group
+4. keypair
+5. storage capacity
+etc
+
+while creating ec2 launch configuration dont choose the vpc/subnet under which the instance should be provisioned, because auto-scaling group provisions the instances across the subnets of the vpcs we specified while creating ASG. so if we fix the subnet in the ec2 launch template, then ASG cannot create the instances across the subnets.
+	
+launch template name: sailorlaunchtemplate
+shape: t2.micro
+ami: sailorami
+security group: sailorsg
+keypair: javakp.pem
+storage: default (8gb)
+create launch template.
+	
+2. create target group that can be used aspart of application loadbalancer to distribute the traffic across the instances of the TG.
+The ASG can take care of creating the ALB/NLB along with Target Group, but ASG setup the Target Group with default configuration. For 
+
+For eg.. as below.
+2.1 
+if we have configured the ALB listener to receive the traffic on HTTP/80 port, it configures the Target Group to include instances under 80 port itself.
+2.2 There is no way to specify the healthcheck configuration when it is being created by ASG.
+	
+So instead let us manually create an TargetGroup with all the necessary configurations based on our application we are distributing across.
+Target Group Name: sailortg
+include: instances
+protocol: HTTP
+port: 8080
+healthcheck: /sailor/healthcheck.htm
+
+create the target group 
+note: we cannot include any instances right now, because the instances are provisioned by the ASG and will be added dynamically into this TargetGroup as we specify
+
+3. create Auto-scaling group
+3.1 
+autoscaling group name: sailorasg
+choose the launch template: sailorlaunchtemplate
+
+3.2 
+Choose the vpc: sailorvpc
+Subnets: the private subnets under which we want ASG to provision the application ec2 instances
+
+choose loadbalancer:
+create by the ASG:
+Type of the Loadbalancer: Application Loadbalancer
+Listener: 80, protocol: http and Target group: choose the existing TargetGroup we have created above (sailortg)
+choose: vpc and subnets under which the loadbalancer should be provisioned. since it is an internet facing select public subnets.
+Loadbalancer Accessiblity: internet-facing
+	
+	
+Note: The loadbalancer will be provisioned with the same security group we have specified in ec2 launch template. 	
+here we have #2 options in configuring security groups for loadbalancer
+1. after provisioning the loadbalancer by the asg, we need to manually goto the lBR and modify the security group 
+2. aspart of the ec2 security group that is being used in lbr, add the necessary lbr configurations also. (less secured)
+	
+3.3 
+configure the auto-scaling configurations
+Target Tracing polices = based on the target state of the instances being provisioned, we setup rules in auto-scaling them
+The policy can be
+1. either based on cpu utilization
+2. number of requests per each node on the ASG
+3. based on in-network i/o
+4. based on out-network i/o
+
+3.4 scale-out strategies
+incase if the instances healthcheck failed due to various reasons, the ASG will replace these instances with new ones. here we choose the strategy of how the existing instances needs to be replaced.
+(default) mixed
+provision the instances and terminate
+terminate and provision
+customize
+
+click on create ASG. this will setup the instances, LBR and adds the instances to the Target Group specified, so that our application is managed and available for access.
+	
+the url to access the application is: http://loadbalancerdns/sailor/index.htm
+
+The ASG supports #3 types of scaling policies
+1. dynamic scaling policy (Target Tracing scaling policy)
+2. predictive scaling policy
+3. scheduled actions
+
+1. dynamic scaling policy or Target Tracking scaling policy
+based on the runtime state of the instances, the scaling decisions are made. The ASG periodically collects the runtime utilization of the instances like cpu, network i/o, LBR request count per node etc and if these values reaches to threashold we configured the scale-out and scale-in will takes place
+
+2. predictive scaling policy
+based on the historical data of our application traffic, asg predicts the instances required and auto-scales them
+
+3. scheduled actions
+we can specify the start/end time intervals at which the instances should be scaled-out or scaled-in. ideally suitable for fixed timeframe based loads.
+	
+Note: The predictive and scheduled action policies are available only after creating the auto-scaling group.
+--------------------------------------------------------------------------------------------------------------------------------------
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

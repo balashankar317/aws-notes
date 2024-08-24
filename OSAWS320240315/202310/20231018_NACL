@@ -1,0 +1,56 @@
+NACL Rules
+----------
+NACL stands for "Network access control list". An NACL is an firewall that is setup at the Subnet level, so that we can enforce traffic restrictions on the group of resources that are part of the subnet.
+
+We can image an NACL as an firewall setup at the network level rather than at host, so that common traffic restrictions can be easily enforced on the group of resources of that network.
+	
+	
+few notable points related to NACL:
+1. The aws cloud platform creates an default NACL rules for all the subnets of the vpc with default traffic pattern
+Ingress:
+allow all the public network traffic towards the resources of the subnet
+Egress:
+allow all the traffic from subnet resources to the any network (includes external network)
+	
+2. Through the help of NACL rules we can enforce traffic restrictions based on
+	2.1 source cidr = where the traffic is coming from
+	2.2 protocol = protocol to be allowed/denied
+	2.3 port
+allow/deny the network traffic based on them to the resources of the subnet
+
+3. NACL rules are stateless
+here the word stateless means the request/response are treated separately. NACL engine doesnt keeps track of the request to identify and allow the response for that request. So we need to configure separately the NACL rules for allowing inbound/outbound network traffic in both the directions
+
+To allow the network traffic in both directions we need to configure
+1. Ingress = refers to the inbound network traffic to the subnet of resources from other network
+2. Egress = refers to the outbound network traffic from subnet of resources to other network
+
+4. NACL rules are ordered and should be given an sequence no while configuring, so that these rules are applied in the ordered no in which those are configured.
+	
+vpc
+|-pubsn1 = ec2 #apache2 server (http, 80)
+|-prvsn2
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

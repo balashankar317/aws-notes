@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: ec2 template
+Resources:
+  JavaServerec2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-03bb6d83c60fc5f7c
+      InstanceType: t2.micro
+      KeyName: javakp
+      SecurityGroupIds:
+        - !Ref JavaServerSecurityGroup
+  JavaServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: JavaServerSG
+      GroupDescription: Allow SSH access
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22      
+          ToPort: 22
+          CidrIp: 0.0.0.0/0

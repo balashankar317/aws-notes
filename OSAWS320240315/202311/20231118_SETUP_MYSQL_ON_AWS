@@ -1,0 +1,90 @@
+How to install mysql server database?
+1. temporarily we need to grant public network access to the private subnet ec2 instance for installing the database
+2. install mysql server database 
+sudo apt update -y
+sudo apt install -y mysql-server-8.0
+	
+3. alter mysql_native_password
+sudo mysql -uroot 
+alter user 'root'@'localhost' identified with mysql_native_password by 'root';
+exit
+
+4. configure mysql secure access
+sudo mysql_secure_installation (optional)
+
+5. change the bind address
+sudo vim /etc/mysql/mysql.conf.d/mysqld.conf
+search for bind-address property and change it from 127.0.0.0 to 0.0.0.0
+bind-address=0.0.0.0
+	
+restart mysql server instance to listen to the modified bind-address as below
+sudo systemctl restart mysql
+	
+6. add a new user into the database grant permission to access the database remotely
+mysql -uroot -proot
+create user 'mysqladm'@'%' identified by 'Welcom5';
+grant all privileges on *.* to 'mysqladm'@'%';
+exit
+upon completing the above installation, dis-associate the subnet from route table, putting it back as private subnet
+
+
+2. How to install mysql client tool on public ec2 instance?
+1. sudo apt update -y
+   sudo apt install -y mysql-client-8.0
+	
+
+Now from the public subnet ec2 instance we can connect to the database server that is running on private subnet ec2 by using mysql-client tool as below
+mysql -hprivate_ip_ec2 -umysqladm -pWelcom5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,99 @@
+2. Subnet
+Subnet is an smaller or a sub-network within an vpc network that is scoped to the availability zone of the vpc region.
+
+What is the purpose of a Subnet?
+There are 2 reasons for which we create an subnet
+1. to enforce different traffic restrictions on to the different set of resources that we create in hosting the applications we need to breakdown these resources into Smaller network groups called Subnets so that we can enforce traffic restrictions on those network of resources easily.
+	
+2. To distribute the resources across the availability zones of the vpc region, we need to use subnets
+
+How many types of Subnets are there?
+There are 3 types of Subnets are there
+1. Private subnet
+2. Public subnet
+3. Hybrid subnet
+
+1. private subnet
+By default when we create a subnet within the vpc, it would be private subnet only. The resources within an private subnet are only accessible by other resources within the same vpc only. Any other resources that are outside the our vpc cannot access the private subnet resources.
+	
+2. public subnet
+All the resources within the public subnet are accessible from the external network. By default every subnet is an private subnet, inorder to make an subnet as public subnet we need to attach internet gateway and add routing rules in routing the public network traffic to the subnet of resources
+
+How to provision an public subnet?
+choose an region: us-east-1
+	
+1. create an vpc network
+vpc name: hmsvpc
+cidr: 10.1.0.0/16
+	
+2. create subnets within the availability zone of the vpc 
+
+2.1 subnet1
+subnet name: hmspubsn_1
+vpc name: hmsvpc
+cidr: 10.1.10.0/24
+availability zone: AZ_1
+
+2.2 subnet2
+subnet name: hmsprivsn_2
+vpc name: hmsvpc
+cidr: 10.1.20.0/24
+availability zone: AZ_2
+
+3. create internet gateway
+Internet Gateway is an aws network device that is always plugged-in to the public network. To make an subnet as an public subnet we need to create internet gateway (IG) and attach to the vpc network in which our subnet exists
+
+internet gateway name: hmsig
+by default when we attach an IG to the vpc, the subnets of the VPC will not become public subnets, because there is no route rule defined to route the public network traffic to the resources of the subnet
+
+
+4. Route Table (RT)
+By default when we create an vpc, a default route table will be created by aws cloudplatform defined with a default routing rule allowing the network traffic across all the resources within the subnets of the vpc
+
+To make an subnet in the vpc as public subnet we need to add an routing rule allowing/routing the external network traffic from any of the resources of that subnet to internet gateway
+
+This can be done by modifying the default route table, since the default route table is associated with all the subnets of the vpc, if we add this rule in default route table then all the subnets becomes public subnets of the vpc
+
+To make one of the subnet as public subnet within the vpc, we need to create an additional route table in the vpc. Then associate the route table to only the subnet we want to make as public subnet
+now define the additional routing rule allowing public network traffic through internet gateway for those subnet of resources.
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	

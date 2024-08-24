@@ -1,0 +1,42 @@
+{
+  "Comment": "A description of my state machine",
+  "StartAt": "Choice",
+  "States": {
+    "Choice": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.transactionType",
+          "StringEquals": "new",
+          "Next": "DynamoDB PutItem"
+        }
+      ],
+      "Default": "SQS SendMessage"
+    },
+    "SQS SendMessage": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::sqs:sendMessage",
+      "Parameters": {
+        "MessageBody.$": "$",
+        "QueueUrl": "https://sqs.ap-south-1.amazonaws.com/535882993762/orderupdatequeue"
+      },
+      "End": true
+    },
+    "DynamoDB PutItem": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::dynamodb:putItem",
+      "Parameters": {
+        "TableName": "order",
+        "Item": {
+          "customerid": {
+            "S.$": "$.customerid"
+          },
+          "orderid": {
+            "S.$": "$.orderid"
+          }
+        }
+      },
+      "End": true
+    }
+  }
+}

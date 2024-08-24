@@ -1,0 +1,84 @@
+Storage Gateway
+----------------
+Storage gateway offers hybrid-model of running on-premise applications on the cloud platform. if our applications are designed and coded to work on on-premise infrastructure, moving them onto the aws cloudplatform is going to be difficult. We need to
+1. rewrite the application program/code to use aws sdks or apis to persist the data onto the cloud services
+2. We need to recreate equivalent cloud infrastructure inorder to move the applications from datacenter to the cloud
+3. move all the data from on-premise to the cloud
+
+rewriting the applications involves re-development of the existing applications and cost involved in re-developing and re-deplying them would be very high and we cannot move all the applications overnight onto the cloud.
+Then how to run and bridge the applications which are running on on-premise and cloud parallely, that is where storage gateway is being used.
+	
+By using the storage gateway, the existing applications which are running on on-premise servers doesnt need to be rewritten, rather through the help of storage gateway, they can push the application data generated on the on-premise to the aws cloud platform. So that the applications which are running on on-premise and cloud both uses the same storage/data to run. Over the time we can migrate the whole bunch of applications to the cloud and can demolish the on-premise infrastructure
+
+There are 3 types of storage gateways are there
+1. volume gateway
+2. tape gateway
+3. file gateway
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

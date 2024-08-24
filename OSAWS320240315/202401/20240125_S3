@@ -1,0 +1,237 @@
+How to configure the Access point and mount on to the ec2 instance?
+1. provision or create an Elastic FileSystem
+Multiple different software applications that are running across the machines can use the same elastic filesystem location and can keep their application data isolated from another application through access points.
+	
+Inorder to allow each software application to have their data being isolated from another application who is using the same efs location we need to create access point per application. To let the application read/write the data onto the efs accessPoint location we need to create an linux user onbehalf whom the application is running, so that all the operations on the accesspoint location will be performed onbehalf of the linux user only
+
+2. For that we need to setup linux user per application on the ec2 instances.
+let us consider #2 applications hms (hospital management system), tms	(travel management system) running on 2 different ec2 instances. For letting these applications use the same efs location in isolated manner we need to create
+1. @2 access points
+2. @2 linux users as below.
+	
+1. hmsec2 instance  = create an hmsuser with uid: 1001 and gid: 1001
+2. tmsec2 instance	= create an tmsuser with uid: 1002 and gid: 1002
+	
+3. configure the #2 accesspoints in efs location
+3.1 navigate to the efs location and goto the accesspoints tab in the bottom and click on create accesspoint
+3.1.1 the efs is pre-populated (readonly)
+3.1.2 enter the accesspoint name: hmsap and tmsap respectively for both access points
+3.1.3 
+The accesspoint wizard will ask for
+	1. owner/group of the accesspoint location
+	2. permissions with which the accesspoint should be created
+	3. user/group onbehalf whom the operations should be performed on the accesspoint location
+	
+Here for hmsap : 
+	1. owner/group of the accesspoint location: 1001/1001
+	2. permissions with which the accesspoint should be created: 0755
+	3. user/group onbehalf whom the operations should be performed on the accesspoint location: 1001/1001	
+		
+for tmsap:
+	1. owner/group of the accesspoint location: 1002/1002
+	2. permissions with which the accesspoint should be created: 0755
+	3. user/group onbehalf whom the operations should be performed on the accesspoint location: 1002/1002
+		
+with these create the access points
+		
+4. upon creating the accesspoints we need to mount these accesspoints onto the respective ec2 instances on which the applications running, so that applications can write the data into these mountLocations, which will writes the data onto the efs location and shared accross
+
+How to mount the accesspoints onto the ec2 instances?
+1. For this we need to install efs-utils on both the ec2 instances
+here is the documentation to install efs-utils on ec2 instances: https://docs.aws.amazon.com/efs/latest/ug/installing-amazon-efs-utils.html
+
+1. sudo apt update -y
+2. sudo apt install -y nfs-common
+
+3. sudo apt-get -y install git binutils
+4. git clone https://github.com/aws/efs-utils
+5. cd efs-utils 
+6. ./build-deb.sh
+7. sudo apt-get -y install ./build/amazon-efs-utils*deb
+
+How to install boto-core?
+sudo apt-get update
+sudo apt-get -y install wget
+
+3.sudo vim install.sh
+if echo $(python3 -V 2>&1) | grep -e "Python 3.6"; then
+    sudo wget https://bootstrap.pypa.io/pip/3.6/get-pip.py -O /tmp/get-pip.py
+elif echo $(python3 -V 2>&1) | grep -e "Python 3.5"; then
+    sudo wget https://bootstrap.pypa.io/pip/3.5/get-pip.py -O /tmp/get-pip.py
+elif echo $(python3 -V 2>&1) | grep -e "Python 3.4"; then
+    sudo wget https://bootstrap.pypa.io/pip/3.4/get-pip.py -O /tmp/get-pip.py
+else
+    sudo apt-get -y install python3-distutils
+    sudo wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py
+fi
+sudo ./install.sh
+
+4. sudo python3 /tmp/get-pip.py
+	sudo pip3 install botocore
+--------------------------------------------------------------------------------------------------------------------------------------
+5. add an aws role to the ec2 instances permitting them to access the accesspoints.
+create an new IAM role with policy as : AmazonEFSCSIDriverPolicy
+and attach this newly created role to both the ec2 instances.
+	
+6. now goto each of these ec2 instances and create an access point directory on the filesystem where we want to mount the accesspoint location
+mkdir $HOME/hmsap (or) $HOME/tmsap
+
+7. goto the accesspoint in cloud console, click on attach that shows up the efs mount command to mount the accesspoint onto the ec2 instances which would look as below.
+sudo mount -t efs -o tls,accesspoint=access-point-id file-system-id efs-mount-directory
+--------------------------------------------------------------------------------------------------------------------------------------
+Storage domain
+--------------
+1. Elastic block storage (ebs)
+2. Elastic Filesystem (efs)
+3. Simple Storage Service (S3)
+4. Glacier
+5. Snowball
+6. Storage Gateway
+7. CloudFront
+
+#3. Simple Storage Service (S3)
+-------------------------------
+S3 stands for simple storage service, it is an object storage database that is provided by the aws cloud platform to help us in storing and organizing the objects of data inside it.
+The objects can be a File/Document, audio, video, image etc that can be stored and quickly access it back from the S3 storage database. For every object that is being stored within S3 storage, to help us in locating/identifying and accessing it back, the S3 attaches an id for that object while storing.
+	
+Where do we use s3 storage service?	
+There are lot of usecases where we can use S3 storage in storing the objects of data
+1. 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

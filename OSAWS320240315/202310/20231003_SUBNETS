@@ -1,0 +1,25 @@
+2. Subnet
+vpc is an isolated big network that spans across all the availability zones of a region in which it has been created. By default all the resources within the vpc can access each other. In an organization we might have different types of resources being used for running the applications like
+	1. software application
+	2. database server application
+	3. loadbalancer
+	etc
+if all of these resources are connected to the same vpc, all of them will be enforced with same access restrictions allowing them to access on the network.
+but we wanted different resources to be enforced with different access restrictions, for eg..
+	1. an software application that is running on an ec2 instance can be accessed from public network 
+	2. whereas an database server software that is running on an ec2 instance should not be exposed to the public network
+	
+how can we have the resources being part of one network and should be enforced with different traffic restrictions?
+That is where subnet has been introduced.
+	
+An vpc network can be broken down into smaller sub-networks through the help of subnet in aws platform, so that for each of these subnets we can enforce different traffic restrictions on them.
+	
+Characteristics:
+1. A subnet is created within the availability zone of an vpc region
+2. per vpc we can create at max 200 subnets 
+3. it is recommended to create atleast #2 subnets across the availability zones of an vpc
+
+What is the purpose of a Subnet?
+There are 2 main reasons why do we use Subnet:
+1. to enforce different security/traffic restrictions on various different group of resources within an vpc
+2. to distribute the resources across the AZs of the vpc we need to use subnets

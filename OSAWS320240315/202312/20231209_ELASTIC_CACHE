@@ -1,0 +1,411 @@
+not only the static or moderately modified data, sometimes or very rarely the frequently accessed data could also result into similar problem.
+	
+To overcome the above problems in handling static/moderately modified data we need to implement caching.
+
+What is cache?
+Cache is an reserved memory location within our application, in which we can store the data temporarily and can retrieve it faster/quickly in performing the operation.
+	
+Within our application they could be some data that seems to be static/moderately being modified, but it is being accessed frequently by the endusers of our application. If our application is querying such data repeatedly from database server for processing/handling the enduser requests we run into several problems as discussed earlier, to overcome them we can use cache
+
+1. upon receiving the request from a customer/user of a product, our application quickly looks up for the data in the Cache of our application.
+2. if the data is not found in the cache, the application makes an connection to the databaserver asking to query or fetch the data
+3. upon receiving the data from the database server, our application will temporarily store the data in the Cache
+4. process the data and returns the response to user/customer
+
+upon subsequently calls/requests from various different customers requesting the same product data, our application can quickly lookup the data from Cache avoiding network call to the database server and can process and return the data. This will result in lot of advantages
+1. our application will not establish or close the connection to the database server over the network, thus
+	1.1 reducing the resource usage
+	1.2 avoiding performance problems
+2. the traffic between our application to the database server reduces greatly avoiding network latency
+3. as we temporarily store and resuse the data from Cache itself, bandwidth consumption in transferring the same data across the networks is avoided.
+4. the load on the database server in repeatedly executing the same sql queries in fetching/computing the same data is gone.
+	
+So, always identify the potential data of our application that seems to be
+	1. static/moderate
+	2. frequently being accessed by the customers/endusers
+and store them aspart of the Cache, that significantly improves the performances and reduces the cost in serving such data/requests
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Adopting and implementing Cache for an application is quite challenging, there are lot of aspects needs to be taken into account while implementing Cache solution for an application
+challenges/aspects to be considered:
+1. when we are storing application runtime data aspart of the cache, always there is a chance our application will go out of memory and leads to crash when more and more amount of data being cached. So always we need to have an higher limit or max boundary how many entries needs to be cached
+
+2. each data that is being stored in the cache should have a proper retention policy on how long the data should be kept in the cache.
+	
+3. along with that we need to have an eviction policy, in identifying and removing the data from the Cache in case when we reach to max limit of data. This can be done through various different eviction algorithms being implement like
+ 3.1 Least Recently Used (LRU)
+ 3.2 Most Frequently Used (MRU)
+etc
+
+The programmers has to write appropriate logic inorder to store and maintain the data inside cache by considering all these aspects. Incase if our application is deployed in a clustered environment, then implementing the Cache across the nodes of the cluster is very complex and needs distributed caching mechanism.
+	
+From the above implementing Caching functionality for an application is very complex, so to help us in implementing the Cache for the application there are many third-party vendors build several caching libraries and distributed to the market.
+	
+In java there are lot of third-party vendors provided several caching libraries to implement caching for an application as below:
+1. jcache
+2. ehcache
+3. swarncache
+4. oscache
+5. coherencecache
+etc
+
+apart from the above there are some other vendors provided centralized caching mechanisms like
+1. redis cache
+2. mem cache
+etc
+
+The programmers has to write the code aspart of the application to use the cache for maintaining and reusing the data, rather than developing the cache system in our application. But the ops engineers or devops engineers are responsible for
+	1.provisioning the infrastructure
+	2. installing and configuring cache libraries
+	3. taking care of the aspects related to security in ensuring the cached data is not being exposed to the world
+	4. scalability
+	5. high availability
+	6. monitoring
+	etc
+
+Manually taking care of provisioning, installing, configuring and maintaining the Cache system or engine on a clustered environment seems to very complex and requires huge manpower resources and cost aswell. Instead to offer cache services, aws cloudplaform has introduced Elastic Cache service
+--------------------------------------------------------------------------------------------------------------------------------------------
+Elastic Cloud Cache Service
+The Elastic Cloud Cache service is an managed service that takes care of provisioning, installing, configuring and managing the third-party caching libraries on aws cloudplatform, this is similar to RDS Service we learnt earlier.
+As of now there are 2 cache library providers are supported by Elastic Cloud cache
+1. REDIS
+2. MEMCACHE
+
+There are differences interms of features between these 2 cache providers/libraries, so based on the requirement we need to choose appropriate cache provider/engine for our application
+1. 
+Mem Cache: supported data types: simple key/value pair
+Redis Cache: supported data types: complex types includes lists, sets, hashes and sortedsets etc
+	 
+2. 
+Mem Cache: Multi-thread support
+Redis Cache: No Multi-thread support
+
+3.
+Mem Cache: Node upgrade is not supported, (we cannot change the shape of the CacheNode)
+Redis Cache: Node shape upgrade is supported
+
+4. 
+Engine Upgradation: both providers supports engine version upgrade
+
+5.
+Mem Cache: Replication is not supported, so fault-tolerance is not there
+Redis Cache: Replication is supported, so high availability is guaranteed
+
+6.
+Mem Cache: Data Partition and shrading is supported
+Redis Cache: No support of data partition
+
+7.
+Mem Cache: doesnt support automatic fail-over
+Redis Cache: optional and can be configured
+
+8. 
+Mem Cache: no support for publisher/subscriber model
+Redis Cache: supports publish/subscriber model
+
+9. 
+Mem Cache: supports huge volumes of data to be cached
+Redis: doesnt support huge volumes of data to be cached
+
+10. 
+Mem Cache: no backup and restore support
+Redis Cache: backup and restore is available
+---------------------------------------------------------------------------------------------------------------------------------------------
+How to provision an elastic cache (redis) on aws cloud platform?
+Elastic Cloud Cache is an vpc scoped service, we access the cache only from application. since the applications are deployed on compute instances (ec2) of the cloud platform, across the AZs of the vpc region, to make the cache accessible across all the instances of the application the elastic cache is provisioned at vpc level
+
+#1. since we access the cache only from the application, and should not allow it to be accessible from the public network we need to provision the elastic cache within private subnet of the vpc
+
+#2. By default AWS cloudplatform creates 2 replicas of the Elastic Cache, to support fail-over and fault-tolerance, so we need to create an subnet group in replicating the cache
+
+3. while creating the subnet group it is recommended to distribute the subnets across the availability zones of the region to support high-availability
+
+4. 
+upon provisioning the elastic cloud cache (redis), to verify the cache is working or not, we need to consume the data by placing it on the cache.
+since there is no software application and we are not developers, we cannot verify the cache service quickly. To help us in verifying the cache setup, there is an tool or utility provided called "redis-tool"	
+	
+we can install redis-tool on public subnet ec2 instance of ubuntu operating system. using that we can connect to the cache and verify
+once we verify the cache configuration, we can share the endpoint of the cache to the developers let them integrate aspart of their application.
+-------------------------------------------------------------------------------------------------------------------------------------------
+How to provision the elastic cloud cache (redis engine)	?
+upon setting up the networking infrastructure required for hosting/provisioning the elastic cloud cache, let us see how to provision the redis cluster
+
+1. choose the cache engine we want to provision the cache cluster
+	1.1 redis
+	1.2 memcache
+	
+choose: redis
+
+2. Choose Cluster Mode
+	2.1 enable = cluster mode enables replication across the multiple shards for enhanced scalability and availability
+	2.2 disable = The redis cluster has only one shard with one primary node and upto 5 read replicas
+	
+3. Cluster Info
+  3.1 Name
+	3.2 Description
+	3.3 Location
+		1. On-premises
+		2. AWSCloud
+	3.4 Multi-AZ
+	3.5 Engine Version
+	3.6 Port
+	3.7 NodeType (Shape)
+	3.8 Number of Replicas
+	3.9 Subnet group settings
+	    1. choose the AZ and subnets under that AZ in which the replicas has to be created
+			2. choose vpc
+	3.10 Backup configuration
+	3.11 encryption settings
+	3.12 Maintainance Window
+	3.13 choose security group
+	3.14 add tags
+then create
+
+partition vs shards 
+--------------------------------------------------------------------------------------------------------------------------------------------
+Launch/provision an ec2 instance to test and verify the cache configuration is working or not
+1. provision ec2 instance with AMI: ubuntu operating system under public subnet of the easybuyvpc
+2. install redis-tools software package from apt repository as below
+
+2.1 ssh into the ec2 instance
+2.2 sudo apt update -y
+    sudo apt install -y redis-tools
+		
+3. copy the primary endpoint of the redis cluster that we provisioned above, and use it in redis-cli to connect to the server and verify
+
+4. redis-cli -h endpoint -p portNo
+
+5.to store the data in the cache use below cli command
+set key value
+
+6. to fetch the data back from redis cluster 
+get key
+
+
+7. to fetch all the keys in the cache
+keys *
+
+8. ping = to verify the connectivity with the cache
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

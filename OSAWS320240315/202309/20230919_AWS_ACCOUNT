@@ -1,0 +1,142 @@
+AWS Accounts
+------------
+AWS Cloudplatform offers various different services to the world. To use these services that are offered by the platform we need to have an aws account created. Through the AWS Account, the AWS Cloud platform will keep track of which resources/services are entitiled or owned by whom and who can access, administer and manage these resources/services will be enforced.
+	
+There are 2 types of account users are there in AWS Cloud
+1. Root account user
+2. IAM user
+
+1. Root account user
+When we setup an aws account, an root account user will be configured through the signup/registration process itself. He is the user who has unrestricted access to all the services that are offered by AWS Cloud platform. In addition the Root account user can delegate access to few of the services/resources to the IAM users allowing them to manage onbehalf of the Root
+
+2. IAM User
+An AWS Root user can setup additional users in his account delegating the access to few of the services/resources which are called "IAM" users.
+--------------------------------------------------------------------------------------------------------------------------------------
+From the above we can understand we need to setup an AWS Account with root user credentials inorder to use the services of AWS Cloud platform.
+	
+How to setup the account?
+The AWS Cloud platform offers free-tier account upon signup for an aws account. but not all the services are qualified for free-tier and there is an usage limit per each service. please refer to the aws free-tier documentation for details
+
+ref to documentation before usage: https://aws.amazon.com/free
+
+important guidelines:-
+1. upon setting up an aws cloud account, dont share root account credentials with anyone.	
+2. upon experimenting the services, please de-provision the services always
+	
+To setup an aws free-tier account, 
+1. we need to have an email address (gmail/microsoft etc)
+2. debit card or credit card (file)
+		authorization check: 1 rupee/2 rupees (revert the transaction 2/3 business days)
+3. dont use existing accounts you setup an year back, because those are already out of free-tier validity period
+--------------------------------------------------------------------------------------------------------------------------------------
+
+AWS Domains
+-----------
+There are lot of cloud services are offered by AWS Cloud platform, as of now around 200 services are offered by AWS. In order to use an service on cloud platform, the user/account holder has to locate these services within the 200 list of services which is an tough job.
+So to easily navigate and identify these services the aws cloud platform has introduced "Domains".
+An "Domain" is nothing but group of related services put together, so that users can navigate through the domains to locate the services they want easily.
+			
+There are lot of AWS Domains are there out of which the core/popular domains of AWS are below 7:
+1. Compute
+2. Network
+3. Storage
+4. Database
+5. Security
+6. Management Tools
+7. Messaging
+8. Developer Tools
+--------------------------------------------------------------------------------------------------------------------------------------
+How can we access and use the services/resources offered by aws cloud platform?
+upon creating an aws account, we wanted to access the services. We want to
+	1. provision
+	2. administer (start/stop/restart) 
+	3. monitor/manage
+	4. de-provision
+the services that are offered by aws cloud platform. Inorder to perform all these operations on the aws cloudplatform , the provide 3 ways of accessing these services to the customers/endusers/account holders
+
+1. aws cloud console
+2. programmatic access
+3. rest api access
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

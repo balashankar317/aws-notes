@@ -1,0 +1,200 @@
+Scope of Services
+-----------------
+AWS Scope of services indicates how the resources are hosted and are made accessible to manage them. There are 3 scopes are available
+1. Global
+2. Region
+3. Availability Zone
+
+1. Global Scope
+The Services are created and made accessible globally across all the regions of the AWS Cloud platform. Any change to the service would be reflected across all the regions.
+1.1 Route53
+1.2 Cloud Front
+1.3 IAM Registry
+
+2. Region Scope
+The Services are created at the Region Level only, we can administer or manage them only within the Region.
+2.1 DynamoDB
+2.2 RDS Service
+2.3 Elastic Loadbalancer
+2.4 S3 Bucket
+2.5 Virtual Private Cloud Network
+
+3. Availability Zone
+The Services are created at the AZ level of an Region
+3.1 EC2 Instance
+3.2 Elastic Block Storage
+3.3 Subnet
+--------------------------------------------------------------------------------------------------------------------------------------
+Networking
+The core or the main domain within the AWS Domains is networking. Unless we understand networking domain we cannot learn other services/domains of the AWS Cloud platform.
+	
+But inorder to learn the Networking domain, upon setting an network, we need to have an resource created on the network to verify the network we have setup is working properly or not by accessing the resource on the network.
+	
+So before learning the Networking domain and the services of Networking domain, we need to understand a basic resource which is ec2 instance and how to provision and access it on the AWS Cloud Platform.
+--------------------------------------------------------------------------------------------------------------------------------------
+	
+How to provision an ec2 instance on AWS Cloud Platform?
+EC2 Instance
+EC2 stands for elastic cloud compute, it is nothing but an computer/machine created by aws cloud platform.
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

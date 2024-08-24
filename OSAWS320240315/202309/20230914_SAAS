@@ -1,0 +1,167 @@
+SAAS
+----
+Software as a Service. 
+There are lot of
+EAP (Enterprise Application Platform)
+ERP (Enterprise Resource Planning
+CRM (Customer Relationship Management)
+products are pre-build and made it readily available for the business organizations. 
+The business organizations dont need to invest in building these software applications by outsourcing them to an IT Service organizations rather they can procure the licenses of these products and can directly use them by which it saves time, cost and risk in building the software
+
+There are lot of ERP, EAP or CRM products are available in the market as below
+1. SAP
+2. Oracle EBusiness Suite
+3. JDEdwards
+4. Oracle Applications
+5. Peoplesoft
+6. Salesforce
+7. Sibel CRM
+8. Taleo
+9. Microsoft Dynamics
+10. Centra CRM
+
+now the business organizations can procure the license for these products and can install/configure to use it aspart of their business in running their business operations
+
+There are lot of challenges involved in using these pre-built software solutions or products:
+1. Most of these ERP, CRM, EAP applications requires huge computing resources in running on an machine. The business organization has to procure high-end server grade machines with huge computation capacity like ram, storage and cpu for installing/configuring and running these enterprise systems
+- The cost of infrastructure in running these software products are very high
+
+2. The business organization has to procure the software licenses for these enterprise products to use them. Usually these licensing terms will be on full product stack or specific modules of the product and would be on long-term contractual basis
+- The cost of procuring the software licenses for these enterprise products is very high
+
+3. Installing & Configuring these enterprise software products are quite complex and requires special engineers who has expertise on installation and configuration of these products. These people are called administrators of the respective enterprise product like
+- sap administrators
+- people administrators
+the business organization has to hire or contract with them in having these software products installed and configured on the organization infrastructure
+
+4. Since these enterprise products are build in generic nature that will works for most of the customers, the business organization has to add customizations into these products to tailor fit for working for the organization which is called "implementation of the product"
+for this the business organization has to hire engineers who are called product implementors or customizers that customizes the product asper the requirement in making it usable
+- The cost involved in customizing the product and time required for customization is quite high
+
+5. We need support and administration team that takes care of monitoring, maintaining the product for its 24/7 running like
+ - backup
+ - restore
+ - clean up and maintainance activities
+ 
+From the above we can understand adopting/using these enterprise software products is quite challenging and requires huge amount of investment cost interms of procuring licenses, infrastructure and man resources in maintainance and an moderate organization cannot afford in using these enterprise software products
+
+To overcome the above problem the cloud providers has provided SAAS services to us
+
+Software as a Service, where the cloud providers provides these enterprise software products to the world/customers in an multi-tenant model
+1. The cloud providers takes care of provisioning, installing and configuring these enterprise software products on their IAAS
+2. since it is an multi-tenant installation, the cost of infrastructure, licensing of the software and maintainance is distributed across the customers who are using the services
+3. monitoring and maintaining activities like backup/restore is taken care by cloud provider
+4. all the lifecycle activities like
+	scale-out/scale-in
+	scaleup/scale down
+are managed by the cloud provider behind the scene
+
+so that moderate or small-scale business organizations can also leverage enterprise software products in quickly jumping in conducting/running their business with small investement
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

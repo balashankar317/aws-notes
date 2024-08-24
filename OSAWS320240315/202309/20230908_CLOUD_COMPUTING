@@ -1,0 +1,145 @@
+Cloud Computing
+---------------
+on-demand delivery of the computing resources/services to the world is called "cloud computing". There are 3 types of services offered by the cloud computing.
+1. IAAS
+2. PAAS
+2. SAAS
+
+
+1. IAAS 
+IAAS stands for Infrastructure as a Service. All the computing/infrastructure resources that are required in running/hosting an software application are provided aspart of IAAS like
+1.1 Compute Instance (Computer)
+1.2 Network Resources
+	1. Network Gateways
+	2. firewalls
+	3. subnets
+	4. private networks
+1.3 ip address
+1.4 dns services
+1.5 load balancers
+etc
+
+The cloud computing providers uses virtualization technology in offerring the IAAS services to the world.
+	
+What is virtualization?
+Virtualization is an technology through which we can create multiple parallel isolated environments on a physical computer machine. Virtualization works based on the hpervisor technology.
+	
+Hypervisor is an component that takes care of creating the virtual machines, managing and allocating the physical server computing resources across the virtual machines that are running on the computer.
+	
+There are 2 types of hypervisors are there
+1. software hypervisor
+2. hardware hypervisor
+
+1. software hypevisor = software hypervisor is an software program that is developed by various software manufacturing vendors in the market and distribtued to the people either as commercial or opensource softwares.
+	
+opensource hypervisors
+1. oracle virtualbox
+2. UTM
+
+commercial hypervisors
+1. VMWare Desktop/Fusion/Enterprise
+2. Hyper-V (Microsoft)
+3. Parallelx
+
+We need to install these software hypervisors on the operating system of the physical server computer. using these hypervisor softwares we create virtual machines and manage them. These hypervisor engines talks to the host operating system in managing and allocating the resources across the virtual machines that are running on the computer.
+	
+advantages:-
+	1. low-cost in creating multiple isolated environments
+dis-advantages:-
+	1. the computer resources of the host/physical server machine are wated because of running the operating system on the physical computer.
+	2. throughput or performance in running the virtual machines is very low
+	
+2. hardware hypervisors 
+The hypervisor is shipped directly as an hardware component on the machine itself, without the need of host operating system. These are the special machines manufactured and distributed by the hypervisor vendors.
+	
+1. VMWare ESXi
+2. VMWare vSphere
+3. Hyper-V
+4. Xen
+5. Dell EMC
+
+advantages:-
+	1. higher throughput
+	2. effective utilization of the system resources in running multiple environments
+dis-advantages:-
+	1. very costly and will not be feasible to be used in personal computing environments
+
+The cloud computing vendors relies on hypervisor/virtualization technology in providing infrastructure services to the world.
+	
+advantages:-
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

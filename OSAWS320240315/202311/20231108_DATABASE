@@ -1,0 +1,80 @@
+There are lot of challenges in building the software applications in making them work for storing and retrieving the data on the FileSystem of the computer
+1. Most of the programming languages doesnt provide rich/powerful instructionset in building the applications to store/retrieve the data on the Files of the computer, due to which the developer has to write lot of complex programming logic in building the software applications. Due to this the development time required for building the application is very high and the cost of development increases
+2. since the developers has to write complex programming logic in persisting the data, it will be very difficult to understand and maintain these programs
+3. more the lines of code, the chances of increasing the bugs would be high
+4. when we store the data on the FileSystem of the computer, it will not be accessible remotely over the network.
+	
+From the above we can understand persisting the data permanently on the storage device of the computer is an common requirement that everyone has to build into their software applications, rather than everyone going through these complexities in building the application in persisting the data, the database management system has been introduced.
+	
+Database Management System
+--------------------------
+Database Management System is an pre-built software system that contains programming logic for storing and managing the data on the permanent storage device of the computer. The application developers dont have to write complex programming logic in building their applications to store/retrieve the data on the Files of the computer, rather they need to build the applications to talk to the databases asking them to manage or perform persistence operations on the data.
+	
+all the complexities in storing and managing the data on the Filesystem of the computer is taken care by the Database Management System software.
+in-short: databases abstracts/hides the complexities in storing and managing the data on the Filesystem of the computer.
+	
+There are lot of advantages/features of database management system are there:
+1. Many or most of the datbase management systems are distributed systems, which means these softwares can be accessed remotely over the network. So that we can run the database software on one machine and application on another machine. The application can connect to the database server software remotely over the network and can query and store the data on it. since each of these applications are running on their dedicated computers, the throughput or performance in running them would be very high
+
+2. The database management system softwares provides tools/utilities through which we can monitor and periodically backup the data that is stored on the system. So that incase of crash we can always can restore or recover the data from the backup we have taken earlier.
+	
+	
+3. The database managment systems are highly secured in storing and allowing us to access the data. there are authentication mechanims in place to control access to the data that is stored on the database system.
+	
+4. The database management system softwares supports clustering, that brings lot of advantages
+1. scaled storage
+2. high-performance in carrying the database operations
+3. high availability
+
+5. we can enforce constraint checks in allowing the data to be stored on the database, so that invalid data never goes into the system.
+6. abstracts complexity in storing/managing the data on the Filesystem of the computer	
+
+There are several types of database management system software are there
+1. hierarchical database
+2. network database
+3. relational database
+4. object oriented database
+5. no-sql or semi-structured database
+6. object storage database
+
+out of the above types, many of them are deprecated or outdated and only 3 types of databases are being actively available in the market
+1. relational database management system
+2. no-sql or semi-structured database
+3. object storage database
+
+1. relational database management system
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	

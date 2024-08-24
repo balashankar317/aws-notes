@@ -1,0 +1,2 @@
+scp -i ~/.ssh/javakp.pem ~/.ssh/javakp.pem ubuntu@65.48.2.34:/home/ubuntu/.ssh/
+	

@@ -1,0 +1,88 @@
+no-sql database
+There are limitations or dis-advantages with RDBMS databases 
+1. only suitable for storing structured data where all the records of data has fixed and same number of fields defined. These are poor at handling semi-structed data. If we try storing semi-structured data we run into problems like
+	1.1 huge wastage of memory
+	1.2 or due to complex schema model being designed to handle semi-structured data, we would end up complexity querying and programming the data
+	
+What is semi-structed data?
+each record or entity has different sets of data fields being stored, so the columns of data being stored is not same across all the data.
+	
+To store and manage semi-structured data, the no-sql or semi-structured databases are introduced. These databases supports 
+1. storing and processing the semi-structured data
+2. no relationships being defined across the data
+3. no transactionality, so that we can achieve highest-level of concurrency
+
+There are lot of no-sql database management systems built and provided by various different players or vendors in the market
+1. mongodb
+2. casendra
+3. couchdb
+4. graphdb
+5. cockroach db
+6. dynamodb
+7. oracle bigdata
+
+Each of these databases has their own model of representing/storing the data. Each of these has their own languages in querying and fetching the data as well.
+	
+In Mongodb
+we can image an Collection      = table in RDBMS
+                Document        = record in the table
+key/value (varied per document) = all the records has fixed-set of columns
+key attribute acts as an identified of the doc in the collection = primary key acts as an identifier for identifying an record in a table
+
+relationships are represented
+-> documents across the collections are related using key as references = primary keys/foreign keys are used for establishing relationships
+---------------------------------------------------------------------------------------------------------------------------------------------
+3. Object-storage databases
+
+
+relational database management system
+1. tables = that accomodate text and binary objects of data also within them
+problems:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

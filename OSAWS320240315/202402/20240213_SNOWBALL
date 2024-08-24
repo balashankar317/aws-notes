@@ -1,0 +1,58 @@
+6. Snowball
+The existing enterprise organizations hosted their applications on the datacenters over the years of time. These applications has generated petabytes of data during their existence.
+	
+If these customers has to move from datacenters to aws cloudplatform, they not only need to move their applications from datacenter to the cloud, along with that petabytes of customer data that is stored on the datacenters should be moved to the aws cloudplatform and into the respective services
+
+How to move these petabytes of data from datacenter to aws cloudplatform?
+There is no proper solution that works in moving huge volumes of data from datacenter to cloud, that limits the enterprise customers in onboarding themself onto the aws cloudplatform. So to help and support moving towards aws cloud, it has introduced snowball.
+	
+Snowball is an physical hardware device, that aws team carries to the datacenter and they themself copies all the data from datacenter and move into respective services of the cloud platform account, there by which migrating the data from datacenter physical servers to the aws become easy
+--------------------------------------------------------------------------------------------------------------------------------
+Storage domain
+1. elastic block storage (ebs)
+2. elastic filesystem (efs)
+3. simple storage service (s3)
+4. cloudfront (cf)
+5. glacier (archival storage service)
+6. snowball
+7. storage gateway
+
+7. storage gateway
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	

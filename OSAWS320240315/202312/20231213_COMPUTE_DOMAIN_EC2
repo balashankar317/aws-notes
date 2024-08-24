@@ -1,0 +1,256 @@
+Compute Domain
+--------------
+The computing services required for running/hosting the software applications are provided aspart of the Compute domain. There are 5 services are there in compute domain
+1. ec2 instance
+2. elastic beanstalk
+3. elastic loadbalancer
+4. autoscaling group
+5. lambda
+
+1. ec2 instance
+ec2 stands for elastic cloud compute, it is nothing but an bare machine installed with operating system (AMI) (Amazon Machine Image) and provides to us aspart of IAAS layer
+
+1.1 AMI
+The AMI stands for Amazon Machine Image, which are nothing but virtual disk images pre-baked or pre-installed with operating system and basic software utilities aspart of it. So that we can have the ec2 instances or virtual machines being created with minimalistic or sophisticated environment which is ready to be used.
+	
+There are several AMI images are prebaked per 
+	1. operating system
+	2. hardware architecture (32-bit/64-bit)
+	3. processor 
+and published aspart of ami registry
+during the time of creating the ec2 instance we need to choose one these amis in provisioning the instance.
+
+1.2 Shape 
+choose the shape of the machine to be created (cpu, ram)
+1.3 Networking 
+1.4 Keypair (SSH keys)
+1.5 Storage
+and launch the ec2 instance
+
+Let us understand how to deploy an multi-tier java application
+	1. application on ec2 instance
+	2. rds service 
+-------------------------------------------------------------------------------------------------------------------------------------
+upon provisioning the necessary infrastructure 
+1. networking 
+	1.1 vpc
+	1.2 subnet
+	1.3 security group
+	1.4 internet gateway
+	1.5 route tables
+etc
+2. create an ec2 instance on the public subnet of the vpc 
+3. create an rds service (mysql database engine) on the private subnets of the vpc
+
+4. now let us install required software packages on the ec2 instance to deploy/run the software application on the it.
+	4.1 to install the required software packages on the ec2 instance, connect to the instance using ssh.
+	4.2 install the jdk-17
+	sudo apt update -y
+	sudo apt install -y openjdk-17-jdk
+	
+	4.3 install apache maven
+	sudo apt install -y maven
+	
+5. download and setup tomcat-10 on the ec2 instance
+	5.1 create a tomcat user on the linux machine
+	sudo useradd -m -s /bin/bash tomcat
+	
+	5.2 switch to tomcat user
+	sudo su tomcat
+	
+	5.3 create an middleware directory under tomcat home
+	mkdir ~/middleware
+	cd ~/middleware
+	
+	5.4 download the tomcat-10 into the middleware directory
+	wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.17/bin/apache-tomcat-10.1.17.tar.gz
+	
+	5.5 extract the tomcat tar file as below
+	gunzip apache-tomcat-10.1.17.tar.gz
+	tar -xvf apache-tomcat-10.1.17.tar
+	rm apache-tomcat-10.1.17.tar
+	
+6. configure tomcat server as a service in initd.services
+to configure tomcat as a service we should quit from tomcat user in the terminal by typing exit.
+		
+sudo nano /etc/systemd/system/tomcat.service
+[Unit]
+Description=Apache Tomcat
+After=network.target
+
+[Service]
+Type=forking
+Environment="JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64"
+Environment="CATALINA_HOME=/home/tomcat/middleware/apache-tomcat-10.1.17"
+ExecStart=/home/tomcat/middleware/apache-tomcat-10.1.17/bin/startup.sh
+ExecStop=/home/tomcat/middleware/apache-tomcat-10.1.17/bin/shutdown.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+sudo systemctl daemon-reload
+sudo systemctl enable tomcat
+sudo systemctl restart tomcat
+
+sudo systemctl status tomcat
+
+7. clone the fithealth2 project from the git repository under workspace directory
+1. switch to tomcat user
+sudo su tomcat
+
+2. goto tomcat home and create workspace directory
+mkdir ~/workspace
+cd ~/workspace
+git clone https://github.com/techsriman/fithealth2.git
+username:techsriman
+access token: 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
+
+upon cloning the project, it has below directory structure
+fithealth2
+|-src
+	|-main
+		|-java
+			|-*.java
+		|-resources
+			|-db.properties
+		|-db
+			|-add-user.sql
+			|-db-schema.sql
+		|-webapp
+			|-*.jsp
+			
+3. connect to the mysql rds service instance from the public ec2 instance using mysql-client utility
+3.1 install mysql-client-8.0 on the ec2 instance as below
+	sudo apt update -y
+	sudo apt install -y mysql-client-8.0
+	
+3.2 connect to the mysql rds service database using below command
+	mysql -hrdsEndpoint -uusername -ppassword < src/main/db/db-schema.sql
+with the above @1 commands a new 
+	1. a new database schema: fithealthdb will be created
+so that database is ready for running the application against it
+
+4. goto the software application and configure it to use the rds service database we provisioned
+goto db.properties
+db.driverClassName=com.mysql.cj.jdbc.Driver
+db.url=jdbc:mysql://rdsEndpoint:rdsPort/fithealthdb
+db.username=mysqladm
+db.password=welcome1
+
+now modify db.url, db.username and db.password properties pointing to the right values of the rds service we provisioned.
+with these changes we tuned our application to use the rds service we provisioned.	
+	
+5. goto ~/workspace/fithealth2 project directory and build the project
+mvn clean verify
+
+6. the above maven build generates the .war file under target/ directory of the project, copy it into tomcat/webapps directory for deployment
+cp ~/workspace/fithealth2/target/fithealth2.war ~/middlware/apache-tomcat-10.1.17/webapps/
+	
+7. restart the tomcat using systemctl
+exit
+sudo systemctl restart tomcat
+
+after deploying the application we can access it using web browser as below
+http://publicipec2:8080/fithealth2/home.jsp
+-------------------------------------------------------------------------------------------------------------------------------------
+
+how to verify the data stored in the database?
+login to mysql using client utility
+mysql -hrdsendpoint -uuser -ppassword
+use fithealthdb
+select * from patient;
+
+
+	
+	
+	
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

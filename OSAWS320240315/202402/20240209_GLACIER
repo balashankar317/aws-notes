@@ -1,0 +1,171 @@
+There are 7 services are there in storage domain
+1. Elastic Block Storage (ebs)
+2. Elastic Filesystem (efs)
+3. S3 Simple storage service
+4. Cloud Front (cf)
+5. Glacier
+6. Storage Gateway
+7. Snowball
+-------------------------------------------------------------------------------------------------------------------------------
+5. Glacier
+AWS Glacier is an archival storage service provided by the AWS Cloudplatform, it is 10x cheaper in storing the data when compared with S3 storage.
+	
+The organizations has the data of different nature like
+1. relational data
+2. semi-structure data
+3. object data
+
+and these data has different access requirements. some data might ben frequently accessed through the enduser operations which is called "transactional data" or operational data. Such data is being actively used aspart of the application like
+1. retrieved
+2. processed
+3. modified
+etc
+by the application so that it has to be stored in any of these storage systems like
+1. rds service
+2. dynamodb
+3. S3 storage
+
+but there are other types o data, that is not being actively used for eg.. In a banking or financial institutions, they have to store the transaction data about the account holders and their operations being performed in the database systems.
+	
+The data that is generated through enduser operations should be kept available to the customers for accessing upto certain amount of time (6 months to 12 months)	 aspert the RBI guidelines. There after we cannot remove the data permanently, rather it should be stored in the system for an sla interval of 10/20 years for compliance or regulations even though it is not being used by the customers.
+	
+This type of data that is not actively being used, but should be store for compliance or regulations is called "archival" data.
+	
+If we store archival data in rds or dynamodb or S3, the cost of storage is going to be very high as they grow into petabytes over the period of time. since this data is almost never going to be used after the initial sla time, instead of storing this data into these databases, we can have them stored in cheaper storage devices like Glacier service
+
+Features:
+1. cheapest storage
+2. durability
+3. secured
+4. infinite storage capacity
+5. region specific cost
+
+How to store the data in Glacier?
+Glacier uses magnatic storage devices like tapes for storing the data, so that it can lower the cost of storage. Glacier stores the data interms of objects similar to S3 storage like
+1. audios
+2. videos
+3. files
+4. images
+5. documents
+etc
+
+upon storing the each object glacier generates an unique id, using which we can retrieve the data.  In glacier we need to create vaults, vaults are similar to buckets in s3 storage, where we group related files, documents together and store inside the vault.
+Vaults are used for:
+1. grouping related objects and storing together
+2. we can apply access restrictions on vaults by binding policies around them
+
+The Glacier supports 
+1. storing the data instantaneously (realtime data)
+2. but while retrieving the data, it will not works in realtime. We need to place a request to the glacier asking for reading the data, so that glacier will make the data available for usage after sometime.
+	
+	
+The storage cost will vary based on the region where we are storing and the minimum cost of storage starts at: $0.0036 per GB/month. All the data storage or uploads into the Glacier Vault free
+
+2. Data Retrieval
+For each data retrieval from Glacier vault, amazon charges us. Since Glacier offers storage of data at cheapest/lowest cost, all the data iwll be written onto the magnetic tapes, so the data retrieval is not readily available, we need to place a request asking for reading specific data, it would read the data from magnetic tape and make it available so always reading the data is delayed.
+	
+To support retrieval of data from Glacier, it has three retrieval modes:
+1. expedited
+2. standard
+3. bulk
+
+Storage class or tier	                 Expedited	  Standard 	              Standard 	                   Bulk
+                                                    (with Batch Operations) (without Batch Operations)
+----------------------------------------------------------------------------------------------------------------------------
+S3 Glacier Flexible Retrieval or       1–5 minutes  Minutes–5 hours         3–5 hours                    5–12 hours
+S3 Intelligent-Tiering Archive Access
+
+S3 Glacier Deep Archive or             Not available 9-12 hours             Within 12 hours              Within 48 hours
+S3 Intelligent-Tiering Deep 
+Archive Access
+
+We can use fast-glacier tool for storing and accessing the data from aws glacier service
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

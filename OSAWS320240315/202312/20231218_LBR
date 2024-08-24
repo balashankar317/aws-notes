@@ -1,0 +1,140 @@
+The devops engineers or the application support engineers are responsible for setting up these software/hardware loadbalancers by
+1. procuring the necessary infrastructure
+networking, public network, static ip address, computer (software loadbalancer), hardware loadbalancer device etc
+2. install necessary softwares (loadbalancer software) and configure it
+3. managing and monitoring these loadbalancers
+4. high-availability
+5. scalability
+
+it takes lot of time in setting up the infrastructure and configure to have them running. installing, configuring and managing these loadbalancers is very complex job and since we need a dedicated team to host and manage them, the cost of running these loadbalancers are very high
+
+Instead of we managing in hosting these loadbalancers, the aws cloudplatform has provided elastic cloud loadbalancers are an managed service. The AWS Cloudplatform itself takes care of provisioning, configuring, managing, monitoring, scaling and ensuring the high-availability of these loadbalancers. It is one of the PaaS service provided by aws cloud.
+	
+There are 3 types of loadbalancers are provided by aws cloudplatform
+1. Classic Loadbalancer (deprecated/not available)
+	(or)
+1. Application loadbalancer (ALB)
+2. Network loadbalancer (NLB)
+3. Gateway loadbalancer (GLB)
+	
+
+1. Application loadbalancer
+Application loadbalancer is also called "http" loadbalancer, because it distributes the network/user traffic across the instances of http/web applications based on http protocol.
+	
+http protocol = hypertext transfer protocol, used for exchanging web pages or html markup over the network between the applications. The client and server applications communicates with each other over the network by exchanging httprequest and httpresponse between them.
+	
+application loadbalancer is an region level service that is hosted at vpc level of the region. it helps us in distributing the network traffic to the applications across the availability zones of the region.
+
+1.1 Routing rules
+The application loadbalancer supports routing the requests across the instances of the application based on routing rules that can be configured based on http request:
+	1. path
+	2. query parameters
+	3. headers
+	etc
+	
+1.2 Loadbalancing Algorithms
+1. round-robin   = distributes the traffic across the instances of the application in the Targetgroup evenly. We should choose this, when we have all machines in the Target Group of same shape
+
+2. weighted-route = For each node in the Target Group we assign percentage. 
+		Node1 = 60%
+		Node2 = 40%
+which means out of 100 requests received, 60 should be routed to Node1 and 40 should be routed to Node2
+This algorithm choosen when we have machines of varied shape in the group
+
+3. healthchecks
+The application loadbalancer supports healthchecks in routing the traffic only to the healthy instances of our application. 
+Within the application, the developer has to built an healthcheck endpoint = upon hitting/accessing it, it reports the status of the application, like healthy http response status: 200 or un-healthy = incase there is an error within the application or application has been crashed by return error codes aspart of the http response.
+
+When we are defining TargetGroup with our application instances within them, we need to configure the healthcheck endpoint of the application as well
+
+TargetGroup: tg1
+|-Node1 = ec2 instance, port, healthcheck: /healthcheck
+
+The TargetGroup constantly or periodically hits the healthcheck endpoint we configured for each node and marks the node as healthy / unhealthy.
+
+based on this the Application Loadbalancer upon receiving the request, picks only the healthy nodes within the target group to loadbalance/distribute the traffic among.
+In this way ALB avoids routing the requests to the crashed instances of the application.
+
+4. sticky sessions
+upon enabling the sticky session, the application loadbalancer keeps track of the client and routes always the client traffic to the same instance in the target group.
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

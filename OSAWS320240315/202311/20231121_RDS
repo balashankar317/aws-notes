@@ -1,0 +1,51 @@
+From our previous discussions, we understood, that we can provision, configure and host an mysql server or any of the RDBMS softwares on the aws cloud infrastructure and make them accessible to the software applications in storing/retrieving the data.
+
+But there are lot of challenges in provisioning, configuring and managing the RDBMS databases by our own:
+1. In order to install the database server on the cloud infrastructure we need to take care of several aspects interms of
+	1.1 setting up the network
+	1.2 configuring security like NACL, security groups in allowing the database server software to be accessed by the software application only for ensuring greater level of security
+2. upon provisioning the required infrastructure, the devops engineer has to manually download the database server software, install and configure it
+	2.1 during this process he has to understand the database server software configuration options in tunning it
+	2.2 procure software licenses
+3. To ensure database server is always highly-available we need to install the database on multiple ec2 instances across the AZs of the region and the devops engineer has to install and configure the database server in active/passive mode which is very complex process
+4. monitoring the database server and ensure it is always available
+5. scaling the database server to handle high traffic is very difficult
+6. periodical backup and restore is an continous job and should be carried consistently for minimal or zero loss of data incase of crash
+7. scaling up the system resources like storage requires an restart of the instances and impacts the available of the database server
+
+By taking all of the above things into consideration we can understand managing and monitoring an database server software is quite challenging and requires
+1. expertise knowledge (dba)
+2. dedicated team (support for monitoring, backup, recovery)
+3. tools
+
+since everyone requires an relational database management system software for running their software applications, rather than everyone dealing with the above aspects of running them, the aws cloudplatform has provided databases as an PaaS service (managed service).
+
+1. RDS Service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

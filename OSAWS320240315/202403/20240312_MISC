@@ -1,0 +1,145 @@
+1. Cloud Formation
+-------------------
+Cloud Formation is an iac (infrastructure as code) automation tool, instead of manually provisioning the infrastructure we can automate the process of creating it using cloud formation.
+	
+We need to define the infrastructure using cloud formation templates and pass it as an input to the CloudFormation service which takes care of applying the configurations in provisioning the aws resources/services.
+The cloudformation templates can be written in #2 formats
+1. json
+2. yaml
+
+Let us see an basic example on provisioning an ec2 instance by writing cloudformation template
+ec2.yml
+--------
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'AWS EC2 Instance'
+Resources:
+	javaserverec2:
+		Type: AWS::EC2::Instance
+		Properties:
+      ImageId: ami-99993
+			InstanceType: t2.micro
+			KeyName: keypairName
+			SecurityGroupIds:
+				- !Ref javaserverec2sg
+	javaserverec2sg:
+		Type: AWS::EC2::SecurityGroup
+		Properties:
+			GroupName: javaserverec2sg
+			GroupDescription: "Allow SSH access publicly"
+			SecurityGroupIngress:
+				- IpProtocol: tcp
+				  FromPort: 22
+					ToPort: 22
+					CidrIp: 0.0.0.0/0
+	
+						
+upon writing the stack template file we need to create an new stack in aws cloudplatform cloud console by uploading the stack template and submit. This will create all the stack resources defined.
+						
+By deleting the stack, it destroys or terminates all the resources it has created.
+Instead of using AWS CloudConsole we can provision the resources using awsCLI tool aswell
+
+aws cloudformation create-stack --stack-name javaec2stack --template-body file://ec2.yml
+--------------------------------------------------------------------------------------------------------------------------------
+
+How to configure SSL for application loadbalancer?
+ACM 	
+
+--------------------------------------------------------------------------------------------------------------------------------
+AWS Step Functions
+-------------------
+AWS Step functions is an serverless orchestration service, that lets the developers create and manage multi-step application workflows in cloud. The developers can assemble individual microservices into united workflows using the step functions.
+
+At each step of a give workflow, Step Functions manages the input, output and error handling and retries, so the developers can focus on higher-value business logic of their application.
+
+
+AWS Cloudplatform has provided Step Function visual editor through which developers can drag-drop in creating the workflows.
+AWS Step functions contains the following main components:
+1. State Machine
+2. Task
+
+1. State Machine
+State Machine is defined as a type of computational device that is able to store various data values and update them based on inputs. AWS Step function is also build upon the concept of State machine that refers as application workflows. Developers can build a state machine in Step Functions by using AWS Step Functions / State language.
+
+2. Task
+A Task is an activity or operation (unit of work) that is part of the workflow.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						

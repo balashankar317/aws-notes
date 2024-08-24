@@ -1,0 +1,286 @@
+1. Basics of Linux operating system                                  [6:00 pm - 8:00 pm]
+	1.1 FileSystem 
+	[touch, mkdir, rm, rm -rf, cat, echo, cp, mv]
+	[find, grep]
+	[File permissions: chmod, chown]
+	1.2 User Management 
+	[useradd, groupadd, deluser, delgroup]
+	[sudoers, su]
+	1.3 Package Management
+	ubuntu: [apt, dpkg]
+2. Networking
+	1. basics of networking protocols
+	2. ip address / subnetting
+	3. port
+	4. networking devices
+3. any programming language, preferrably: java
+	1. how to build an application using maven build tool
+	2. how to deploy an web application on tomcat server
+4. database management system
+5. ssh protocol
+
+What is an operating system, what is the purpose of it?
+operating system is an system software that sits ontop of the hardware resources of our computer, that provides system routines using which we can write programming instructions for performing the operations on a computer.
+	
+Upon passing the programming instructions written using operating system routines as an input to the underlying operating, it translates these intructions into cpu specific instructionset and passes it to the underlying cpu asking to perform the operation thus by achieving hardware platform portability.
+	
+In addition, the operating systems provides sophisticated tools and environment like
+1. music players
+2. network
+3. browser softwares
+4. utility softwares	
+	4.1 calculators
+	4.2 paint
+  4.3 notepad
+that makes the computer sophisted to be used by the enduser
+
+From the above we can understand the operating system majorly performs 2 aspects
+1. hardware portability
+2. sophisticated tools/utilities allowing the user to easily use/interact with the computer
+
+There are different operating systems provided by various different manufacturing vendors like
+1. windows
+2. linux
+3. unix
+4. mac
+5. solaris
+etc
+--------------------------------------------------------------------------------------------------------------------------------------
+Linux is an opensource operating system that is distributed under GNU public license which means it can be freely usable, freely the sourcecode is available and freely modifiable and redistributable also.
+	
+Linux operating system is defined by its key/core component called "Kernel". The kernel is the core component that interacts with the underlying hardware resources (cpu) of the computer asking to perform the operations. Working with kernel of the linux is very difficult since it is an CLI interface that provides bunch of commands to be used for interacting with it
+
+Looks like the general public users cannot use the linux operating system as the users needs to have programming knowledge in interacting with kernel.
+	
+There are few opensource software contributors who wants to promote opensource software in the market came forward and started building sophisticated tools that can be installed ontop of the kernel of the linux	operating system inorder to make the linux easily usable like
+	1. graphical user interface
+	2. browsers
+	3. music players
+	4. text editors
+	5. image viewers
+	etc
+	
+
+Now the users inorder to use the linux operating system they need to
+	1. install the linux kernel ontop of the hardware of the computer
+	2. then search/download the opensource software utilities that are distributed by various different opensource contributors in the market
+	3. install these tools/utilities on the kernal of the linux operating system
+	
+Here:
+1. installing the linux kernal itself is an challenging job as we need to run through the complex process of running commands manually to install the linux kernal
+2. ontop of it installing the software tools/utilities is very difficult because we need to again run through quite a number of commands in installing them and might endup with compatibility issues as well.
+	
+To overcome the above problems in using the linux operating system, there linux distros are introduced. There are several software manufacturing players came on board and attached to the kernal the utilities/tools along with
+	1. software installers or package managers
+	2. configurations
+	etc
+	
+The bundled kernal + utilities/tools + installers / package managers and distributed to the market which is called "Linux Distros".
+	
+Now people can sophisticatedly use linux operating system by choosing between these distros. across all the distros the kernel is same only the tools/utilities sourrounding them will change.
+	
+1. Debain
+	1.1 Ubuntu
+	1.2 Kali Linux
+	
+2. Redhat
+	2.1 CentOS
+	2.2 Redhat Enterprise Linux
+	2.3 Fedora
+	
+3. Arch
+4. Slackware
+--------------------------------------------------------------------------------------------------------------------------------------
+FileSystem Commands
+--------------------
+We can store the data permanently on the storage device (harddisk) of the computer interms of Files/Folders.  Linux kernel has provided bash commands for creating and managing the files on the storage device of the computer which are called "File Management Commands".
+	
+1. How to create an empty file on the computer?
+touch filename
+
+2. How to see the list of files/folders within the computer?
+ls = list files and folders in the current directory
+ls -l = -l stands for long list of files/folders in the current directory
+
+
+3. How to know the working directory we are in?
+pwd = print working directory
+
+4. How create an directory/folder?
+mkdir directoryName/ = directory is used for grouping and organizing the related files together.
+	
+5. How to change into a directory?
+cd directoryName = cd stands for change directory
+cd .. = takes us into parent directory
+cd (or) cd ~ = takes us to the user home directory
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

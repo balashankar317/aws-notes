@@ -1,0 +1,88 @@
+Route53
+--------
+Amazon Route53 is a Domain Name System (DNS) web service that is an DNS Server that resolves the domain name to an ip address of a resource on which our application is hosted.
+	
+There are many advantages of using Route53 when compared with public dns servers offered by hosting providers
+Features:-
+	1. highly available and scalable
+	2. fully complaint with ipv6 based routing
+	3. cost effective based routing, only the dns queries that are resolved through Route53 will be charged. There is no fixed charge of usage of the service (pay-per-usage)
+	4. We can buy domain names through Route53 domain registration feature
+	5. Route53 is capable of resolving a domain name to aws resources like ec2, lbr, s3, cloudfront service by using private dns name of the resource, so we dont need to have public ip address to resolve the domain name.
+	6. There are different routing policies are supported by Route53, based on which we can route the domain name to a resource
+	7. Healthchecks and health monitoring of the available resources is supported by Route53
+	8. Route53 is secured through IAM access
+	
+What are the different Routing Policies are supported by Route53 service?
+There are 7 Routing Policies are supported by Route53
+1. Simple Routing policy              = The domain name will be mapped to an single resource
+
+2. Failover Routing policy            = When we want to configure active/passive failover we can use this policy. If the primary node on which our application is running has been failed/dead, then Route53 can route the traffic to the secondary node when we use Failover routing policy.
+	
+3. GeoLocation Routing policy
+Routes the request to the server or node nearest to the customer
+
+4. GeoProximity Routing policy
+either to the user location or something close to the user location
+
+5. Latency Routing policy
+The resources are hosted on multiple aws regions, we want to route the traffic based on the region that provides low-latency and less round-trip time then use latency routing policy
+
+6. MultiValue answer Routing policy
+We can configure upto 8 records for a domain name, so that for each request route53 randomly returns a response
+
+7. Weighted Routing policy
+if we want to distribute the traffic across the nodes based on proportion or weight for eg.. 60% of requests to node1 and 40% of requests to node2 then we use weighted route.
+	
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+How to ssh into private subnet ec2 instance?
+From an public network we cannot access any of the resources under the private subnet of the vpc. The resources within the vpc only can access the private subnet resources, so inorder to access the private subnet resources of a vpc we need to provision an bastion host/jumpbox on one of the public subnet of the vpc network
+
+Now upon provisioning the bastion host on public network, we can ssh onto the ec2 instance (bastion host) from the public network computer and from bastion host ec2 instance we can ssh into any of the private subnet resources of that vpc.
+
+#1.	
+To ssh into the private subnet ec2 instance, we need private key file of it in bastion host which is available on host machine (windows computer). so we need to copy the private_key file of the private subnet resources from windows to bastion host first using scp tool
+
+scp = secure copy
+scp -i privateKeyFileToBastionHost sourceFile username@bashHostIp:destinationPath
+
+scp -i ~/.ssh/javakp.pem ~/.ssh/javakp.pem ubuntu@bastionHostIp:/home/ubuntu/.ssh/
+	
+#2. ssh into bastion host or jumpbox
+ssh -i ~/.ssh/javakp.pem ubuntu@jumpboxip
+
+#3. from jumpbox to private subnet ec2 instance ssh
+ssh -i ~/.ssh/javakp.pem ubuntu@privatesubnetec2ip
+--------------------------------------------------------------------------------------------------------------------------------------
+Hybrid Subnet
+Hybrid subnet is partially opened to the public network. All the outbound network traffic from subnet resources to the public network is allowed and all the inbound traffic from public network to subnet resources are blocked in an Hybrid subnet
+
+Why do we need to use an Hybrid Subnet?
+When we are hosting our application behind the LoadBalancer, all the public network to our application will be pass-through the loadbalancer only. In such case we dont need to expose our application to the public network directly, in such case we can host/run our application on private subnet itself.
+	
+But many of the times, our application that is running within the ec2 instance under private subnet might require to access external resources/services/applications that are running on public network, in such case we need outbound network access to public network, but we dont need inbound network access from public network to our ec2 resource, so to fulfill such requirement of hosting and running the applications the Hybrid Subnet has been introduced.
+	
+	
+How to create an hybrid subnet?
+To create an Hybrid subnet, the aws cloud platform has provided an network device called "NAT Gateway" through which we can route all the outbound network traffic from the subnet resources to public network.
+The NAT gateway is a network router that works based on "Network Address Translation" mechanism. 
+	1. All the inbound traffic from public network resources towards the subnet resources would be blocked. because our subnet is technically an private subnet only.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,71 @@
+What are security groups, what is the purpose of it?
+security group is an firewall that is setup & configured at the individual resource level. If we want to enforce traffic restrictions specific to a resource level per each individual resource then we need to use security groups
+
+1. security groups are created at vpc level and are attached to the individual resources across the vpc. By creating the security groups at the vpc level, we can reuse the same security group if applicable for multiple resources of the vpc
+
+2. security groups are stateful, it means it can keep track of the request/response
+for eg.. when our resource has sent an outbound request, to allow the response from the remote resource back, we dont need to add inbound rule, because security group can keep track and correlate the response as an response to the request that we have sent earlier rather than treating it as an request from the remote resource 
+
+While working with security groups we need to configure 2 rules
+1. Ingress = enforcing the traffic restrictions in allowing inbound network traffic towards the resource
+2. Egress = enforcing the traffic restrictions in allowing the outbound traffic from the resource
+unlike nacl the security group rules are not ordered, we dont need to give a number to the rules.
+	
+	
+3. security groups are applicable only for few types of resources only
+There are 5 resource types for whom we can attach security groups
+1. ec2 instance
+2. rds
+3. elastic beanstalk
+4. autoscaling group
+5. loadbalancer
+---------------------------------------------------------------------------------------------------------------------------------------------
+Elastic Ips
+-----------
+
+For any resource that we provision in aws cloud platform there are 2 types of ip address will be assigned
+1. private ip address
+it is an internal/intra-network ip address that is generated within the vpc/subnet range and will be assigned to the resource which can be used locally within the vpc network
+There are 3 reasons why aws cloud platform assigns the private ip address for every resource we provision
+1.1 to uniquely identify the resource and access the resource within the network, it creates and assigns an private ip address
+1.2 if there is no private/internal ip for the resources, then the resources cannot be accessed from other resources of the same vpc through public ip given the other resources are part of private subnet
+1.3 by using the private network ip address, the resources can communicate with low-latency and high-speed bandwidth communication when communicating between the resources of the same vpc. So it is always advised or recommended to avoid using public ips when we are communicating with the resources within the vpc
+
+2. public ip address
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
